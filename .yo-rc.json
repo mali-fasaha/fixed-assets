@@ -32,7 +32,7 @@
       "cucumber",
       "protractor"
     ],
-    "jhiPrefix": "jhi",
+    "jhiPrefix": "gha",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
