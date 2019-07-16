@@ -13,6 +13,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'admin',
           loadChildren: './admin/admin.module#FixedAssetsAdminModule'
         },
+        {
+          path: 'assets',
+          loadChildren: './custom/about-fixed-assets/about-fixed-assets.module#AboutFixedAssetsModule'
+        },
         ...LAYOUT_ROUTES
       ],
       { enableTracing: DEBUG_INFO_ENABLED }
