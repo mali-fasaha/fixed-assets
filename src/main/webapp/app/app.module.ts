@@ -20,6 +20,7 @@ import { FixedAssetsEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { GhaMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { CustomModule } from './custom/custom.module';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { GhaMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     FixedAssetsAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     FixedAssetsEntityModule,
-    FixedAssetsAppRoutingModule
+    FixedAssetsAppRoutingModule,
+    CustomModule,
   ],
   declarations: [GhaMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
