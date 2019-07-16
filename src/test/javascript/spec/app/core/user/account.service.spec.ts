@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { SERVER_API_URL } from 'app/app.constants';
-import { AccountService, JhiTrackerService } from 'app/core';
+import { AccountService, GhaTrackerService } from 'app/core';
 import { JhiDateUtils } from 'ng-jhipster';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { MockTrackerService } from '../../../helpers/mock-tracker.service';
@@ -17,7 +17,7 @@ describe('Service Tests', () => {
         providers: [
           JhiDateUtils,
           {
-            provide: JhiTrackerService,
+            provide: GhaTrackerService,
             useClass: MockTrackerService
           }
         ]

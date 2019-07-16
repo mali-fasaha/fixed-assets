@@ -19,12 +19,12 @@ import { FixedAssetsAccountModule } from './account/account.module';
 import { FixedAssetsEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { GhaMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 
 @NgModule({
   imports: [
     BrowserModule,
-    NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-' }),
+    NgxWebstorageModule.forRoot({ prefix: 'gha', separator: '-' }),
     NgJhipsterModule.forRoot({
       // set below to true to make alerts look like toast
       alertAsToast: false,
@@ -38,7 +38,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     FixedAssetsEntityModule,
     FixedAssetsAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
+  declarations: [GhaMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -61,7 +61,7 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
       multi: true
     }
   ],
-  bootstrap: [JhiMainComponent]
+  bootstrap: [GhaMainComponent]
 })
 export class FixedAssetsAppModule {
   constructor(private dpConfig: NgbDatepickerConfig) {

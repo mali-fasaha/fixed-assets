@@ -3,31 +3,31 @@ import { of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { FixedAssetsTestModule } from '../../../test.module';
-import { JhiConfigurationComponent } from 'app/admin/configuration/configuration.component';
-import { JhiConfigurationService } from 'app/admin/configuration/configuration.service';
+import { GhaConfigurationComponent } from 'app/admin/configuration/configuration.component';
+import { GhaConfigurationService } from 'app/admin/configuration/configuration.service';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { Log } from 'app/admin';
 
 describe('Component Tests', () => {
-  describe('JhiConfigurationComponent', () => {
-    let comp: JhiConfigurationComponent;
-    let fixture: ComponentFixture<JhiConfigurationComponent>;
-    let service: JhiConfigurationService;
+  describe('GhaConfigurationComponent', () => {
+    let comp: GhaConfigurationComponent;
+    let fixture: ComponentFixture<GhaConfigurationComponent>;
+    let service: GhaConfigurationService;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [FixedAssetsTestModule],
-        declarations: [JhiConfigurationComponent],
-        providers: [JhiConfigurationService]
+        declarations: [GhaConfigurationComponent],
+        providers: [GhaConfigurationService]
       })
-        .overrideTemplate(JhiConfigurationComponent, '')
+        .overrideTemplate(GhaConfigurationComponent, '')
         .compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(JhiConfigurationComponent);
+      fixture = TestBed.createComponent(GhaConfigurationComponent);
       comp = fixture.componentInstance;
-      service = fixture.debugElement.injector.get(JhiConfigurationService);
+      service = fixture.debugElement.injector.get(GhaConfigurationService);
     });
 
     describe('OnInit', () => {

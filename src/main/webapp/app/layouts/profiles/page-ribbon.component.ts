@@ -3,7 +3,7 @@ import { ProfileService } from './profile.service';
 import { ProfileInfo } from './profile-info.model';
 
 @Component({
-  selector: 'jhi-page-ribbon',
+  selector: 'gha-page-ribbon',
   template: `
     <div class="ribbon" *ngIf="ribbonEnv">
       <a href="">{{ ribbonEnv }}</a>

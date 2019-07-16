@@ -2,8 +2,8 @@ import { browser, ExpectedConditions, element, by, ElementFinder } from 'protrac
 
 export class ScannedDocumentComponentsPage {
   createButton = element(by.id('jh-create-entity'));
-  deleteButtons = element.all(by.css('jhi-scanned-document div table .btn-danger'));
-  title = element.all(by.css('jhi-scanned-document div h2#page-heading span')).first();
+  deleteButtons = element.all(by.css('gha-scanned-document div table .btn-danger'));
+  title = element.all(by.css('gha-scanned-document div h2#page-heading span')).first();
 
   async clickOnCreateButton(timeout?: number) {
     await this.createButton.click();
@@ -23,7 +23,7 @@ export class ScannedDocumentComponentsPage {
 }
 
 export class ScannedDocumentUpdatePage {
-  pageTitle = element(by.id('jhi-scanned-document-heading'));
+  pageTitle = element(by.id('gha-scanned-document-heading'));
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
   descriptionInput = element(by.id('field_description'));
@@ -99,8 +99,8 @@ export class ScannedDocumentUpdatePage {
 }
 
 export class ScannedDocumentDeleteDialog {
-  private dialogTitle = element(by.id('jhi-delete-scannedDocument-heading'));
-  private confirmButton = element(by.id('jhi-confirm-delete-scannedDocument'));
+  private dialogTitle = element(by.id('gha-delete-scannedDocument-heading'));
+  private confirmButton = element(by.id('gha-confirm-delete-scannedDocument'));
 
   async getDialogTitle() {
     return this.dialogTitle.getText();

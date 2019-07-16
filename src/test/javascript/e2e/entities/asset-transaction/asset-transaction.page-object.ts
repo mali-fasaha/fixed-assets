@@ -2,8 +2,8 @@ import { browser, ExpectedConditions, element, by, ElementFinder } from 'protrac
 
 export class AssetTransactionComponentsPage {
   createButton = element(by.id('jh-create-entity'));
-  deleteButtons = element.all(by.css('jhi-asset-transaction div table .btn-danger'));
-  title = element.all(by.css('jhi-asset-transaction div h2#page-heading span')).first();
+  deleteButtons = element.all(by.css('gha-asset-transaction div table .btn-danger'));
+  title = element.all(by.css('gha-asset-transaction div h2#page-heading span')).first();
 
   async clickOnCreateButton(timeout?: number) {
     await this.createButton.click();
@@ -23,7 +23,7 @@ export class AssetTransactionComponentsPage {
 }
 
 export class AssetTransactionUpdatePage {
-  pageTitle = element(by.id('jhi-asset-transaction-heading'));
+  pageTitle = element(by.id('gha-asset-transaction-heading'));
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
   transactionReferenceInput = element(by.id('field_transactionReference'));
@@ -72,8 +72,8 @@ export class AssetTransactionUpdatePage {
 }
 
 export class AssetTransactionDeleteDialog {
-  private dialogTitle = element(by.id('jhi-delete-assetTransaction-heading'));
-  private confirmButton = element(by.id('jhi-confirm-delete-assetTransaction'));
+  private dialogTitle = element(by.id('gha-delete-assetTransaction-heading'));
+  private confirmButton = element(by.id('gha-confirm-delete-assetTransaction'));
 
   async getDialogTitle() {
     return this.dialogTitle.getText();

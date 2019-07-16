@@ -3,19 +3,19 @@ import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { FixedAssetsTestModule } from '../../../test.module';
-import { JhiAlertErrorComponent } from 'app/shared/alert/alert-error.component';
+import { GhaAlertErrorComponent } from 'app/shared/alert/alert-error.component';
 import { MockAlertService } from '../../../helpers/mock-alert.service';
 
 describe('Component Tests', () => {
   describe('Alert Error Component', () => {
-    let comp: JhiAlertErrorComponent;
-    let fixture: ComponentFixture<JhiAlertErrorComponent>;
+    let comp: GhaAlertErrorComponent;
+    let fixture: ComponentFixture<GhaAlertErrorComponent>;
     let eventManager: JhiEventManager;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [FixedAssetsTestModule],
-        declarations: [JhiAlertErrorComponent],
+        declarations: [GhaAlertErrorComponent],
         providers: [
           JhiEventManager,
           {
@@ -24,12 +24,12 @@ describe('Component Tests', () => {
           }
         ]
       })
-        .overrideTemplate(JhiAlertErrorComponent, '')
+        .overrideTemplate(GhaAlertErrorComponent, '')
         .compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(JhiAlertErrorComponent);
+      fixture = TestBed.createComponent(GhaAlertErrorComponent);
       comp = fixture.componentInstance;
       eventManager = fixture.debugElement.injector.get(JhiEventManager);
     });

@@ -5,7 +5,7 @@ import { JhiDataUtils } from 'ng-jhipster';
 import { IScannedDocument } from 'app/shared/model/scanned-document.model';
 
 @Component({
-  selector: 'jhi-scanned-document-detail',
+  selector: 'gha-scanned-document-detail',
   templateUrl: './scanned-document-detail.component.html'
 })
 export class ScannedDocumentDetailComponent implements OnInit {

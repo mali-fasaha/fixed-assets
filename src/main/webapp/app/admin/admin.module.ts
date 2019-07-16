@@ -11,12 +11,12 @@ import {
   UserMgmtUpdateComponent,
   UserMgmtDeleteDialogComponent,
   LogsComponent,
-  JhiMetricsMonitoringComponent,
-  JhiHealthModalComponent,
-  JhiHealthCheckComponent,
-  JhiConfigurationComponent,
-  JhiDocsComponent,
-  JhiTrackerComponent
+  GhaMetricsMonitoringComponent,
+  GhaHealthModalComponent,
+  GhaHealthCheckComponent,
+  GhaConfigurationComponent,
+  GhaDocsComponent,
+  GhaTrackerComponent
 } from './';
 
 @NgModule({
@@ -32,14 +32,14 @@ import {
     UserMgmtUpdateComponent,
     UserMgmtDeleteDialogComponent,
     LogsComponent,
-    JhiConfigurationComponent,
-    JhiHealthCheckComponent,
-    JhiHealthModalComponent,
-    JhiDocsComponent,
-    JhiTrackerComponent,
-    JhiMetricsMonitoringComponent
+    GhaConfigurationComponent,
+    GhaHealthCheckComponent,
+    GhaHealthModalComponent,
+    GhaDocsComponent,
+    GhaTrackerComponent,
+    GhaMetricsMonitoringComponent
   ],
-  entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent],
+  entryComponents: [UserMgmtDeleteDialogComponent, GhaHealthModalComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FixedAssetsAdminModule {}

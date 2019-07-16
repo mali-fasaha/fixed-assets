@@ -12,7 +12,7 @@ import { ITEMS_PER_PAGE } from 'app/shared';
 import { AssetTransactionService } from './asset-transaction.service';
 
 @Component({
-  selector: 'jhi-asset-transaction',
+  selector: 'gha-asset-transaction',
   templateUrl: './asset-transaction.component.html'
 })
 export class AssetTransactionComponent implements OnInit, OnDestroy {

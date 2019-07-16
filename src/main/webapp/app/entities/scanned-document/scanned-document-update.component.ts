@@ -8,7 +8,7 @@ import { IScannedDocument, ScannedDocument } from 'app/shared/model/scanned-docu
 import { ScannedDocumentService } from './scanned-document.service';
 
 @Component({
-  selector: 'jhi-scanned-document-update',
+  selector: 'gha-scanned-document-update',
   templateUrl: './scanned-document-update.component.html'
 })
 export class ScannedDocumentUpdateComponent implements OnInit {

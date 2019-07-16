@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginService } from 'app/core/login/login.service';
-import { JhiLoginModalComponent } from 'app/shared/login/login.component';
+import { GhaLoginModalComponent } from 'app/shared/login/login.component';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 import { FixedAssetsTestModule } from '../../../test.module';
 import { MockLoginService } from '../../../helpers/mock-login.service';
@@ -13,8 +13,8 @@ import { MockStateStorageService } from '../../../helpers/mock-state-storage.ser
 
 describe('Component Tests', () => {
   describe('LoginComponent', () => {
-    let comp: JhiLoginModalComponent;
-    let fixture: ComponentFixture<JhiLoginModalComponent>;
+    let comp: GhaLoginModalComponent;
+    let fixture: ComponentFixture<GhaLoginModalComponent>;
     let mockLoginService: any;
     let mockStateStorageService: any;
     let mockRouter: any;
@@ -24,7 +24,7 @@ describe('Component Tests', () => {
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         imports: [FixedAssetsTestModule],
-        declarations: [JhiLoginModalComponent],
+        declarations: [GhaLoginModalComponent],
         providers: [
           FormBuilder,
           {
@@ -37,12 +37,12 @@ describe('Component Tests', () => {
           }
         ]
       })
-        .overrideTemplate(JhiLoginModalComponent, '')
+        .overrideTemplate(GhaLoginModalComponent, '')
         .compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(JhiLoginModalComponent);
+      fixture = TestBed.createComponent(GhaLoginModalComponent);
       comp = fixture.componentInstance;
       mockLoginService = fixture.debugElement.injector.get(LoginService);
       mockStateStorageService = fixture.debugElement.injector.get(StateStorageService);

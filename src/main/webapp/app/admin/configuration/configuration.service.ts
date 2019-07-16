@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({ providedIn: 'root' })
-export class JhiConfigurationService {
+export class GhaConfigurationService {
   constructor(private http: HttpClient) {}
 
   get(): Observable<any> {

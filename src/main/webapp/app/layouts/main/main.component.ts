@@ -4,10 +4,10 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd, NavigationError } from '
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'jhi-main',
+  selector: 'gha-main',
   templateUrl: './main.component.html'
 })
-export class JhiMainComponent implements OnInit {
+export class GhaMainComponent implements OnInit {
   constructor(private titleService: Title, private router: Router) {}
 
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {

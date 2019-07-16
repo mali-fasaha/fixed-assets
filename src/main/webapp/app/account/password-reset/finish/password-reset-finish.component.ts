@@ -8,7 +8,7 @@ import { LoginModalService } from 'app/core';
 import { PasswordResetFinishService } from './password-reset-finish.service';
 
 @Component({
-  selector: 'jhi-password-reset-finish',
+  selector: 'gha-password-reset-finish',
   templateUrl: './password-reset-finish.component.html'
 })
 export class PasswordResetFinishComponent implements OnInit, AfterViewInit {

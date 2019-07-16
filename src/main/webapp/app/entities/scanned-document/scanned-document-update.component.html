@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-scanned-document-heading">Create or edit a Scanned Document</h2>
+            <h2 id="gha-scanned-document-heading">Create or edit a Scanned Document</h2>
             <div>
-                <jhi-alert-error></jhi-alert-error>
+                <gha-alert-error></gha-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"

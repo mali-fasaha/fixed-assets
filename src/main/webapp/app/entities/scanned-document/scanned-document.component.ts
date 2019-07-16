@@ -12,7 +12,7 @@ import { ITEMS_PER_PAGE } from 'app/shared';
 import { ScannedDocumentService } from './scanned-document.service';
 
 @Component({
-  selector: 'jhi-scanned-document',
+  selector: 'gha-scanned-document',
   templateUrl: './scanned-document.component.html'
 })
 export class ScannedDocumentComponent implements OnInit, OnDestroy {

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IAssetTransaction } from 'app/shared/model/asset-transaction.model';
 
 @Component({
-  selector: 'jhi-asset-transaction-detail',
+  selector: 'gha-asset-transaction-detail',
   templateUrl: './asset-transaction-detail.component.html'
 })
 export class AssetTransactionDetailComponent implements OnInit {

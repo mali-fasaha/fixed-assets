@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { JhiConfigurationService } from './configuration.service';
+import { GhaConfigurationService } from './configuration.service';
 
 @Component({
-  selector: 'jhi-configuration',
+  selector: 'gha-configuration',
   templateUrl: './configuration.component.html'
 })
-export class JhiConfigurationComponent implements OnInit {
+export class GhaConfigurationComponent implements OnInit {
   allConfiguration: any = null;
   configuration: any = null;
   configKeys: any[];
@@ -14,7 +14,7 @@ export class JhiConfigurationComponent implements OnInit {
   orderProp: string;
   reverse: boolean;
 
-  constructor(private configurationService: JhiConfigurationService) {
+  constructor(private configurationService: GhaConfigurationService) {
     this.configKeys = [];
     this.filter = '';
     this.orderProp = 'prefix';

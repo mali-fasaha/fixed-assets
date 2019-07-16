@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User, UserService } from 'app/core';
 
 @Component({
-  selector: 'jhi-user-mgmt-update',
+  selector: 'gha-user-mgmt-update',
   templateUrl: './user-management-update.component.html'
 })
 export class UserMgmtUpdateComponent implements OnInit {

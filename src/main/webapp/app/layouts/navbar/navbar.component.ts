@@ -7,7 +7,7 @@ import { AccountService, LoginModalService, LoginService } from 'app/core';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 
 @Component({
-  selector: 'jhi-navbar',
+  selector: 'gha-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['navbar.scss']
 })

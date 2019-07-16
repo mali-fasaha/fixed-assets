@@ -8,7 +8,7 @@ import { IScannedDocument } from 'app/shared/model/scanned-document.model';
 import { ScannedDocumentService } from './scanned-document.service';
 
 @Component({
-  selector: 'jhi-scanned-document-delete-dialog',
+  selector: 'gha-scanned-document-delete-dialog',
   templateUrl: './scanned-document-delete-dialog.component.html'
 })
 export class ScannedDocumentDeleteDialogComponent {
@@ -36,7 +36,7 @@ export class ScannedDocumentDeleteDialogComponent {
 }
 
 @Component({
-  selector: 'jhi-scanned-document-delete-popup',
+  selector: 'gha-scanned-document-delete-popup',
   template: ''
 })
 export class ScannedDocumentDeletePopupComponent implements OnInit, OnDestroy {

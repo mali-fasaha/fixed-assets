@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { FixedAssetsSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent } from './';
+import { FixedAssetsSharedLibsModule, GhaAlertComponent, GhaAlertErrorComponent } from './';
 
 @NgModule({
   imports: [FixedAssetsSharedLibsModule],
-  declarations: [JhiAlertComponent, JhiAlertErrorComponent],
-  exports: [FixedAssetsSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent]
+  declarations: [GhaAlertComponent, GhaAlertErrorComponent],
+  exports: [FixedAssetsSharedLibsModule, GhaAlertComponent, GhaAlertErrorComponent]
 })
 export class FixedAssetsSharedCommonModule {}

@@ -6,7 +6,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { FixedAssetsTestModule } from '../../../test.module';
 import { PasswordComponent } from 'app/account/password/password.component';
 import { PasswordService } from 'app/account/password/password.service';
-import { JhiTrackerService } from 'app/core/tracker/tracker.service';
+import { GhaTrackerService } from 'app/core/tracker/tracker.service';
 import { MockTrackerService } from '../../../helpers/mock-tracker.service';
 
 describe('Component Tests', () => {
@@ -22,7 +22,7 @@ describe('Component Tests', () => {
         providers: [
           FormBuilder,
           {
-            provide: JhiTrackerService,
+            provide: GhaTrackerService,
             useClass: MockTrackerService
           }
         ]

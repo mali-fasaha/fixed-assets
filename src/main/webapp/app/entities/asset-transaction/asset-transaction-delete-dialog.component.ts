@@ -8,7 +8,7 @@ import { IAssetTransaction } from 'app/shared/model/asset-transaction.model';
 import { AssetTransactionService } from './asset-transaction.service';
 
 @Component({
-  selector: 'jhi-asset-transaction-delete-dialog',
+  selector: 'gha-asset-transaction-delete-dialog',
   templateUrl: './asset-transaction-delete-dialog.component.html'
 })
 export class AssetTransactionDeleteDialogComponent {
@@ -36,7 +36,7 @@ export class AssetTransactionDeleteDialogComponent {
 }
 
 @Component({
-  selector: 'jhi-asset-transaction-delete-popup',
+  selector: 'gha-asset-transaction-delete-popup',
   template: ''
 })
 export class AssetTransactionDeletePopupComponent implements OnInit, OnDestroy {

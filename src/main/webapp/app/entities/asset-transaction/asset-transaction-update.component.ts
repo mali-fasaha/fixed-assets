@@ -8,7 +8,7 @@ import { IAssetTransaction, AssetTransaction } from 'app/shared/model/asset-tran
 import { AssetTransactionService } from './asset-transaction.service';
 
 @Component({
-  selector: 'jhi-asset-transaction-update',
+  selector: 'gha-asset-transaction-update',
   templateUrl: './asset-transaction-update.component.html'
 })
 export class AssetTransactionUpdateComponent implements OnInit {
