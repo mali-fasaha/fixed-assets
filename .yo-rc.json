@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "io.github.assets"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "fixedAssets",
+    "packageName": "io.github.assets",
+    "packageFolder": "io/github/assets",
+    "serverPort": "12001",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "MDBlNjE1OTNhNzg4MzBjMzI2YjAzNjFmOGUwNmU2NDk3ZDk1YjQ4Nzg0ZDIxOTI0YjBjMDQ2YWZhNDQ0Y2E5NmJmNjhkZDMzMTMzMWIwYjBkODJhM2E4ZWQxYTJkZGQ1MjVhYTMyNWU4ODA1ODEzNDFmYjE5OGNiMTI1MzBhODc=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "simplex",
+    "clientThemeVariant": "dark",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}

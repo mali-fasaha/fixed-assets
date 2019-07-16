@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-scanned-document-heading">Create or edit a Scanned Document</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_approvalDocument">Approval Document</label>
+                    <div>
+                        <div *ngIf="editForm.get('approvalDocument').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('approvalDocumentContentType').value, editForm.get('approvalDocument').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('approvalDocumentContentType').value}}, {{byteSize(editForm.get('approvalDocument').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({approvalDocument: null});editForm.patchValue({approvalDocumentContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_approvalDocument" (change)="setFileData($event, 'approvalDocument', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="approvalDocument" id="field_approvalDocument"
+                           formControlName="approvalDocument"/>
+                    <input type="hidden" class="form-control" name="approvalDocumentContentType" id="field_approvalDocumentContentType"
+                           formControlName="approvalDocumentContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_invoiceDocument">Invoice Document</label>
+                    <div>
+                        <div *ngIf="editForm.get('invoiceDocument').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('invoiceDocumentContentType').value, editForm.get('invoiceDocument').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('invoiceDocumentContentType').value}}, {{byteSize(editForm.get('invoiceDocument').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({invoiceDocument: null});editForm.patchValue({invoiceDocumentContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_invoiceDocument" (change)="setFileData($event, 'invoiceDocument', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="invoiceDocument" id="field_invoiceDocument"
+                           formControlName="invoiceDocument"/>
+                    <input type="hidden" class="form-control" name="invoiceDocumentContentType" id="field_invoiceDocumentContentType"
+                           formControlName="invoiceDocumentContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lpoDocument">Lpo Document</label>
+                    <div>
+                        <div *ngIf="editForm.get('lpoDocument').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('lpoDocumentContentType').value, editForm.get('lpoDocument').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('lpoDocumentContentType').value}}, {{byteSize(editForm.get('lpoDocument').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({lpoDocument: null});editForm.patchValue({lpoDocumentContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_lpoDocument" (change)="setFileData($event, 'lpoDocument', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="lpoDocument" id="field_lpoDocument"
+                           formControlName="lpoDocument"/>
+                    <input type="hidden" class="form-control" name="lpoDocumentContentType" id="field_lpoDocumentContentType"
+                           formControlName="lpoDocumentContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_requisitionDocument">Requisition Document</label>
+                    <div>
+                        <div *ngIf="editForm.get('requisitionDocument').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('requisitionDocumentContentType').value, editForm.get('requisitionDocument').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('requisitionDocumentContentType').value}}, {{byteSize(editForm.get('requisitionDocument').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({requisitionDocument: null});editForm.patchValue({requisitionDocumentContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_requisitionDocument" (change)="setFileData($event, 'requisitionDocument', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="requisitionDocument" id="field_requisitionDocument"
+                           formControlName="requisitionDocument"/>
+                    <input type="hidden" class="form-control" name="requisitionDocumentContentType" id="field_requisitionDocumentContentType"
+                           formControlName="requisitionDocumentContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_otherDocuments">Other Documents</label>
+                    <div>
+                        <div *ngIf="editForm.get('otherDocuments').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('otherDocumentsContentType').value, editForm.get('otherDocuments').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('otherDocumentsContentType').value}}, {{byteSize(editForm.get('otherDocuments').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({otherDocuments: null});editForm.patchValue({otherDocumentsContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_otherDocuments" (change)="setFileData($event, 'otherDocuments', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="otherDocuments" id="field_otherDocuments"
+                           formControlName="otherDocuments"/>
+                    <input type="hidden" class="form-control" name="otherDocumentsContentType" id="field_otherDocumentsContentType"
+                           formControlName="otherDocumentsContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

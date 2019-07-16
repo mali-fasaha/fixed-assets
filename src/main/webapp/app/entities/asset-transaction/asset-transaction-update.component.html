@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-asset-transaction-heading">Create or edit a Asset Transaction</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transactionReference">Transaction Reference</label>
+                    <input type="text" class="form-control" name="transactionReference" id="field_transactionReference"
+                           formControlName="transactionReference"/>
+                    <div *ngIf="editForm.get('transactionReference').invalid && (editForm.get('transactionReference').dirty || editForm.get('transactionReference').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transactionReference').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transactionDate">Transaction Date</label>
+                    <div class="input-group">
+                        <input id="field_transactionDate" type="text" class="form-control" name="transactionDate" ngbDatepicker  #transactionDateDp="ngbDatepicker" formControlName="transactionDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="transactionDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('transactionDate').invalid && (editForm.get('transactionDate').dirty || editForm.get('transactionDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transactionDate').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_scannedDocumentId">Scanned Document Id</label>
+                    <input type="number" class="form-control" name="scannedDocumentId" id="field_scannedDocumentId"
+                           formControlName="scannedDocumentId"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
