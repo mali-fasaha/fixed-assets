@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dealer">
+            <h2><span>Dealer</span> {{dealer.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{dealer.title}}</span>
+                </dd>
+                <dt><span>Dealer Name</span></dt>
+                <dd>
+                    <span>{{dealer.dealerName}}</span>
+                </dd>
+                <dt><span>Dealer Address</span></dt>
+                <dd>
+                    <span>{{dealer.dealerAddress}}</span>
+                </dd>
+                <dt><span>Dealer Phone Number</span></dt>
+                <dd>
+                    <span>{{dealer.dealerPhoneNumber}}</span>
+                </dd>
+                <dt><span>Dealer Email</span></dt>
+                <dd>
+                    <span>{{dealer.dealerEmail}}</span>
+                </dd>
+                <dt><span>Bank Name</span></dt>
+                <dd>
+                    <span>{{dealer.bankName}}</span>
+                </dd>
+                <dt><span>Bank Account Number</span></dt>
+                <dd>
+                    <span>{{dealer.bankAccountNumber}}</span>
+                </dd>
+                <dt><span>Bank Branch</span></dt>
+                <dd>
+                    <span>{{dealer.bankBranch}}</span>
+                </dd>
+                <dt><span>Bank Swift Code</span></dt>
+                <dd>
+                    <span>{{dealer.bankSwiftCode}}</span>
+                </dd>
+                <dt><span>Bank Physical Address</span></dt>
+                <dd>
+                    <span>{{dealer.bankPhysicalAddress}}</span>
+                </dd>
+                <dt><span>Locally Domiciled</span></dt>
+                <dd>
+                    <span>{{dealer.locallyDomiciled}}</span>
+                </dd>
+                <dt><span>Tax Authority Ref</span></dt>
+                <dd>
+                    <span>{{dealer.taxAuthorityRef}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dealer', dealer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

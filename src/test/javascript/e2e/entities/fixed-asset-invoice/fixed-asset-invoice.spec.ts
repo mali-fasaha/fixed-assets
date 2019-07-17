@@ -51,7 +51,8 @@ describe('FixedAssetInvoice e2e test', () => {
       fixedAssetInvoiceUpdatePage.setInvoiceReferenceInput('invoiceReference'),
       fixedAssetInvoiceUpdatePage.setInvoiceDateInput('2000-12-31'),
       fixedAssetInvoiceUpdatePage.setInvoiceAmountInput('5'),
-      fixedAssetInvoiceUpdatePage.setAttachmentsInput(absolutePath)
+      fixedAssetInvoiceUpdatePage.setAttachmentsInput(absolutePath),
+      fixedAssetInvoiceUpdatePage.dealerSelectLastOption()
     ]);
     expect(await fixedAssetInvoiceUpdatePage.getInvoiceReferenceInput()).to.eq(
       'invoiceReference',

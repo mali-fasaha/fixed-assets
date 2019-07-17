@@ -32,6 +32,12 @@
                         {{fixedAssetInvoice.attachmentsContentType}}, {{byteSize(fixedAssetInvoice.attachments)}}
                     </div>
                 </dd>
+                <dt><span>Dealer</span></dt>
+                <dd>
+                    <div *ngIf="fixedAssetInvoice.dealerId">
+                        <a [routerLink]="['/dealer', fixedAssetInvoice.dealerId, 'view']">{{fixedAssetInvoice.dealerDealerName}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

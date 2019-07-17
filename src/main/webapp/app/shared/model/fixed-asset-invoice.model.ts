@@ -9,6 +9,8 @@ export interface IFixedAssetInvoice {
   isCreditNote?: boolean;
   attachmentsContentType?: string;
   attachments?: any;
+  dealerDealerName?: string;
+  dealerId?: number;
 }
 
 export class FixedAssetInvoice implements IFixedAssetInvoice {
@@ -20,7 +22,9 @@ export class FixedAssetInvoice implements IFixedAssetInvoice {
     public isProforma?: boolean,
     public isCreditNote?: boolean,
     public attachmentsContentType?: string,
-    public attachments?: any
+    public attachments?: any,
+    public dealerDealerName?: string,
+    public dealerId?: number
   ) {
     this.isProforma = this.isProforma || false;
     this.isCreditNote = this.isCreditNote || false;

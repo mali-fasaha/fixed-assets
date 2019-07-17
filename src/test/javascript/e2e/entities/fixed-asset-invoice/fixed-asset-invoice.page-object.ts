@@ -32,6 +32,7 @@ export class FixedAssetInvoiceUpdatePage {
   isProformaInput = element(by.id('field_isProforma'));
   isCreditNoteInput = element(by.id('field_isCreditNote'));
   attachmentsInput = element(by.id('file_attachments'));
+  dealerSelect = element(by.id('field_dealer'));
 
   async getPageTitle() {
     return this.pageTitle.getText();
@@ -73,6 +74,25 @@ export class FixedAssetInvoiceUpdatePage {
 
   async getAttachmentsInput() {
     return await this.attachmentsInput.getAttribute('value');
+  }
+
+  async dealerSelectLastOption(timeout?: number) {
+    await this.dealerSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async dealerSelectOption(option) {
+    await this.dealerSelect.sendKeys(option);
+  }
+
+  getDealerSelect(): ElementFinder {
+    return this.dealerSelect;
+  }
+
+  async getDealerSelectedOption() {
+    return await this.dealerSelect.element(by.css('option:checked')).getText();
   }
 
   async save(timeout?: number) {

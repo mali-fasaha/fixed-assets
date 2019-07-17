@@ -1,7 +1,15 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "dealer",
+            "otherEntityName": "dealer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "dealerName",
+            "otherEntityRelationshipName": "fixedAssetInvoice"
+        }
+    ],
     "fields": [
         {
             "fieldName": "invoiceReference",

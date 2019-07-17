@@ -1,0 +1,77 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "fixedAssetInvoice",
+            "otherEntityName": "fixedAssetInvoice",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "dealer"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "TitleTypes",
+            "fieldValues": "DR,ENG,HON,JUST,MES,MISS,MMS,MR,MRS,MS,MST,PROF,REV,CPA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dealerName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dealerAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dealerPhoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dealerEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankAccountNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankBranch",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankSwiftCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankPhysicalAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "locallyDomiciled",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "taxAuthorityRef",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190717070924",
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "entityTableName": "dealer",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

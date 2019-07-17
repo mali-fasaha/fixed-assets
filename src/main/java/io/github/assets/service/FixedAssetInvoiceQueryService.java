@@ -108,6 +108,10 @@ public class FixedAssetInvoiceQueryService extends QueryService<FixedAssetInvoic
             if (criteria.getIsCreditNote() != null) {
                 specification = specification.and(buildSpecification(criteria.getIsCreditNote(), FixedAssetInvoice_.isCreditNote));
             }
+            if (criteria.getDealerId() != null) {
+                specification = specification.and(buildSpecification(criteria.getDealerId(),
+                    root -> root.join(FixedAssetInvoice_.dealer, JoinType.LEFT).get(Dealer_.id)));
+            }
         }
         return specification;
     }

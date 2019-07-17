@@ -3,10 +3,13 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IFixedAssetInvoice, FixedAssetInvoice } from 'app/shared/model/fixed-asset-invoice.model';
 import { FixedAssetInvoiceService } from './fixed-asset-invoice.service';
+import { IDealer } from 'app/shared/model/dealer.model';
+import { DealerService } from 'app/entities/dealer';
 
 @Component({
   selector: 'gha-fixed-asset-invoice-update',
@@ -15,6 +18,8 @@ import { FixedAssetInvoiceService } from './fixed-asset-invoice.service';
 export class FixedAssetInvoiceUpdateComponent implements OnInit {
   fixedAssetInvoice: IFixedAssetInvoice;
   isSaving: boolean;
+
+  dealers: IDealer[];
   invoiceDateDp: any;
 
   editForm = this.fb.group({
@@ -25,13 +30,15 @@ export class FixedAssetInvoiceUpdateComponent implements OnInit {
     isProforma: [],
     isCreditNote: [],
     attachments: [],
-    attachmentsContentType: []
+    attachmentsContentType: [],
+    dealerId: []
   });
 
   constructor(
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected fixedAssetInvoiceService: FixedAssetInvoiceService,
+    protected dealerService: DealerService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -42,6 +49,13 @@ export class FixedAssetInvoiceUpdateComponent implements OnInit {
       this.updateForm(fixedAssetInvoice);
       this.fixedAssetInvoice = fixedAssetInvoice;
     });
+    this.dealerService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IDealer[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IDealer[]>) => response.body)
+      )
+      .subscribe((res: IDealer[]) => (this.dealers = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(fixedAssetInvoice: IFixedAssetInvoice) {
@@ -53,7 +67,8 @@ export class FixedAssetInvoiceUpdateComponent implements OnInit {
       isProforma: fixedAssetInvoice.isProforma,
       isCreditNote: fixedAssetInvoice.isCreditNote,
       attachments: fixedAssetInvoice.attachments,
-      attachmentsContentType: fixedAssetInvoice.attachmentsContentType
+      attachmentsContentType: fixedAssetInvoice.attachmentsContentType,
+      dealerId: fixedAssetInvoice.dealerId
     });
   }
 
@@ -113,7 +128,8 @@ export class FixedAssetInvoiceUpdateComponent implements OnInit {
       isProforma: this.editForm.get(['isProforma']).value,
       isCreditNote: this.editForm.get(['isCreditNote']).value,
       attachmentsContentType: this.editForm.get(['attachmentsContentType']).value,
-      attachments: this.editForm.get(['attachments']).value
+      attachments: this.editForm.get(['attachments']).value,
+      dealerId: this.editForm.get(['dealerId']).value
     };
     return entity;
   }
@@ -132,5 +148,9 @@ export class FixedAssetInvoiceUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackDealerById(index: number, item: IDealer) {
+    return item.id;
   }
 }

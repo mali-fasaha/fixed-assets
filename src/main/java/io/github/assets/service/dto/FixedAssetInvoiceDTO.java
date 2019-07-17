@@ -29,6 +29,10 @@ public class FixedAssetInvoiceDTO implements Serializable {
 
     private String attachmentsContentType;
 
+    private Long dealerId;
+
+    private String dealerDealerName;
+
     public Long getId() {
         return id;
     }
@@ -93,6 +97,22 @@ public class FixedAssetInvoiceDTO implements Serializable {
         this.attachmentsContentType = attachmentsContentType;
     }
 
+    public Long getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(Long dealerId) {
+        this.dealerId = dealerId;
+    }
+
+    public String getDealerDealerName() {
+        return dealerDealerName;
+    }
+
+    public void setDealerDealerName(String dealerDealerName) {
+        this.dealerDealerName = dealerDealerName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -124,6 +144,8 @@ public class FixedAssetInvoiceDTO implements Serializable {
             ", isProforma='" + isIsProforma() + "'" +
             ", isCreditNote='" + isIsCreditNote() + "'" +
             ", attachments='" + getAttachments() + "'" +
+            ", dealer=" + getDealerId() +
+            ", dealer='" + getDealerDealerName() + "'" +
             "}";
     }
 }

@@ -1,6 +1,7 @@
 package io.github.assets.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -52,6 +53,10 @@ public class FixedAssetInvoice implements Serializable {
 
     @Column(name = "attachments_content_type")
     private String attachmentsContentType;
+
+    @ManyToOne
+    @JsonIgnoreProperties("fixedAssetInvoices")
+    private Dealer dealer;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -151,6 +156,19 @@ public class FixedAssetInvoice implements Serializable {
 
     public void setAttachmentsContentType(String attachmentsContentType) {
         this.attachmentsContentType = attachmentsContentType;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public FixedAssetInvoice dealer(Dealer dealer) {
+        this.dealer = dealer;
+        return this;
+    }
+
+    public void setDealer(Dealer dealer) {
+        this.dealer = dealer;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

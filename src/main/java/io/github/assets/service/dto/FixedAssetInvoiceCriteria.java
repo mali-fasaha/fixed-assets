@@ -38,6 +38,8 @@ public class FixedAssetInvoiceCriteria implements Serializable, Criteria {
 
     private BooleanFilter isCreditNote;
 
+    private LongFilter dealerId;
+
     public FixedAssetInvoiceCriteria(){
     }
 
@@ -48,6 +50,7 @@ public class FixedAssetInvoiceCriteria implements Serializable, Criteria {
         this.invoiceAmount = other.invoiceAmount == null ? null : other.invoiceAmount.copy();
         this.isProforma = other.isProforma == null ? null : other.isProforma.copy();
         this.isCreditNote = other.isCreditNote == null ? null : other.isCreditNote.copy();
+        this.dealerId = other.dealerId == null ? null : other.dealerId.copy();
     }
 
     @Override
@@ -103,6 +106,14 @@ public class FixedAssetInvoiceCriteria implements Serializable, Criteria {
         this.isCreditNote = isCreditNote;
     }
 
+    public LongFilter getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(LongFilter dealerId) {
+        this.dealerId = dealerId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -119,7 +130,8 @@ public class FixedAssetInvoiceCriteria implements Serializable, Criteria {
             Objects.equals(invoiceDate, that.invoiceDate) &&
             Objects.equals(invoiceAmount, that.invoiceAmount) &&
             Objects.equals(isProforma, that.isProforma) &&
-            Objects.equals(isCreditNote, that.isCreditNote);
+            Objects.equals(isCreditNote, that.isCreditNote) &&
+            Objects.equals(dealerId, that.dealerId);
     }
 
     @Override
@@ -130,7 +142,8 @@ public class FixedAssetInvoiceCriteria implements Serializable, Criteria {
         invoiceDate,
         invoiceAmount,
         isProforma,
-        isCreditNote
+        isCreditNote,
+        dealerId
         );
     }
 
@@ -143,6 +156,7 @@ public class FixedAssetInvoiceCriteria implements Serializable, Criteria {
                 (invoiceAmount != null ? "invoiceAmount=" + invoiceAmount + ", " : "") +
                 (isProforma != null ? "isProforma=" + isProforma + ", " : "") +
                 (isCreditNote != null ? "isCreditNote=" + isCreditNote + ", " : "") +
+                (dealerId != null ? "dealerId=" + dealerId + ", " : "") +
             "}";
     }
 

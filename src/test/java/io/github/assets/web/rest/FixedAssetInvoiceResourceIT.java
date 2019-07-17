@@ -2,6 +2,7 @@ package io.github.assets.web.rest;
 
 import io.github.assets.FixedAssetsApp;
 import io.github.assets.domain.FixedAssetInvoice;
+import io.github.assets.domain.Dealer;
 import io.github.assets.repository.FixedAssetInvoiceRepository;
 import io.github.assets.repository.search.FixedAssetInvoiceSearchRepository;
 import io.github.assets.service.FixedAssetInvoiceService;
@@ -491,6 +492,25 @@ public class FixedAssetInvoiceResourceIT {
         // Get all the fixedAssetInvoiceList where isCreditNote is null
         defaultFixedAssetInvoiceShouldNotBeFound("isCreditNote.specified=false");
     }
+
+    @Test
+    @Transactional
+    public void getAllFixedAssetInvoicesByDealerIsEqualToSomething() throws Exception {
+        // Initialize the database
+        Dealer dealer = DealerResourceIT.createEntity(em);
+        em.persist(dealer);
+        em.flush();
+        fixedAssetInvoice.setDealer(dealer);
+        fixedAssetInvoiceRepository.saveAndFlush(fixedAssetInvoice);
+        Long dealerId = dealer.getId();
+
+        // Get all the fixedAssetInvoiceList where dealer equals to dealerId
+        defaultFixedAssetInvoiceShouldBeFound("dealerId.equals=" + dealerId);
+
+        // Get all the fixedAssetInvoiceList where dealer equals to dealerId + 1
+        defaultFixedAssetInvoiceShouldNotBeFound("dealerId.equals=" + (dealerId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
