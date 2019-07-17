@@ -14,7 +14,7 @@ import { NotificationInterceptor } from './blocks/interceptor/notification.inter
 import { FixedAssetsSharedModule } from 'app/shared';
 import { FixedAssetsCoreModule } from 'app/core';
 import { FixedAssetsAppRoutingModule } from './app-routing.module';
-import { FixedAssetsHomeModule } from './home/home.module';
+import { FixedAssetsHomeModule } from 'app/home';
 import { FixedAssetsAccountModule } from './account/account.module';
 import { FixedAssetsEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
@@ -38,7 +38,7 @@ import { CustomModule } from './custom/custom.module';
     // jhipster-needle-angular-add-module JHipster will add new module here
     FixedAssetsEntityModule,
     FixedAssetsAppRoutingModule,
-    CustomModule,
+    CustomModule
   ],
   declarations: [GhaMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],
   providers: [
