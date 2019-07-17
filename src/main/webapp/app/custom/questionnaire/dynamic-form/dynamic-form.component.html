@@ -1,0 +1,11 @@
+<form role="form" novalidate [formGroup]="queryForm" (ngSubmit)="submit($event)">
+    <formly-form [fields]="fields" [form]="queryForm"  [model]="model">
+        <button type="button" id="cancel-save" (click)="previousState()" mat-raised-button>
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+        <!--<button type="submit" id="save-entity" [disabled]="queryForm.invalid || isSubmitting" mat-raised-button>-->
+        <button type="submit" id="save-entity" mat-raised-button>
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Submit</span>
+        </button>
+    </formly-form>
+</form>

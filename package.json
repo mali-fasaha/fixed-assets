@@ -1,7 +1,7 @@
 {
   "name": "fixed-assets",
   "version": "0.0.1",
-  "description": "Description for fixed assets app",
+  "description": "Data Management App for fixed assets",
   "private": true,
   "license": "MIT",
   "cacheDirectories": [
