@@ -5,6 +5,7 @@ import { CustomRoutingModule } from './custom-routing.module';
 import { AboutFixedAssetsModule } from 'app/custom/about-fixed-assets';
 import {AboutFixedAssetsRoutingModule} from 'app/custom/about-fixed-assets/about-fixed-assets-routing.module';
 import { NavigationModule } from './navigation/navigation.module';
+import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 
 @NgModule({
   declarations: [],
@@ -12,7 +13,8 @@ import { NavigationModule } from './navigation/navigation.module';
     CommonModule,
     CustomRoutingModule,
     AboutFixedAssetsModule,
-    NavigationModule
+    NavigationModule,
+    QuestionnaireModule
   ],
   exports: [
     AboutFixedAssetsModule,
