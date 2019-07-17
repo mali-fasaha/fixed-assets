@@ -1,0 +1,164 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-1">
+        <createTable tableName="dealer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="dealerPK"/>
+            </column>
+            <column name="bank_account_number" type="VARCHAR(255)"/>
+            <column name="bank_branch" type="VARCHAR(255)"/>
+            <column name="bank_name" type="VARCHAR(255)"/>
+            <column name="bank_physical_address" type="VARCHAR(255)"/>
+            <column name="bank_swift_code" type="VARCHAR(255)"/>
+            <column name="dealer_address" type="VARCHAR(255)"/>
+            <column name="dealer_email" type="VARCHAR(255)"/>
+            <column name="dealer_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dealer_phone_number" type="VARCHAR(255)"/>
+            <column name="locally_domiciled" type="BOOLEAN"/>
+            <column name="tax_authority_ref" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-2">
+        <createTable tableName="fixed_asset_invoice">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_invoicePK"/>
+            </column>
+            <column name="attachments" type="OID"/>
+            <column name="attachments_content_type" type="VARCHAR(255)"/>
+            <column name="invoice_amount" type="numeric(21, 2)"/>
+            <column name="invoice_date" type="date"/>
+            <column name="invoice_reference" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_credit_note" type="BOOLEAN"/>
+            <column name="is_proforma" type="BOOLEAN"/>
+            <column name="dealer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-3">
+        <createTable tableName="gha_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints primaryKey="true" primaryKeyName="gha_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-4">
+        <createTable tableName="gha_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="gha_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-5">
+        <createTable tableName="gha_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-6">
+        <createTable tableName="gha_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="gha_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-7">
+        <createTable tableName="gha_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-8">
+        <addUniqueConstraint columnNames="email" constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-9">
+        <addUniqueConstraint columnNames="login" constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-10">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="gha_user_authority" constraintName="FK7vpii2smu77en3hw0ypiknl4r" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="gha_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-11">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="gha_persistent_audit_evt_data" constraintName="FKj4lrxuk5snmvbbk82tjs767r0" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="gha_persistent_audit_event" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-12">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="gha_user_authority" constraintName="FKm0rqfeneuk5xl48iyj1hcp7p3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="gha_user" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-13">
+        <addForeignKeyConstraint baseColumnNames="dealer_id" baseTableName="fixed_asset_invoice" constraintName="FKs8x5ffb1g3nmacdvapfbli5hr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="dealer" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-14">
+        <dropForeignKeyConstraint baseTableName="jhi_user_authority" constraintName="fk_authority_name"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-15">
+        <dropForeignKeyConstraint baseTableName="jhi_persistent_audit_evt_data" constraintName="fk_evt_pers_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-16">
+        <dropForeignKeyConstraint baseTableName="jhi_user_authority" constraintName="fk_user_id"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-17">
+        <dropUniqueConstraint constraintName="ux_user_email" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-18">
+        <dropUniqueConstraint constraintName="ux_user_login" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-19">
+        <dropTable tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-20">
+        <dropTable tableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-21">
+        <dropTable tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-22">
+        <dropTable tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-23">
+        <dropTable tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563350643203-24">
+        <dropTable tableName="transaction"/>
+    </changeSet>
+</databaseChangeLog>
