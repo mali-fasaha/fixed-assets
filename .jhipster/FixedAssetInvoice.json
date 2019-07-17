@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "invoiceReference",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "invoiceDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "invoiceAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "isProforma",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "isCreditNote",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "attachments",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "changelogDate": "20190717061217",
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "entityTableName": "fixed_asset_invoice",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

@@ -39,6 +39,12 @@
                             <span>Scanned Document</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="fixed-asset-invoice" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Fixed Asset Invoice</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

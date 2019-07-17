@@ -11,6 +11,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'scanned-document',
         loadChildren: './scanned-document/scanned-document.module#FixedAssetsScannedDocumentModule'
+      },
+      {
+        path: 'fixed-asset-invoice',
+        loadChildren: './fixed-asset-invoice/fixed-asset-invoice.module#FixedAssetsFixedAssetInvoiceModule'
+      },
+      {
+        path: 'fixed-asset-invoice',
+        loadChildren: './fixed-asset-invoice/fixed-asset-invoice.module#FixedAssetsFixedAssetInvoiceModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

@@ -27,11 +27,7 @@
     "clientFramework": "angularX",
     "clientTheme": "simplex",
     "clientThemeVariant": "dark",
-    "testFrameworks": [
-      "gatling",
-      "cucumber",
-      "protractor"
-    ],
+    "testFrameworks": ["gatling", "cucumber", "protractor"],
     "jhiPrefix": "gha",
     "entitySuffix": "",
     "dtoSuffix": "DTO",

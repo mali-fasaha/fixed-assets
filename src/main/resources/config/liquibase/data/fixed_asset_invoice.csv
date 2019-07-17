@@ -1,0 +1,11 @@
+id;invoice_reference;invoice_date;invoice_amount;is_proforma;is_credit_note;attachments;attachments_content_type
+1;mobile Fish;2019-07-16T11:41:15;59865;true;false;4d6574616c206465706f736974;image/png
+2;Producer;2019-07-16T10:25:17;93855;false;false;6d6574686f646f6c6f677920416c62616e6961;image/png
+3;Home Namibia;2019-07-16T20:48:12;13949;false;false;73796e646963617465;image/png
+4;Mississippi Refined Rubber Chicken Table;2019-07-17T04:50:19;1326;true;true;4e616b6661;image/png
+5;Bahamian Dollar Investment Account;2019-07-16T10:24:12;3438;false;true;636f6e76657267656e6365;image/png
+6;Mayotte;2019-07-17T01:57:48;3131;true;true;4e6174696f6e616c20417765736f6d6520736b7920626c7565;image/png
+7;Tactics;2019-07-16T10:07:53;38867;true;false;486f6d65204c6f616e204163636f756e74;image/png
+8;Plastic;2019-07-16T11:08:50;16526;false;false;6f766572726964696e67;image/png
+9;monitor 1080p Checking Account;2019-07-16T08:10:08;35846;true;false;656e766973696f6e656572;image/png
+10;moratorium pixel withdrawal;2019-07-16T09:06:25;56124;false;false;73796e74686573697a6520496461686f20636f6d7072657373;image/png
