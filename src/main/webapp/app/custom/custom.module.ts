@@ -15,7 +15,9 @@ import { NavigationModule } from './navigation/navigation.module';
     NavigationModule
   ],
   exports: [
-    AboutFixedAssetsModule, AboutFixedAssetsRoutingModule
+    AboutFixedAssetsModule,
+    AboutFixedAssetsRoutingModule,
+    NavigationModule
   ]
 })
 export class CustomModule { }
