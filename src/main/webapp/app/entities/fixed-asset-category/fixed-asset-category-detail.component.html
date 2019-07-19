@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fixedAssetCategory">
+            <h2><span>Fixed Asset Category</span> {{fixedAssetCategory.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Category Code</span></dt>
+                <dd>
+                    <span>{{fixedAssetCategory.categoryCode}}</span>
+                </dd>
+                <dt><span>Category Name</span></dt>
+                <dd>
+                    <span>{{fixedAssetCategory.categoryName}}</span>
+                </dd>
+                <dt><span>Category Description</span></dt>
+                <dd>
+                    <span>{{fixedAssetCategory.categoryDescription}}</span>
+                </dd>
+                <dt><span>Depreciation Regime Id</span></dt>
+                <dd>
+                    <span>{{fixedAssetCategory.depreciationRegimeId}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fixed-asset-category', fixedAssetCategory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
