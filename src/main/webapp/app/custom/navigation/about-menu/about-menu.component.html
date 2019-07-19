@@ -1,3 +1,8 @@
-<p>
-  about-menu works!
-</p>
+<li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a class="nav-link" routerLink="assets/about" (click)="collapseNavbar()">
+        <span>
+            <fa-icon icon="eye"></fa-icon>
+            <span>About</span>
+        </span>
+    </a>
+</li>
