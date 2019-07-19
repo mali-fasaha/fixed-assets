@@ -1,3 +1,67 @@
-<p>
-  import-menu works!
-</p>
+<li *ghaHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+                    <span>
+                        <fa-icon icon="cloud"></fa-icon>
+                        <span>
+                            Import
+                        </span>
+                    </span>
+    </a>
+    <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+        <li>
+            <a class="dropdown-item" routerLink="asset-transaction" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Asset Transaction</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="scanned-document" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Scanned Document</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="fixed-asset-invoice" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Fixed Asset Invoice</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="dealer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Dealer</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="fixed-asset-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Fixed Asset Item</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="service-outlet" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Service Outlet</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="fixed-asset-category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Fixed Asset Category</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="depreciation-regime" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Depreciation Regime</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="fixed-asset-assessment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Fixed Asset Assessment</span>
+            </a>
+        </li>
+        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+    </ul>
+</li>
