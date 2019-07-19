@@ -1,0 +1,146 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-fixed-asset-item-heading">Create or edit a Fixed Asset Item</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!fixedAssetItem.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceOutletCode">Service Outlet Code</label>
+                    <input type="text" class="form-control" name="serviceOutletCode" id="field_serviceOutletCode"
+                           formControlName="serviceOutletCode"/>
+                    <div *ngIf="editForm.get('serviceOutletCode').invalid && (editForm.get('serviceOutletCode').dirty || editForm.get('serviceOutletCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('serviceOutletCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetCategoryCode">Asset Category Code</label>
+                    <input type="text" class="form-control" name="assetCategoryCode" id="field_assetCategoryCode"
+                           formControlName="assetCategoryCode"/>
+                    <div *ngIf="editForm.get('assetCategoryCode').invalid && (editForm.get('assetCategoryCode').dirty || editForm.get('assetCategoryCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetCategoryCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetCategory">Asset Category</label>
+                    <input type="text" class="form-control" name="assetCategory" id="field_assetCategory"
+                           formControlName="assetCategory"/>
+                    <div *ngIf="editForm.get('assetCategory').invalid && (editForm.get('assetCategory').dirty || editForm.get('assetCategory').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetCategory').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fixedAssetSerialCode">Fixed Asset Serial Code</label>
+                    <input type="text" class="form-control" name="fixedAssetSerialCode" id="field_fixedAssetSerialCode"
+                           formControlName="fixedAssetSerialCode"/>
+                    <div *ngIf="editForm.get('fixedAssetSerialCode').invalid && (editForm.get('fixedAssetSerialCode').dirty || editForm.get('fixedAssetSerialCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fixedAssetSerialCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fixedAssetDescription">Fixed Asset Description</label>
+                    <input type="text" class="form-control" name="fixedAssetDescription" id="field_fixedAssetDescription"
+                           formControlName="fixedAssetDescription"/>
+                    <div *ngIf="editForm.get('fixedAssetDescription').invalid && (editForm.get('fixedAssetDescription').dirty || editForm.get('fixedAssetDescription').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fixedAssetDescription').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseDate">Purchase Date</label>
+                    <div class="input-group">
+                        <input id="field_purchaseDate" type="text" class="form-control" name="purchaseDate" ngbDatepicker  #purchaseDateDp="ngbDatepicker" formControlName="purchaseDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="purchaseDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('purchaseDate').invalid && (editForm.get('purchaseDate').dirty || editForm.get('purchaseDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('purchaseDate').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseCost">Purchase Cost</label>
+                    <input type="number" class="form-control" name="purchaseCost" id="field_purchaseCost"
+                           formControlName="purchaseCost"/>
+                    <div *ngIf="editForm.get('purchaseCost').invalid && (editForm.get('purchaseCost').dirty || editForm.get('purchaseCost').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('purchaseCost').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('purchaseCost')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseTransactionId">Purchase Transaction Id</label>
+                    <input type="number" class="form-control" name="purchaseTransactionId" id="field_purchaseTransactionId"
+                           formControlName="purchaseTransactionId"/>
+                    <div *ngIf="editForm.get('purchaseTransactionId').invalid && (editForm.get('purchaseTransactionId').dirty || editForm.get('purchaseTransactionId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('purchaseTransactionId').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('purchaseTransactionId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ownershipDocumentId">Ownership Document Id</label>
+                    <input type="number" class="form-control" name="ownershipDocumentId" id="field_ownershipDocumentId"
+                           formControlName="ownershipDocumentId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetPicture">Asset Picture</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('assetPictureContentType').value + ';base64,' + editForm.get('assetPicture').value" style="max-height: 100px;" *ngIf="editForm.get('assetPicture').value" alt="fixedAssetItem image"/>
+                        <div *ngIf="editForm.get('assetPicture').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('assetPictureContentType').value}}, {{byteSize(editForm.get('assetPicture').value)}}</span>
+                            <button type="button" (click)="clearInputImage('assetPicture', 'assetPictureContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_assetPicture" (change)="setFileData($event, 'assetPicture', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="assetPicture" id="field_assetPicture"
+                           formControlName="assetPicture"/>
+                    <input type="hidden" class="form-control" name="assetPictureContentType" id="field_assetPictureContentType"
+                           formControlName="assetPictureContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

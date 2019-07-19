@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fixedAssetItem">
+            <h2><span>Fixed Asset Item</span> {{fixedAssetItem.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Service Outlet Code</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.serviceOutletCode}}</span>
+                </dd>
+                <dt><span>Asset Category Code</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.assetCategoryCode}}</span>
+                </dd>
+                <dt><span>Asset Category</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.assetCategory}}</span>
+                </dd>
+                <dt><span>Fixed Asset Serial Code</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.fixedAssetSerialCode}}</span>
+                </dd>
+                <dt><span>Fixed Asset Description</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.fixedAssetDescription}}</span>
+                </dd>
+                <dt><span>Purchase Date</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.purchaseDate}}</span>
+                </dd>
+                <dt><span>Purchase Cost</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.purchaseCost}}</span>
+                </dd>
+                <dt><span>Purchase Transaction Id</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.purchaseTransactionId}}</span>
+                </dd>
+                <dt><span>Ownership Document Id</span></dt>
+                <dd>
+                    <span>{{fixedAssetItem.ownershipDocumentId}}</span>
+                </dd>
+                <dt><span>Asset Picture</span></dt>
+                <dd>
+                    <div *ngIf="fixedAssetItem.assetPicture">
+                        <a (click)="openFile(fixedAssetItem.assetPictureContentType, fixedAssetItem.assetPicture)">
+                            <img [src]="'data:' + fixedAssetItem.assetPictureContentType + ';base64,' + fixedAssetItem.assetPicture" style="max-width: 100%;" alt="fixedAssetItem image"/>
+                        </a>
+                        {{fixedAssetItem.assetPictureContentType}}, {{byteSize(fixedAssetItem.assetPicture)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fixed-asset-item', fixedAssetItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
