@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-depreciation-regime-heading">Create or edit a Depreciation Regime</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!depreciationRegime.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetDecayType">Asset Decay Type</label>
+                    <select class="form-control" name="assetDecayType" formControlName="assetDecayType" id="field_assetDecayType">
+                        <option value="STRAIGHT_LINE">STRAIGHT_LINE</option>
+                        <option value="DECLINING_BALANCE">DECLINING_BALANCE</option>
+                    </select>
+                    <div *ngIf="editForm.get('assetDecayType').invalid && (editForm.get('assetDecayType').dirty || editForm.get('assetDecayType').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetDecayType').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_depreciationRate">Depreciation Rate</label>
+                    <input type="number" class="form-control" name="depreciationRate" id="field_depreciationRate"
+                           formControlName="depreciationRate"/>
+                    <div *ngIf="editForm.get('depreciationRate').invalid && (editForm.get('depreciationRate').dirty || editForm.get('depreciationRate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('depreciationRate').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('depreciationRate')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

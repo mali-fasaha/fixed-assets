@@ -39,6 +39,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'fixed-asset-category',
         loadChildren: './fixed-asset-category/fixed-asset-category.module#FixedAssetsFixedAssetCategoryModule'
+      },
+      {
+        path: 'depreciation-regime',
+        loadChildren: './depreciation-regime/depreciation-regime.module#FixedAssetsDepreciationRegimeModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
