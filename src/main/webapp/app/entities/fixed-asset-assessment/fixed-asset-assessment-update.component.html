@@ -1,0 +1,126 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-fixed-asset-assessment-heading">Create or edit a Fixed Asset Assessment</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!fixedAssetAssessment.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetCondition">Asset Condition</label>
+                    <select class="form-control" name="assetCondition" formControlName="assetCondition" id="field_assetCondition">
+                        <option value="EXCELLENT">EXCELLENT</option>
+                        <option value="GOOD">GOOD</option>
+                        <option value="VIABLE">VIABLE</option>
+                        <option value="BAD">BAD</option>
+                        <option value="OBSOLETE">OBSOLETE</option>
+                        <option value="WRITE_OFF">WRITE_OFF</option>
+                    </select>
+                    <div *ngIf="editForm.get('assetCondition').invalid && (editForm.get('assetCondition').dirty || editForm.get('assetCondition').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetCondition').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assessmentDate">Assessment Date</label>
+                    <div class="input-group">
+                        <input id="field_assessmentDate" type="text" class="form-control" name="assessmentDate" ngbDatepicker  #assessmentDateDp="ngbDatepicker" formControlName="assessmentDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="assessmentDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assessmentRemarks">Assessment Remarks</label>
+                    <input type="text" class="form-control" name="assessmentRemarks" id="field_assessmentRemarks"
+                           formControlName="assessmentRemarks"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nameOfAssessingStaff">Name Of Assessing Staff</label>
+                    <input type="text" class="form-control" name="nameOfAssessingStaff" id="field_nameOfAssessingStaff"
+                           formControlName="nameOfAssessingStaff"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nameOfAssessmentContractor">Name Of Assessment Contractor</label>
+                    <input type="text" class="form-control" name="nameOfAssessmentContractor" id="field_nameOfAssessmentContractor"
+                           formControlName="nameOfAssessmentContractor"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_currentServiceOutletCode">Current Service Outlet Code</label>
+                    <input type="text" class="form-control" name="currentServiceOutletCode" id="field_currentServiceOutletCode"
+                           formControlName="currentServiceOutletCode"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_currentPhysicalAddress">Current Physical Address</label>
+                    <input type="text" class="form-control" name="currentPhysicalAddress" id="field_currentPhysicalAddress"
+                           formControlName="currentPhysicalAddress"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nextAssessmentDate">Next Assessment Date</label>
+                    <div class="input-group">
+                        <input id="field_nextAssessmentDate" type="text" class="form-control" name="nextAssessmentDate" ngbDatepicker  #nextAssessmentDateDp="ngbDatepicker" formControlName="nextAssessmentDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="nextAssessmentDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nameOfUser">Name Of User</label>
+                    <input type="text" class="form-control" name="nameOfUser" id="field_nameOfUser"
+                           formControlName="nameOfUser"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fixedAssetPicture">Fixed Asset Picture</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('fixedAssetPictureContentType').value + ';base64,' + editForm.get('fixedAssetPicture').value" style="max-height: 100px;" *ngIf="editForm.get('fixedAssetPicture').value" alt="fixedAssetAssessment image"/>
+                        <div *ngIf="editForm.get('fixedAssetPicture').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('fixedAssetPictureContentType').value}}, {{byteSize(editForm.get('fixedAssetPicture').value)}}</span>
+                            <button type="button" (click)="clearInputImage('fixedAssetPicture', 'fixedAssetPictureContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_fixedAssetPicture" (change)="setFileData($event, 'fixedAssetPicture', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="fixedAssetPicture" id="field_fixedAssetPicture"
+                           formControlName="fixedAssetPicture"/>
+                    <input type="hidden" class="form-control" name="fixedAssetPictureContentType" id="field_fixedAssetPictureContentType"
+                           formControlName="fixedAssetPictureContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fixedAssetItemId">Fixed Asset Item Id</label>
+                    <input type="number" class="form-control" name="fixedAssetItemId" id="field_fixedAssetItemId"
+                           formControlName="fixedAssetItemId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_estimatedValue">Estimated Value</label>
+                    <input type="number" class="form-control" name="estimatedValue" id="field_estimatedValue"
+                           formControlName="estimatedValue"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_estimatedUsefulMonths">Estimated Useful Months</label>
+                    <input type="number" class="form-control" name="estimatedUsefulMonths" id="field_estimatedUsefulMonths"
+                           formControlName="estimatedUsefulMonths"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

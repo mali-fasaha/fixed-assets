@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fixedAssetAssessment">
+            <h2><span>Fixed Asset Assessment</span> {{fixedAssetAssessment.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.description}}</span>
+                </dd>
+                <dt><span>Asset Condition</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.assetCondition}}</span>
+                </dd>
+                <dt><span>Assessment Date</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.assessmentDate}}</span>
+                </dd>
+                <dt><span>Assessment Remarks</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.assessmentRemarks}}</span>
+                </dd>
+                <dt><span>Name Of Assessing Staff</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.nameOfAssessingStaff}}</span>
+                </dd>
+                <dt><span>Name Of Assessment Contractor</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.nameOfAssessmentContractor}}</span>
+                </dd>
+                <dt><span>Current Service Outlet Code</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.currentServiceOutletCode}}</span>
+                </dd>
+                <dt><span>Current Physical Address</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.currentPhysicalAddress}}</span>
+                </dd>
+                <dt><span>Next Assessment Date</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.nextAssessmentDate}}</span>
+                </dd>
+                <dt><span>Name Of User</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.nameOfUser}}</span>
+                </dd>
+                <dt><span>Fixed Asset Picture</span></dt>
+                <dd>
+                    <div *ngIf="fixedAssetAssessment.fixedAssetPicture">
+                        <a (click)="openFile(fixedAssetAssessment.fixedAssetPictureContentType, fixedAssetAssessment.fixedAssetPicture)">
+                            <img [src]="'data:' + fixedAssetAssessment.fixedAssetPictureContentType + ';base64,' + fixedAssetAssessment.fixedAssetPicture" style="max-width: 100%;" alt="fixedAssetAssessment image"/>
+                        </a>
+                        {{fixedAssetAssessment.fixedAssetPictureContentType}}, {{byteSize(fixedAssetAssessment.fixedAssetPicture)}}
+                    </div>
+                </dd>
+                <dt><span>Fixed Asset Item Id</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.fixedAssetItemId}}</span>
+                </dd>
+                <dt><span>Estimated Value</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.estimatedValue}}</span>
+                </dd>
+                <dt><span>Estimated Useful Months</span></dt>
+                <dd>
+                    <span>{{fixedAssetAssessment.estimatedUsefulMonths}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/fixed-asset-assessment', fixedAssetAssessment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "assetCondition",
+            "fieldType": "AssetCondition",
+            "fieldValues": "EXCELLENT,GOOD,VIABLE,BAD,OBSOLETE,WRITE_OFF",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "assessmentDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "assessmentRemarks",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nameOfAssessingStaff",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nameOfAssessmentContractor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentServiceOutletCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentPhysicalAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nextAssessmentDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nameOfUser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fixedAssetPicture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "fixedAssetItemId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "estimatedValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "estimatedUsefulMonths",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20190719101103",
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "entityTableName": "fixed_asset_assessment",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

@@ -1,0 +1,108 @@
+<div>
+    <h2 id="page-heading">
+        <span>Fixed Asset Assessments</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-fixed-asset-assessment" [routerLink]="['/fixed-asset-assessment/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Fixed Asset Assessment
+            </span>
+        </button>
+    </h2>
+    <gha-alert></gha-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="fixedAssetAssessments">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetCondition"><span>Asset Condition</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assessmentDate"><span>Assessment Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assessmentRemarks"><span>Assessment Remarks</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nameOfAssessingStaff"><span>Name Of Assessing Staff</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nameOfAssessmentContractor"><span>Name Of Assessment Contractor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="currentServiceOutletCode"><span>Current Service Outlet Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="currentPhysicalAddress"><span>Current Physical Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nextAssessmentDate"><span>Next Assessment Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nameOfUser"><span>Name Of User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fixedAssetPicture"><span>Fixed Asset Picture</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fixedAssetItemId"><span>Fixed Asset Item Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estimatedValue"><span>Estimated Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estimatedUsefulMonths"><span>Estimated Useful Months</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let fixedAssetAssessment of fixedAssetAssessments ;trackBy: trackId">
+                <td><a [routerLink]="['/fixed-asset-assessment', fixedAssetAssessment.id, 'view' ]">{{fixedAssetAssessment.id}}</a></td>
+                <td>{{fixedAssetAssessment.description}}</td>
+                <td>{{fixedAssetAssessment.assetCondition}}</td>
+                <td>{{fixedAssetAssessment.assessmentDate | date:'mediumDate'}}</td>
+                <td>{{fixedAssetAssessment.assessmentRemarks}}</td>
+                <td>{{fixedAssetAssessment.nameOfAssessingStaff}}</td>
+                <td>{{fixedAssetAssessment.nameOfAssessmentContractor}}</td>
+                <td>{{fixedAssetAssessment.currentServiceOutletCode}}</td>
+                <td>{{fixedAssetAssessment.currentPhysicalAddress}}</td>
+                <td>{{fixedAssetAssessment.nextAssessmentDate | date:'mediumDate'}}</td>
+                <td>{{fixedAssetAssessment.nameOfUser}}</td>
+                <td>
+                    <a *ngIf="fixedAssetAssessment.fixedAssetPicture" (click)="openFile(fixedAssetAssessment.fixedAssetPictureContentType, fixedAssetAssessment.fixedAssetPicture)">
+                        <img [src]="'data:' + fixedAssetAssessment.fixedAssetPictureContentType + ';base64,' + fixedAssetAssessment.fixedAssetPicture" style="max-height: 30px;" alt="fixedAssetAssessment image"/>
+                    </a>
+                    <span *ngIf="fixedAssetAssessment.fixedAssetPicture">{{fixedAssetAssessment.fixedAssetPictureContentType}}, {{byteSize(fixedAssetAssessment.fixedAssetPicture)}}</span>
+                </td>
+                <td>{{fixedAssetAssessment.fixedAssetItemId}}</td>
+                <td>{{fixedAssetAssessment.estimatedValue}}</td>
+                <td>{{fixedAssetAssessment.estimatedUsefulMonths}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/fixed-asset-assessment', fixedAssetAssessment.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/fixed-asset-assessment', fixedAssetAssessment.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'fixed-asset-assessment', { outlets: { popup: fixedAssetAssessment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="fixedAssetAssessments && fixedAssetAssessments.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>
