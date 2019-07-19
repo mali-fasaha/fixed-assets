@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NavigationRoutingModule } from './navigation-routing.module';
@@ -7,15 +7,13 @@ import { ModelMenuComponent } from './model-menu/model-menu.component';
 import { ReportMenuComponent } from './report-menu/report-menu.component';
 import { ImportMenuComponent } from './import-menu/import-menu.component';
 import { ExportMenuComponent } from './export-menu/export-menu.component';
+import { FixedAssetsSharedModule } from 'app/shared';
 
 @NgModule({
   declarations: [AboutMenuComponent, ModelMenuComponent, ReportMenuComponent, ImportMenuComponent, ExportMenuComponent],
-  imports: [
-    CommonModule,
-    NavigationRoutingModule
-  ],
+  imports: [CommonModule, NavigationRoutingModule, FixedAssetsSharedModule],
   exports: [AboutMenuComponent, ModelMenuComponent, ReportMenuComponent, ImportMenuComponent, ExportMenuComponent],
   entryComponents: [AboutMenuComponent, ModelMenuComponent, ReportMenuComponent, ImportMenuComponent, ExportMenuComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NavigationModule { }
+export class NavigationModule {}
