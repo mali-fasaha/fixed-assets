@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-service-outlet-heading">Create or edit a Service Outlet</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!serviceOutlet.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceOutletCode">Service Outlet Code</label>
+                    <input type="text" class="form-control" name="serviceOutletCode" id="field_serviceOutletCode"
+                           formControlName="serviceOutletCode"/>
+                    <div *ngIf="editForm.get('serviceOutletCode').invalid && (editForm.get('serviceOutletCode').dirty || editForm.get('serviceOutletCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('serviceOutletCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceOutletDesignation">Service Outlet Designation</label>
+                    <input type="text" class="form-control" name="serviceOutletDesignation" id="field_serviceOutletDesignation"
+                           formControlName="serviceOutletDesignation"/>
+                    <div *ngIf="editForm.get('serviceOutletDesignation').invalid && (editForm.get('serviceOutletDesignation').dirty || editForm.get('serviceOutletDesignation').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('serviceOutletDesignation').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_location">Location</label>
+                    <input type="text" class="form-control" name="location" id="field_location"
+                           formControlName="location"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

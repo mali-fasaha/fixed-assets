@@ -31,6 +31,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'fixed-asset-item',
         loadChildren: './fixed-asset-item/fixed-asset-item.module#FixedAssetsFixedAssetItemModule'
+      },
+      {
+        path: 'service-outlet',
+        loadChildren: './service-outlet/service-outlet.module#FixedAssetsServiceOutletModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

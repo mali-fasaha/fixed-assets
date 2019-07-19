@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="serviceOutlet">
+            <h2><span>Service Outlet</span> {{serviceOutlet.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Service Outlet Code</span></dt>
+                <dd>
+                    <span>{{serviceOutlet.serviceOutletCode}}</span>
+                </dd>
+                <dt><span>Service Outlet Designation</span></dt>
+                <dd>
+                    <span>{{serviceOutlet.serviceOutletDesignation}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{serviceOutlet.description}}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <span>{{serviceOutlet.location}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/service-outlet', serviceOutlet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
