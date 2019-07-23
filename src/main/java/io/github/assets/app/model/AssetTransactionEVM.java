@@ -25,8 +25,8 @@ public class AssetTransactionEVM implements Serializable {
     private String transactionReference;
 
     @ExcelCell(1)
-    private LocalDate transactionDate;
+    private String transactionDate;
 
     @ExcelCell(2)
-    private Long scannedDocumentId;
+    private long scannedDocumentId;
 }
