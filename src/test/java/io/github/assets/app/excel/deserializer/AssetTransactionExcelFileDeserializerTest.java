@@ -16,8 +16,6 @@ public class AssetTransactionExcelFileDeserializerTest {
 
     private AssetTransactionExcelFileDeserializer assetTransactionExcelFileDeserializer;
 
-    private String filename = "asset_transactions.xlsx";
-
     @Before
     public void setUp() throws Exception {
 
@@ -31,7 +29,7 @@ public class AssetTransactionExcelFileDeserializerTest {
         // @formatter:off
         List<AssetTransactionEVM> transactions =
             assetTransactionExcelFileDeserializer
-                .deserialize(toBytes(readFile("asset_transactions")));
+                .deserialize(toBytes(readFile("asset_transactions.xlsx")));
         // @formatter:on
 
         assertEquals(1000, transactions.size());
