@@ -1,10 +1,14 @@
 package io.github.assets.app.excel;
 
 import io.github.assets.app.model.AssetTransactionEVM;
+import io.github.assets.app.model.DealerEVM;
 import io.github.assets.app.model.DepreciationRegimeEVM;
+import io.github.assets.app.model.FixedAssetAssessmentEVM;
+import io.github.assets.app.model.FixedAssetCategoryEVM;
+import io.github.assets.app.model.FixedAssetInvoiceEVM;
+import io.github.assets.app.model.FixedAssetItemEVM;
 import io.github.assets.app.model.ServiceOutletEVM;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -12,7 +16,7 @@ import java.util.List;
 
 import static io.github.assets.app.excel.ExcelTestUtil.readFile;
 import static io.github.assets.app.excel.ExcelTestUtil.toBytes;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @Slf4j
 public class ExcelFileUtilsTest {
@@ -44,7 +48,8 @@ public class ExcelFileUtilsTest {
 
         // @formatter:off
         List<AssetTransactionEVM> transactions =
-            ExcelFileUtils.deserializeAssetTransactionFile(toBytes(readFile("asset_transactions.xlsx")));
+            ExcelFileUtils
+                .deserializeAssetTransactionFile(toBytes(readFile("asset_transactions.xlsx")));
         // @formatter:on
 
         assertEquals(1000, transactions.size());
@@ -54,7 +59,17 @@ public class ExcelFileUtilsTest {
     }
 
     @Test
-    public void deserializeDealerFile() {
+    public void deserializeDealerFile() throws IOException {
+        // @formatter:off
+        List<DealerEVM> dealers =
+            ExcelFileUtils
+                .deserializeDealerFile(toBytes(readFile("asset_transactions.xlsx")));
+        // @formatter:on
+
+        assertEquals(1000, dealers.size());
+        assertEquals("Wrong transaction id! : ", "TRN 218", dealers.get(0).getBankAccountNumber());
+        assertEquals("Wrong Transaction date! : ", "2018/08/16", dealers.get(0).getDealerName());
+        assertEquals("Wrong Scanned document! : ", 555, dealers.get(0).getBankName());
     }
 
     @Test
@@ -66,25 +81,65 @@ public class ExcelFileUtilsTest {
                 .deserializeDepreciationRegimeFile(toBytes(readFile("depreciation_regime.xlsx")));
         // @formatter:on
 
-        assertEquals("Wron # of records! : ",5, excelFileItems.size());
+        assertEquals("Wron # of records! : ", 5, excelFileItems.size());
         assertEquals("Wrong Depreciation Regime! : ", "STRAIGHT_LINE", excelFileItems.get(0).getAssetDecayType());
         assertEquals("Wrong Depreciation Rate! : ", 0.03, excelFileItems.get(0).getDepreciationRate(), 0.001);
         assertEquals("Wrong Description! : ", "Straight line depreciation", excelFileItems.get(0).getDescription());
     }
 
     @Test
-    public void deserializeFixedAssetAssessmentFile() {
+    public void deserializeFixedAssetAssessmentFile() throws IOException {
+        // @formatter:off
+        List<FixedAssetAssessmentEVM> assessments =
+            ExcelFileUtils
+                .deserializeFixedAssetAssessmentFile(toBytes(readFile("asset_transactions.xlsx")));
+        // @formatter:on
+
+        assertEquals(1000, assessments.size());
+        assertEquals("Wrong transaction id! : ", "TRN 218", assessments.get(0).getAssetCondition());
+        assertEquals("Wrong Transaction date! : ", "2018/08/16", assessments.get(0).getCurrentServiceOutletCode());
+        assertEquals("Wrong Scanned document! : ", 555, assessments.get(0).getEstimatedValue(), 0.01);
     }
 
     @Test
-    public void deserializeFixedAssetCategoryFile() {
+    public void deserializeFixedAssetCategoryFile() throws IOException {
+        // @formatter:off
+        List<FixedAssetCategoryEVM> categories =
+            ExcelFileUtils
+                .deserializeFixedAssetCategoryFile(toBytes(readFile("asset_transactions.xlsx")));
+        // @formatter:on
+
+        assertEquals(1000, categories.size());
+        assertEquals("Wrong transaction id! : ", "TRN 218", categories.get(0).getCategoryCode());
+        assertEquals("Wrong Transaction date! : ", "2018/08/16", categories.get(0).getCategoryName());
+        assertEquals("Wrong Scanned document! : ", 555, categories.get(0).getDepreciationRegimeId());
     }
 
     @Test
-    public void deserializeFixedAssetInvoiceFile() {
+    public void deserializeFixedAssetInvoiceFile() throws IOException {
+        // @formatter:off
+        List<FixedAssetInvoiceEVM> invoices =
+            ExcelFileUtils
+                .deserializeFixedAssetInvoiceFile(toBytes(readFile("asset_transactions.xlsx")));
+        // @formatter:on
+
+        assertEquals(1000, invoices.size());
+        assertEquals("Wrong transaction id! : ", "TRN 218", invoices.get(0).getDealerName());
+        assertEquals("Wrong Transaction date! : ", "2018/08/16", invoices.get(0).getInvoiceReference());
+        assertEquals("Wrong Scanned document! : ", 555, invoices.get(0).getInvoiceAmount(), 0.01);
     }
 
     @Test
-    public void fixedAssetItemFile() {
+    public void deserializeFixedAssetItemFile() throws IOException {
+        // @formatter:off
+        List<FixedAssetItemEVM> assetItems =
+            ExcelFileUtils
+                .deserializeFixedAssetItemFile(toBytes(readFile("asset_transactions.xlsx")));
+        // @formatter:on
+
+        assertEquals(1000, assetItems.size());
+        assertEquals("Wrong transaction id! : ", "TRN 218", assetItems.get(0).getAssetCategory());
+        assertEquals("Wrong Transaction date! : ", "2018/08/16", assetItems.get(0).getFixedAssetDescription());
+        assertEquals("Wrong Scanned document! : ", 555, assetItems.get(0).getFixedAssetSerialCode());
     }
 }

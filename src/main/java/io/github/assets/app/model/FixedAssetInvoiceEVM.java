@@ -2,10 +2,18 @@ package io.github.assets.app.model;
 
 import com.poiji.annotation.ExcelCell;
 import com.poiji.annotation.ExcelRow;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
 public class FixedAssetInvoiceEVM implements Serializable {
     private static final long serialVersionUID = 4589504591791408432L;
     @ExcelRow
@@ -25,11 +33,8 @@ public class FixedAssetInvoiceEVM implements Serializable {
     private boolean isCreditNote;
 
     @ExcelCell(4)
-    private String attachmentsContentType;
-
-    @ExcelCell(5)
     private long dealerId;
 
-    @ExcelCell(6)
-    private String dealerDealerName;
+    @ExcelCell(5)
+    private String dealerName;
 }

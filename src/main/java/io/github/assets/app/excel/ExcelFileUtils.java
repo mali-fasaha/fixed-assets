@@ -72,7 +72,7 @@ public class ExcelFileUtils {
         return fixedAssetInvoiceExcelFileDeserializer.deserialize(dataEntry);
     }
 
-    public static List<FixedAssetItemEVM> fixedAssetItemFile(byte[] dataEntry) {
+    public static List<FixedAssetItemEVM> deserializeFixedAssetItemFile(byte[] dataEntry) {
         return fixedAssetItemExcelFileDeserializer.deserialize(dataEntry);
     }
 
