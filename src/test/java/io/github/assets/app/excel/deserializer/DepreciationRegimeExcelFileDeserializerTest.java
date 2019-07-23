@@ -30,7 +30,7 @@ public class DepreciationRegimeExcelFileDeserializerTest {
                 .deserialize(toBytes(readFile("depreciation_regime.xlsx")));
         // @formatter:on
 
-        assertEquals(5, excelFileItems.size());
+        assertEquals("Wron # of records! : ",5, excelFileItems.size());
         assertEquals("Wrong Depreciation Regime! : ", "STRAIGHT_LINE", excelFileItems.get(0).getAssetDecayType());
         assertEquals("Wrong Depreciation Rate! : ", 0.03, excelFileItems.get(0).getDepreciationRate(), 0.001);
         assertEquals("Wrong Description! : ", "Straight line depreciation", excelFileItems.get(0).getDescription());
