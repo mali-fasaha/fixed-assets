@@ -1,0 +1,128 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-3">
+        <createTable tableName="depreciation_regime">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="depreciation_regimePK"/>
+            </column>
+            <column name="asset_decay_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="depreciation_rate" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-4">
+        <createTable tableName="fixed_asset_assessment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_assessmentPK"/>
+            </column>
+            <column name="assessment_date" type="date"/>
+            <column name="assessment_remarks" type="VARCHAR(255)"/>
+            <column name="asset_condition" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_physical_address" type="VARCHAR(255)"/>
+            <column name="current_service_outlet_code" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="estimated_useful_months" type="FLOAT8"/>
+            <column name="estimated_value" type="numeric(21, 2)"/>
+            <column name="fixed_asset_item_id" type="BIGINT"/>
+            <column name="fixed_asset_picture" type="OID"/>
+            <column name="fixed_asset_picture_content_type" type="VARCHAR(255)"/>
+            <column name="name_of_assessing_staff" type="VARCHAR(255)"/>
+            <column name="name_of_assessment_contractor" type="VARCHAR(255)"/>
+            <column name="name_of_user" type="VARCHAR(255)"/>
+            <column name="next_assessment_date" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-5">
+        <createTable tableName="fixed_asset_category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_categoryPK"/>
+            </column>
+            <column name="category_asset_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_depreciation_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_description" type="VARCHAR(255)"/>
+            <column name="category_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="depreciation_regime_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-6">
+        <createTable tableName="fixed_asset_item">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_itemPK"/>
+            </column>
+            <column name="asset_category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_picture" type="OID"/>
+            <column name="asset_picture_content_type" type="VARCHAR(255)"/>
+            <column name="fixed_asset_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fixed_asset_serial_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ownership_document_id" type="BIGINT"/>
+            <column name="purchase_cost" type="numeric(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_transaction_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_outlet_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-7">
+        <createTable tableName="service_outlet">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="service_outletPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="service_outlet_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_outlet_designation" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-8">
+        <addUniqueConstraint columnNames="category_asset_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_ASSET_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-9">
+        <addUniqueConstraint columnNames="category_depreciation_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_DEPRECIATION_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-10">
+        <addUniqueConstraint columnNames="category_name" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_NAME_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-11">
+        <addUniqueConstraint columnNames="service_outlet_code" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_CODE_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-12">
+        <addUniqueConstraint columnNames="service_outlet_designation" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_DESIGNATION_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-1">
+        <dropUniqueConstraint constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563974242828-2">
+        <dropUniqueConstraint constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+    </changeSet>
+</databaseChangeLog>
