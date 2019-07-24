@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-asset-depreciation-heading">Create or edit a Asset Depreciation</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!assetDepreciation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_depreciationAmount">Depreciation Amount</label>
+                    <input type="number" class="form-control" name="depreciationAmount" id="field_depreciationAmount"
+                           formControlName="depreciationAmount"/>
+                    <div *ngIf="editForm.get('depreciationAmount').invalid && (editForm.get('depreciationAmount').dirty || editForm.get('depreciationAmount').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('depreciationAmount').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('depreciationAmount')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_depreciationDate">Depreciation Date</label>
+                    <div class="input-group">
+                        <input id="field_depreciationDate" type="text" class="form-control" name="depreciationDate" ngbDatepicker  #depreciationDateDp="ngbDatepicker" formControlName="depreciationDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="depreciationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('depreciationDate').invalid && (editForm.get('depreciationDate').dirty || editForm.get('depreciationDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('depreciationDate').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_categoryId">Category Id</label>
+                    <input type="number" class="form-control" name="categoryId" id="field_categoryId"
+                           formControlName="categoryId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetItemId">Asset Item Id</label>
+                    <input type="number" class="form-control" name="assetItemId" id="field_assetItemId"
+                           formControlName="assetItemId"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

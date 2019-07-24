@@ -23,6 +23,7 @@
     <include file="config/liquibase/changelog/20190719093818_added_entity_FixedAssetCategory.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190719094403_added_entity_DepreciationRegime.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190719101103_added_entity_FixedAssetAssessment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190724160716_added_entity_AssetDepreciation.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190717061217_added_entity_constraints_FixedAssetInvoice.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

@@ -90,6 +90,12 @@
                             <span>Fixed Asset Assessment</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="asset-depreciation" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Asset Depreciation</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

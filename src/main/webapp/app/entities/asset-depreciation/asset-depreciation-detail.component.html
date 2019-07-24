@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="assetDepreciation">
+            <h2><span>Asset Depreciation</span> {{assetDepreciation.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{assetDepreciation.description}}</span>
+                </dd>
+                <dt><span>Depreciation Amount</span></dt>
+                <dd>
+                    <span>{{assetDepreciation.depreciationAmount}}</span>
+                </dd>
+                <dt><span>Depreciation Date</span></dt>
+                <dd>
+                    <span>{{assetDepreciation.depreciationDate}}</span>
+                </dd>
+                <dt><span>Category Id</span></dt>
+                <dd>
+                    <span>{{assetDepreciation.categoryId}}</span>
+                </dd>
+                <dt><span>Asset Item Id</span></dt>
+                <dd>
+                    <span>{{assetDepreciation.assetItemId}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/asset-depreciation', assetDepreciation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
