@@ -36,7 +36,7 @@ public class FixedAssetItemEVM implements Serializable {
     private String fixedAssetDescription;
 
     @ExcelCell(5)
-    private LocalDate purchaseDate;
+    private String purchaseDate;
 
     @ExcelCell(6)
     private double purchaseCost;

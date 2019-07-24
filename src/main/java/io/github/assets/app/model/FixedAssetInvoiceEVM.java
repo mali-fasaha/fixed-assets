@@ -23,7 +23,7 @@ public class FixedAssetInvoiceEVM implements Serializable {
     private String invoiceReference;
 
     @ExcelCell(1)
-    private LocalDate invoiceDate;
+    private String invoiceDate;
 
     @ExcelCell(2)
     private double invoiceAmount;

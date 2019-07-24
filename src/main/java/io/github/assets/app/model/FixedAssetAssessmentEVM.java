@@ -30,7 +30,7 @@ public class FixedAssetAssessmentEVM implements Serializable {
     private String assetCondition;
 
     @ExcelCell(2)
-    private LocalDate assessmentDate;
+    private String assessmentDate;
 
     @ExcelCell(3)
     private String assessmentRemarks;
@@ -48,7 +48,7 @@ public class FixedAssetAssessmentEVM implements Serializable {
     private String currentPhysicalAddress;
 
     @ExcelCell(8)
-    private LocalDate nextAssessmentDate;
+    private String nextAssessmentDate;
 
     @ExcelCell(9)
     private String nameOfUser;
