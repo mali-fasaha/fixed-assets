@@ -45,8 +45,7 @@ describe('FixedAssetItem e2e test', () => {
     await fixedAssetItemComponentsPage.clickOnCreateButton();
     await promise.all([
       fixedAssetItemUpdatePage.setServiceOutletCodeInput('serviceOutletCode'),
-      fixedAssetItemUpdatePage.setAssetCategoryCodeInput('assetCategoryCode'),
-      fixedAssetItemUpdatePage.setAssetCategoryInput('assetCategory'),
+      fixedAssetItemUpdatePage.setAssetCategoryIdInput('5'),
       fixedAssetItemUpdatePage.setFixedAssetSerialCodeInput('fixedAssetSerialCode'),
       fixedAssetItemUpdatePage.setFixedAssetDescriptionInput('fixedAssetDescription'),
       fixedAssetItemUpdatePage.setPurchaseDateInput('2000-12-31'),
@@ -59,14 +58,7 @@ describe('FixedAssetItem e2e test', () => {
       'serviceOutletCode',
       'Expected ServiceOutletCode value to be equals to serviceOutletCode'
     );
-    expect(await fixedAssetItemUpdatePage.getAssetCategoryCodeInput()).to.eq(
-      'assetCategoryCode',
-      'Expected AssetCategoryCode value to be equals to assetCategoryCode'
-    );
-    expect(await fixedAssetItemUpdatePage.getAssetCategoryInput()).to.eq(
-      'assetCategory',
-      'Expected AssetCategory value to be equals to assetCategory'
-    );
+    expect(await fixedAssetItemUpdatePage.getAssetCategoryIdInput()).to.eq('5', 'Expected assetCategoryId value to be equals to 5');
     expect(await fixedAssetItemUpdatePage.getFixedAssetSerialCodeInput()).to.eq(
       'fixedAssetSerialCode',
       'Expected FixedAssetSerialCode value to be equals to fixedAssetSerialCode'

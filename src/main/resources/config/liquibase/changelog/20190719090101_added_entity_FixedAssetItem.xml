@@ -19,11 +19,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="asset_category_code" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="asset_category" type="varchar(255)">
+            <column name="asset_category_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 
@@ -79,8 +75,7 @@
                   context="dev">
             <column name="id" type="numeric"/>
             <column name="service_outlet_code" type="string"/>
-            <column name="asset_category_code" type="string"/>
-            <column name="asset_category" type="string"/>
+            <column name="asset_category_id" type="numeric"/>
             <column name="fixed_asset_serial_code" type="string"/>
             <column name="fixed_asset_description" type="string"/>
             <column name="purchase_date" type="date"/>

@@ -96,11 +96,8 @@ public class FixedAssetItemQueryService extends QueryService<FixedAssetItem> {
             if (criteria.getServiceOutletCode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getServiceOutletCode(), FixedAssetItem_.serviceOutletCode));
             }
-            if (criteria.getAssetCategoryCode() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getAssetCategoryCode(), FixedAssetItem_.assetCategoryCode));
-            }
-            if (criteria.getAssetCategory() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getAssetCategory(), FixedAssetItem_.assetCategory));
+            if (criteria.getAssetCategoryId() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getAssetCategoryId(), FixedAssetItem_.assetCategoryId));
             }
             if (criteria.getFixedAssetSerialCode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getFixedAssetSerialCode(), FixedAssetItem_.fixedAssetSerialCode));

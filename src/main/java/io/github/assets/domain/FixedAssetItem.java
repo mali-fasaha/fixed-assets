@@ -35,12 +35,8 @@ public class FixedAssetItem implements Serializable {
     private String serviceOutletCode;
 
     @NotNull
-    @Column(name = "asset_category_code", nullable = false)
-    private String assetCategoryCode;
-
-    @NotNull
-    @Column(name = "asset_category", nullable = false)
-    private String assetCategory;
+    @Column(name = "asset_category_id", nullable = false)
+    private Long assetCategoryId;
 
     @NotNull
     @Column(name = "fixed_asset_serial_code", nullable = false)
@@ -94,30 +90,17 @@ public class FixedAssetItem implements Serializable {
         this.serviceOutletCode = serviceOutletCode;
     }
 
-    public String getAssetCategoryCode() {
-        return assetCategoryCode;
+    public Long getAssetCategoryId() {
+        return assetCategoryId;
     }
 
-    public FixedAssetItem assetCategoryCode(String assetCategoryCode) {
-        this.assetCategoryCode = assetCategoryCode;
+    public FixedAssetItem assetCategoryId(Long assetCategoryId) {
+        this.assetCategoryId = assetCategoryId;
         return this;
     }
 
-    public void setAssetCategoryCode(String assetCategoryCode) {
-        this.assetCategoryCode = assetCategoryCode;
-    }
-
-    public String getAssetCategory() {
-        return assetCategory;
-    }
-
-    public FixedAssetItem assetCategory(String assetCategory) {
-        this.assetCategory = assetCategory;
-        return this;
-    }
-
-    public void setAssetCategory(String assetCategory) {
-        this.assetCategory = assetCategory;
+    public void setAssetCategoryId(Long assetCategoryId) {
+        this.assetCategoryId = assetCategoryId;
     }
 
     public String getFixedAssetSerialCode() {
@@ -246,8 +229,7 @@ public class FixedAssetItem implements Serializable {
         return "FixedAssetItem{" +
             "id=" + getId() +
             ", serviceOutletCode='" + getServiceOutletCode() + "'" +
-            ", assetCategoryCode='" + getAssetCategoryCode() + "'" +
-            ", assetCategory='" + getAssetCategory() + "'" +
+            ", assetCategoryId=" + getAssetCategoryId() +
             ", fixedAssetSerialCode='" + getFixedAssetSerialCode() + "'" +
             ", fixedAssetDescription='" + getFixedAssetDescription() + "'" +
             ", purchaseDate='" + getPurchaseDate() + "'" +

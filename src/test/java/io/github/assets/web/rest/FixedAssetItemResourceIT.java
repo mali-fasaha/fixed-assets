@@ -51,11 +51,8 @@ public class FixedAssetItemResourceIT {
     private static final String DEFAULT_SERVICE_OUTLET_CODE = "AAAAAAAAAA";
     private static final String UPDATED_SERVICE_OUTLET_CODE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_ASSET_CATEGORY_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_ASSET_CATEGORY_CODE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_ASSET_CATEGORY = "AAAAAAAAAA";
-    private static final String UPDATED_ASSET_CATEGORY = "BBBBBBBBBB";
+    private static final Long DEFAULT_ASSET_CATEGORY_ID = 1L;
+    private static final Long UPDATED_ASSET_CATEGORY_ID = 2L;
 
     private static final String DEFAULT_FIXED_ASSET_SERIAL_CODE = "AAAAAAAAAA";
     private static final String UPDATED_FIXED_ASSET_SERIAL_CODE = "BBBBBBBBBB";
@@ -140,8 +137,7 @@ public class FixedAssetItemResourceIT {
     public static FixedAssetItem createEntity(EntityManager em) {
         FixedAssetItem fixedAssetItem = new FixedAssetItem()
             .serviceOutletCode(DEFAULT_SERVICE_OUTLET_CODE)
-            .assetCategoryCode(DEFAULT_ASSET_CATEGORY_CODE)
-            .assetCategory(DEFAULT_ASSET_CATEGORY)
+            .assetCategoryId(DEFAULT_ASSET_CATEGORY_ID)
             .fixedAssetSerialCode(DEFAULT_FIXED_ASSET_SERIAL_CODE)
             .fixedAssetDescription(DEFAULT_FIXED_ASSET_DESCRIPTION)
             .purchaseDate(DEFAULT_PURCHASE_DATE)
@@ -161,8 +157,7 @@ public class FixedAssetItemResourceIT {
     public static FixedAssetItem createUpdatedEntity(EntityManager em) {
         FixedAssetItem fixedAssetItem = new FixedAssetItem()
             .serviceOutletCode(UPDATED_SERVICE_OUTLET_CODE)
-            .assetCategoryCode(UPDATED_ASSET_CATEGORY_CODE)
-            .assetCategory(UPDATED_ASSET_CATEGORY)
+            .assetCategoryId(UPDATED_ASSET_CATEGORY_ID)
             .fixedAssetSerialCode(UPDATED_FIXED_ASSET_SERIAL_CODE)
             .fixedAssetDescription(UPDATED_FIXED_ASSET_DESCRIPTION)
             .purchaseDate(UPDATED_PURCHASE_DATE)
@@ -196,8 +191,7 @@ public class FixedAssetItemResourceIT {
         assertThat(fixedAssetItemList).hasSize(databaseSizeBeforeCreate + 1);
         FixedAssetItem testFixedAssetItem = fixedAssetItemList.get(fixedAssetItemList.size() - 1);
         assertThat(testFixedAssetItem.getServiceOutletCode()).isEqualTo(DEFAULT_SERVICE_OUTLET_CODE);
-        assertThat(testFixedAssetItem.getAssetCategoryCode()).isEqualTo(DEFAULT_ASSET_CATEGORY_CODE);
-        assertThat(testFixedAssetItem.getAssetCategory()).isEqualTo(DEFAULT_ASSET_CATEGORY);
+        assertThat(testFixedAssetItem.getAssetCategoryId()).isEqualTo(DEFAULT_ASSET_CATEGORY_ID);
         assertThat(testFixedAssetItem.getFixedAssetSerialCode()).isEqualTo(DEFAULT_FIXED_ASSET_SERIAL_CODE);
         assertThat(testFixedAssetItem.getFixedAssetDescription()).isEqualTo(DEFAULT_FIXED_ASSET_DESCRIPTION);
         assertThat(testFixedAssetItem.getPurchaseDate()).isEqualTo(DEFAULT_PURCHASE_DATE);
@@ -256,29 +250,10 @@ public class FixedAssetItemResourceIT {
 
     @Test
     @Transactional
-    public void checkAssetCategoryCodeIsRequired() throws Exception {
+    public void checkAssetCategoryIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = fixedAssetItemRepository.findAll().size();
         // set the field null
-        fixedAssetItem.setAssetCategoryCode(null);
-
-        // Create the FixedAssetItem, which fails.
-        FixedAssetItemDTO fixedAssetItemDTO = fixedAssetItemMapper.toDto(fixedAssetItem);
-
-        restFixedAssetItemMockMvc.perform(post("/api/fixed-asset-items")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(fixedAssetItemDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<FixedAssetItem> fixedAssetItemList = fixedAssetItemRepository.findAll();
-        assertThat(fixedAssetItemList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkAssetCategoryIsRequired() throws Exception {
-        int databaseSizeBeforeTest = fixedAssetItemRepository.findAll().size();
-        // set the field null
-        fixedAssetItem.setAssetCategory(null);
+        fixedAssetItem.setAssetCategoryId(null);
 
         // Create the FixedAssetItem, which fails.
         FixedAssetItemDTO fixedAssetItemDTO = fixedAssetItemMapper.toDto(fixedAssetItem);
@@ -399,8 +374,7 @@ public class FixedAssetItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fixedAssetItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].serviceOutletCode").value(hasItem(DEFAULT_SERVICE_OUTLET_CODE.toString())))
-            .andExpect(jsonPath("$.[*].assetCategoryCode").value(hasItem(DEFAULT_ASSET_CATEGORY_CODE.toString())))
-            .andExpect(jsonPath("$.[*].assetCategory").value(hasItem(DEFAULT_ASSET_CATEGORY.toString())))
+            .andExpect(jsonPath("$.[*].assetCategoryId").value(hasItem(DEFAULT_ASSET_CATEGORY_ID.intValue())))
             .andExpect(jsonPath("$.[*].fixedAssetSerialCode").value(hasItem(DEFAULT_FIXED_ASSET_SERIAL_CODE.toString())))
             .andExpect(jsonPath("$.[*].fixedAssetDescription").value(hasItem(DEFAULT_FIXED_ASSET_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].purchaseDate").value(hasItem(DEFAULT_PURCHASE_DATE.toString())))
@@ -423,8 +397,7 @@ public class FixedAssetItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(fixedAssetItem.getId().intValue()))
             .andExpect(jsonPath("$.serviceOutletCode").value(DEFAULT_SERVICE_OUTLET_CODE.toString()))
-            .andExpect(jsonPath("$.assetCategoryCode").value(DEFAULT_ASSET_CATEGORY_CODE.toString()))
-            .andExpect(jsonPath("$.assetCategory").value(DEFAULT_ASSET_CATEGORY.toString()))
+            .andExpect(jsonPath("$.assetCategoryId").value(DEFAULT_ASSET_CATEGORY_ID.intValue()))
             .andExpect(jsonPath("$.fixedAssetSerialCode").value(DEFAULT_FIXED_ASSET_SERIAL_CODE.toString()))
             .andExpect(jsonPath("$.fixedAssetDescription").value(DEFAULT_FIXED_ASSET_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.purchaseDate").value(DEFAULT_PURCHASE_DATE.toString()))
@@ -476,81 +449,69 @@ public class FixedAssetItemResourceIT {
 
     @Test
     @Transactional
-    public void getAllFixedAssetItemsByAssetCategoryCodeIsEqualToSomething() throws Exception {
+    public void getAllFixedAssetItemsByAssetCategoryIdIsEqualToSomething() throws Exception {
         // Initialize the database
         fixedAssetItemRepository.saveAndFlush(fixedAssetItem);
 
-        // Get all the fixedAssetItemList where assetCategoryCode equals to DEFAULT_ASSET_CATEGORY_CODE
-        defaultFixedAssetItemShouldBeFound("assetCategoryCode.equals=" + DEFAULT_ASSET_CATEGORY_CODE);
+        // Get all the fixedAssetItemList where assetCategoryId equals to DEFAULT_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldBeFound("assetCategoryId.equals=" + DEFAULT_ASSET_CATEGORY_ID);
 
-        // Get all the fixedAssetItemList where assetCategoryCode equals to UPDATED_ASSET_CATEGORY_CODE
-        defaultFixedAssetItemShouldNotBeFound("assetCategoryCode.equals=" + UPDATED_ASSET_CATEGORY_CODE);
+        // Get all the fixedAssetItemList where assetCategoryId equals to UPDATED_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldNotBeFound("assetCategoryId.equals=" + UPDATED_ASSET_CATEGORY_ID);
     }
 
     @Test
     @Transactional
-    public void getAllFixedAssetItemsByAssetCategoryCodeIsInShouldWork() throws Exception {
+    public void getAllFixedAssetItemsByAssetCategoryIdIsInShouldWork() throws Exception {
         // Initialize the database
         fixedAssetItemRepository.saveAndFlush(fixedAssetItem);
 
-        // Get all the fixedAssetItemList where assetCategoryCode in DEFAULT_ASSET_CATEGORY_CODE or UPDATED_ASSET_CATEGORY_CODE
-        defaultFixedAssetItemShouldBeFound("assetCategoryCode.in=" + DEFAULT_ASSET_CATEGORY_CODE + "," + UPDATED_ASSET_CATEGORY_CODE);
+        // Get all the fixedAssetItemList where assetCategoryId in DEFAULT_ASSET_CATEGORY_ID or UPDATED_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldBeFound("assetCategoryId.in=" + DEFAULT_ASSET_CATEGORY_ID + "," + UPDATED_ASSET_CATEGORY_ID);
 
-        // Get all the fixedAssetItemList where assetCategoryCode equals to UPDATED_ASSET_CATEGORY_CODE
-        defaultFixedAssetItemShouldNotBeFound("assetCategoryCode.in=" + UPDATED_ASSET_CATEGORY_CODE);
+        // Get all the fixedAssetItemList where assetCategoryId equals to UPDATED_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldNotBeFound("assetCategoryId.in=" + UPDATED_ASSET_CATEGORY_ID);
     }
 
     @Test
     @Transactional
-    public void getAllFixedAssetItemsByAssetCategoryCodeIsNullOrNotNull() throws Exception {
+    public void getAllFixedAssetItemsByAssetCategoryIdIsNullOrNotNull() throws Exception {
         // Initialize the database
         fixedAssetItemRepository.saveAndFlush(fixedAssetItem);
 
-        // Get all the fixedAssetItemList where assetCategoryCode is not null
-        defaultFixedAssetItemShouldBeFound("assetCategoryCode.specified=true");
+        // Get all the fixedAssetItemList where assetCategoryId is not null
+        defaultFixedAssetItemShouldBeFound("assetCategoryId.specified=true");
 
-        // Get all the fixedAssetItemList where assetCategoryCode is null
-        defaultFixedAssetItemShouldNotBeFound("assetCategoryCode.specified=false");
+        // Get all the fixedAssetItemList where assetCategoryId is null
+        defaultFixedAssetItemShouldNotBeFound("assetCategoryId.specified=false");
     }
 
     @Test
     @Transactional
-    public void getAllFixedAssetItemsByAssetCategoryIsEqualToSomething() throws Exception {
+    public void getAllFixedAssetItemsByAssetCategoryIdIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         fixedAssetItemRepository.saveAndFlush(fixedAssetItem);
 
-        // Get all the fixedAssetItemList where assetCategory equals to DEFAULT_ASSET_CATEGORY
-        defaultFixedAssetItemShouldBeFound("assetCategory.equals=" + DEFAULT_ASSET_CATEGORY);
+        // Get all the fixedAssetItemList where assetCategoryId greater than or equals to DEFAULT_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldBeFound("assetCategoryId.greaterOrEqualThan=" + DEFAULT_ASSET_CATEGORY_ID);
 
-        // Get all the fixedAssetItemList where assetCategory equals to UPDATED_ASSET_CATEGORY
-        defaultFixedAssetItemShouldNotBeFound("assetCategory.equals=" + UPDATED_ASSET_CATEGORY);
+        // Get all the fixedAssetItemList where assetCategoryId greater than or equals to UPDATED_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldNotBeFound("assetCategoryId.greaterOrEqualThan=" + UPDATED_ASSET_CATEGORY_ID);
     }
 
     @Test
     @Transactional
-    public void getAllFixedAssetItemsByAssetCategoryIsInShouldWork() throws Exception {
+    public void getAllFixedAssetItemsByAssetCategoryIdIsLessThanSomething() throws Exception {
         // Initialize the database
         fixedAssetItemRepository.saveAndFlush(fixedAssetItem);
 
-        // Get all the fixedAssetItemList where assetCategory in DEFAULT_ASSET_CATEGORY or UPDATED_ASSET_CATEGORY
-        defaultFixedAssetItemShouldBeFound("assetCategory.in=" + DEFAULT_ASSET_CATEGORY + "," + UPDATED_ASSET_CATEGORY);
+        // Get all the fixedAssetItemList where assetCategoryId less than or equals to DEFAULT_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldNotBeFound("assetCategoryId.lessThan=" + DEFAULT_ASSET_CATEGORY_ID);
 
-        // Get all the fixedAssetItemList where assetCategory equals to UPDATED_ASSET_CATEGORY
-        defaultFixedAssetItemShouldNotBeFound("assetCategory.in=" + UPDATED_ASSET_CATEGORY);
+        // Get all the fixedAssetItemList where assetCategoryId less than or equals to UPDATED_ASSET_CATEGORY_ID
+        defaultFixedAssetItemShouldBeFound("assetCategoryId.lessThan=" + UPDATED_ASSET_CATEGORY_ID);
     }
 
-    @Test
-    @Transactional
-    public void getAllFixedAssetItemsByAssetCategoryIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        fixedAssetItemRepository.saveAndFlush(fixedAssetItem);
-
-        // Get all the fixedAssetItemList where assetCategory is not null
-        defaultFixedAssetItemShouldBeFound("assetCategory.specified=true");
-
-        // Get all the fixedAssetItemList where assetCategory is null
-        defaultFixedAssetItemShouldNotBeFound("assetCategory.specified=false");
-    }
 
     @Test
     @Transactional
@@ -875,8 +836,7 @@ public class FixedAssetItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fixedAssetItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].serviceOutletCode").value(hasItem(DEFAULT_SERVICE_OUTLET_CODE)))
-            .andExpect(jsonPath("$.[*].assetCategoryCode").value(hasItem(DEFAULT_ASSET_CATEGORY_CODE)))
-            .andExpect(jsonPath("$.[*].assetCategory").value(hasItem(DEFAULT_ASSET_CATEGORY)))
+            .andExpect(jsonPath("$.[*].assetCategoryId").value(hasItem(DEFAULT_ASSET_CATEGORY_ID.intValue())))
             .andExpect(jsonPath("$.[*].fixedAssetSerialCode").value(hasItem(DEFAULT_FIXED_ASSET_SERIAL_CODE)))
             .andExpect(jsonPath("$.[*].fixedAssetDescription").value(hasItem(DEFAULT_FIXED_ASSET_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].purchaseDate").value(hasItem(DEFAULT_PURCHASE_DATE.toString())))
@@ -933,8 +893,7 @@ public class FixedAssetItemResourceIT {
         em.detach(updatedFixedAssetItem);
         updatedFixedAssetItem
             .serviceOutletCode(UPDATED_SERVICE_OUTLET_CODE)
-            .assetCategoryCode(UPDATED_ASSET_CATEGORY_CODE)
-            .assetCategory(UPDATED_ASSET_CATEGORY)
+            .assetCategoryId(UPDATED_ASSET_CATEGORY_ID)
             .fixedAssetSerialCode(UPDATED_FIXED_ASSET_SERIAL_CODE)
             .fixedAssetDescription(UPDATED_FIXED_ASSET_DESCRIPTION)
             .purchaseDate(UPDATED_PURCHASE_DATE)
@@ -955,8 +914,7 @@ public class FixedAssetItemResourceIT {
         assertThat(fixedAssetItemList).hasSize(databaseSizeBeforeUpdate);
         FixedAssetItem testFixedAssetItem = fixedAssetItemList.get(fixedAssetItemList.size() - 1);
         assertThat(testFixedAssetItem.getServiceOutletCode()).isEqualTo(UPDATED_SERVICE_OUTLET_CODE);
-        assertThat(testFixedAssetItem.getAssetCategoryCode()).isEqualTo(UPDATED_ASSET_CATEGORY_CODE);
-        assertThat(testFixedAssetItem.getAssetCategory()).isEqualTo(UPDATED_ASSET_CATEGORY);
+        assertThat(testFixedAssetItem.getAssetCategoryId()).isEqualTo(UPDATED_ASSET_CATEGORY_ID);
         assertThat(testFixedAssetItem.getFixedAssetSerialCode()).isEqualTo(UPDATED_FIXED_ASSET_SERIAL_CODE);
         assertThat(testFixedAssetItem.getFixedAssetDescription()).isEqualTo(UPDATED_FIXED_ASSET_DESCRIPTION);
         assertThat(testFixedAssetItem.getPurchaseDate()).isEqualTo(UPDATED_PURCHASE_DATE);
@@ -1026,8 +984,7 @@ public class FixedAssetItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fixedAssetItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].serviceOutletCode").value(hasItem(DEFAULT_SERVICE_OUTLET_CODE)))
-            .andExpect(jsonPath("$.[*].assetCategoryCode").value(hasItem(DEFAULT_ASSET_CATEGORY_CODE)))
-            .andExpect(jsonPath("$.[*].assetCategory").value(hasItem(DEFAULT_ASSET_CATEGORY)))
+            .andExpect(jsonPath("$.[*].assetCategoryId").value(hasItem(DEFAULT_ASSET_CATEGORY_ID.intValue())))
             .andExpect(jsonPath("$.[*].fixedAssetSerialCode").value(hasItem(DEFAULT_FIXED_ASSET_SERIAL_CODE)))
             .andExpect(jsonPath("$.[*].fixedAssetDescription").value(hasItem(DEFAULT_FIXED_ASSET_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].purchaseDate").value(hasItem(DEFAULT_PURCHASE_DATE.toString())))

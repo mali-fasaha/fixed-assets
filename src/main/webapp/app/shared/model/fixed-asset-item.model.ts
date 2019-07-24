@@ -3,8 +3,7 @@ import { Moment } from 'moment';
 export interface IFixedAssetItem {
   id?: number;
   serviceOutletCode?: string;
-  assetCategoryCode?: string;
-  assetCategory?: string;
+  assetCategoryId?: number;
   fixedAssetSerialCode?: string;
   fixedAssetDescription?: string;
   purchaseDate?: Moment;
@@ -19,8 +18,7 @@ export class FixedAssetItem implements IFixedAssetItem {
   constructor(
     public id?: number,
     public serviceOutletCode?: string,
-    public assetCategoryCode?: string,
-    public assetCategory?: string,
+    public assetCategoryId?: number,
     public fixedAssetSerialCode?: string,
     public fixedAssetDescription?: string,
     public purchaseDate?: Moment,

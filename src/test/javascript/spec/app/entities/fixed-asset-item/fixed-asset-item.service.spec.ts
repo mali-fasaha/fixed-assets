@@ -27,20 +27,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new FixedAssetItem(
-        0,
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        currentDate,
-        0,
-        0,
-        0,
-        'image/png',
-        'AAAAAAA'
-      );
+      elemDefault = new FixedAssetItem(0, 'AAAAAAA', 0, 'AAAAAAA', 'AAAAAAA', currentDate, 0, 0, 0, 'image/png', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -88,8 +75,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             serviceOutletCode: 'BBBBBB',
-            assetCategoryCode: 'BBBBBB',
-            assetCategory: 'BBBBBB',
+            assetCategoryId: 1,
             fixedAssetSerialCode: 'BBBBBB',
             fixedAssetDescription: 'BBBBBB',
             purchaseDate: currentDate.format(DATE_FORMAT),
@@ -120,8 +106,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             serviceOutletCode: 'BBBBBB',
-            assetCategoryCode: 'BBBBBB',
-            assetCategory: 'BBBBBB',
+            assetCategoryId: 1,
             fixedAssetSerialCode: 'BBBBBB',
             fixedAssetDescription: 'BBBBBB',
             purchaseDate: currentDate.format(DATE_FORMAT),

@@ -30,9 +30,7 @@ public class FixedAssetItemCriteria implements Serializable, Criteria {
 
     private StringFilter serviceOutletCode;
 
-    private StringFilter assetCategoryCode;
-
-    private StringFilter assetCategory;
+    private LongFilter assetCategoryId;
 
     private StringFilter fixedAssetSerialCode;
 
@@ -52,8 +50,7 @@ public class FixedAssetItemCriteria implements Serializable, Criteria {
     public FixedAssetItemCriteria(FixedAssetItemCriteria other){
         this.id = other.id == null ? null : other.id.copy();
         this.serviceOutletCode = other.serviceOutletCode == null ? null : other.serviceOutletCode.copy();
-        this.assetCategoryCode = other.assetCategoryCode == null ? null : other.assetCategoryCode.copy();
-        this.assetCategory = other.assetCategory == null ? null : other.assetCategory.copy();
+        this.assetCategoryId = other.assetCategoryId == null ? null : other.assetCategoryId.copy();
         this.fixedAssetSerialCode = other.fixedAssetSerialCode == null ? null : other.fixedAssetSerialCode.copy();
         this.fixedAssetDescription = other.fixedAssetDescription == null ? null : other.fixedAssetDescription.copy();
         this.purchaseDate = other.purchaseDate == null ? null : other.purchaseDate.copy();
@@ -83,20 +80,12 @@ public class FixedAssetItemCriteria implements Serializable, Criteria {
         this.serviceOutletCode = serviceOutletCode;
     }
 
-    public StringFilter getAssetCategoryCode() {
-        return assetCategoryCode;
+    public LongFilter getAssetCategoryId() {
+        return assetCategoryId;
     }
 
-    public void setAssetCategoryCode(StringFilter assetCategoryCode) {
-        this.assetCategoryCode = assetCategoryCode;
-    }
-
-    public StringFilter getAssetCategory() {
-        return assetCategory;
-    }
-
-    public void setAssetCategory(StringFilter assetCategory) {
-        this.assetCategory = assetCategory;
+    public void setAssetCategoryId(LongFilter assetCategoryId) {
+        this.assetCategoryId = assetCategoryId;
     }
 
     public StringFilter getFixedAssetSerialCode() {
@@ -160,8 +149,7 @@ public class FixedAssetItemCriteria implements Serializable, Criteria {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(serviceOutletCode, that.serviceOutletCode) &&
-            Objects.equals(assetCategoryCode, that.assetCategoryCode) &&
-            Objects.equals(assetCategory, that.assetCategory) &&
+            Objects.equals(assetCategoryId, that.assetCategoryId) &&
             Objects.equals(fixedAssetSerialCode, that.fixedAssetSerialCode) &&
             Objects.equals(fixedAssetDescription, that.fixedAssetDescription) &&
             Objects.equals(purchaseDate, that.purchaseDate) &&
@@ -175,8 +163,7 @@ public class FixedAssetItemCriteria implements Serializable, Criteria {
         return Objects.hash(
         id,
         serviceOutletCode,
-        assetCategoryCode,
-        assetCategory,
+        assetCategoryId,
         fixedAssetSerialCode,
         fixedAssetDescription,
         purchaseDate,
@@ -191,8 +178,7 @@ public class FixedAssetItemCriteria implements Serializable, Criteria {
         return "FixedAssetItemCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (serviceOutletCode != null ? "serviceOutletCode=" + serviceOutletCode + ", " : "") +
-                (assetCategoryCode != null ? "assetCategoryCode=" + assetCategoryCode + ", " : "") +
-                (assetCategory != null ? "assetCategory=" + assetCategory + ", " : "") +
+                (assetCategoryId != null ? "assetCategoryId=" + assetCategoryId + ", " : "") +
                 (fixedAssetSerialCode != null ? "fixedAssetSerialCode=" + fixedAssetSerialCode + ", " : "") +
                 (fixedAssetDescription != null ? "fixedAssetDescription=" + fixedAssetDescription + ", " : "") +
                 (purchaseDate != null ? "purchaseDate=" + purchaseDate + ", " : "") +

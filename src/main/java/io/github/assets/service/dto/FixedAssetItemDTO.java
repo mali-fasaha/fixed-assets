@@ -17,10 +17,7 @@ public class FixedAssetItemDTO implements Serializable {
     private String serviceOutletCode;
 
     @NotNull
-    private String assetCategoryCode;
-
-    @NotNull
-    private String assetCategory;
+    private Long assetCategoryId;
 
     @NotNull
     private String fixedAssetSerialCode;
@@ -60,20 +57,12 @@ public class FixedAssetItemDTO implements Serializable {
         this.serviceOutletCode = serviceOutletCode;
     }
 
-    public String getAssetCategoryCode() {
-        return assetCategoryCode;
+    public Long getAssetCategoryId() {
+        return assetCategoryId;
     }
 
-    public void setAssetCategoryCode(String assetCategoryCode) {
-        this.assetCategoryCode = assetCategoryCode;
-    }
-
-    public String getAssetCategory() {
-        return assetCategory;
-    }
-
-    public void setAssetCategory(String assetCategory) {
-        this.assetCategory = assetCategory;
+    public void setAssetCategoryId(Long assetCategoryId) {
+        this.assetCategoryId = assetCategoryId;
     }
 
     public String getFixedAssetSerialCode() {
@@ -166,8 +155,7 @@ public class FixedAssetItemDTO implements Serializable {
         return "FixedAssetItemDTO{" +
             "id=" + getId() +
             ", serviceOutletCode='" + getServiceOutletCode() + "'" +
-            ", assetCategoryCode='" + getAssetCategoryCode() + "'" +
-            ", assetCategory='" + getAssetCategory() + "'" +
+            ", assetCategoryId=" + getAssetCategoryId() +
             ", fixedAssetSerialCode='" + getFixedAssetSerialCode() + "'" +
             ", fixedAssetDescription='" + getFixedAssetDescription() + "'" +
             ", purchaseDate='" + getPurchaseDate() + "'" +

@@ -1,11 +1,11 @@
-id;service_outlet_code;asset_category_code;asset_category;fixed_asset_serial_code;fixed_asset_description;purchase_date;purchase_cost;purchase_transaction_id;ownership_document_id;asset_picture;asset_picture_content_type
-1;mobile Fish;Home Loan Account Table Computer;Trace;Savings Account alarm;Tasty Metal Bacon;2019-07-18T10:45:22;21233;77;18182;486f6d65204e616d69626961;image/png
-2;Steel zero administration;Multi-channelled Licensed;grey Cambridgeshire;Canyon HDD;Table Small Frozen Sausages Planner;2019-07-18T13:52:48;38541;30461;1596;696e666f6d6564696172696573;image/png
-3;Investment Account;Games Regional Digitized;copy convergence;Mayotte;Industrial;2019-07-18T13:04:00;77513;44975;93949;617263686976652047656f72676961204172756261;image/png
-4;software scale interactive;Louisiana Specialist Home Loan Account;Plastic;Car Industrial deliverables;orange Books;2019-07-18T13:42:37;19884;70685;71134;46726f7a656e204942;image/png
-5;Highway Ergonomic;moratorium moratorium;New York tangible Mississippi;Frozen bus;hard drive Robust Networked;2019-07-19T08:18:39;52273;71066;42754;726564;image/png
-6;withdrawal knowledge base Buckinghamshire;Concrete Investment Account Saint Lucia;User-centric;Money Market Account;Salad Web virtual;2019-07-18T18:04:47;10549;87146;45653;6261636b2d656e64;image/png
-7;granular Direct contextually-based;synergies copying;ability Hat Iraq;magenta Concrete;User-centric Gloves;2019-07-19T04:01:51;51879;55810;70301;4578636c7573697665204d6f726f6363616e2044697268616d2063617264;image/png
-8;zero tolerance;mission-critical;Berkshire Small Plastic Pants Investor;Canadian Dollar;Berkshire Designer;2019-07-19T03:28:19;59269;67213;8085;696e766f696365207769746864726177616c;image/png
-9;bypassing optical;installation;Argentine Peso;Kentucky Algerian Dinar Clothing;open-source turn-key;2019-07-19T06:58:23;17436;94052;69093;466f72696e74;image/png
-10;Concrete Global SMS;Profound;parsing;Borders content-based;Tasty Customer Human;2019-07-18T18:05:13;18870;33902;27887;4149206f70746963616c20696e766f696365;image/png
+id;service_outlet_code;asset_category_id;fixed_asset_serial_code;fixed_asset_description;purchase_date;purchase_cost;purchase_transaction_id;ownership_document_id;asset_picture;asset_picture_content_type
+1;mobile Fish;77969;Savings Account Dam;Practical Fresh Pants;2019-07-23T22:50:19;14286;70807;65088;72656420436869707320536f6170;image/png
+2;Home Loan Account;706;Home Namibia;Steel zero administration;2019-07-24T04:28:21;23277;45606;9060;526566696e65642052756262657220436869636b656e205461626c65;image/png
+3;Automotive;94220;South Dakota envisioneer Music;Nakfa;2019-07-24T02:42:06;68326;12203;60999;4469676974697a656420696e766f696365;image/png
+4;convergence;20794;Georgia Industrial;connect Markets Chief;2019-07-23T22:54:57;72727;92187;32654;546173747920506c61737469632050697a7a61207363616c65;image/png
+5;South Georgia and the South Sandwich Islands;58675;Specialist Home Loan Account;Plastic;2019-07-23T18:00:45;16526;7455;1563;6f766572726964696e67;image/png
+6;monitor 1080p Checking Account;92630;deposit Internal;Investment Account archive Fantastic Plastic Chicken;2019-07-24T05:27:39;66592;72960;59129;46726f7a656e20627573;image/png
+7;hard drive Robust Networked;4043;system Small;Intelligent Outdoors;2019-07-23T21:59:29;47537;31435;56327;72656c6174696f6e7368697073206f76657272696465;image/png
+8;Brand;59886;Chilean Peso Unidades de fomento;Web virtual deposit;2019-07-23T16:21:01;45653;80367;21844;4768616e61206261636b2d656e64204e6174696f6e616c;image/png
+9;Direct;27213;withdrawal;copying;2019-07-23T16:36:28;30478;695;16465;436f6e63726574652032342f372044697265637469766573;image/png
+10;sky blue;55810;facilitate Tasty Concrete Chips Exclusive;Buckinghamshire capability zero tolerance;2019-07-24T12:22:47;26678;60956;97661;496e766573746f72205075626c69632d6b6579;image/png

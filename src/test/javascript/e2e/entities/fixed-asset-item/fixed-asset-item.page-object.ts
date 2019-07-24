@@ -27,8 +27,7 @@ export class FixedAssetItemUpdatePage {
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
   serviceOutletCodeInput = element(by.id('field_serviceOutletCode'));
-  assetCategoryCodeInput = element(by.id('field_assetCategoryCode'));
-  assetCategoryInput = element(by.id('field_assetCategory'));
+  assetCategoryIdInput = element(by.id('field_assetCategoryId'));
   fixedAssetSerialCodeInput = element(by.id('field_fixedAssetSerialCode'));
   fixedAssetDescriptionInput = element(by.id('field_fixedAssetDescription'));
   purchaseDateInput = element(by.id('field_purchaseDate'));
@@ -49,20 +48,12 @@ export class FixedAssetItemUpdatePage {
     return await this.serviceOutletCodeInput.getAttribute('value');
   }
 
-  async setAssetCategoryCodeInput(assetCategoryCode) {
-    await this.assetCategoryCodeInput.sendKeys(assetCategoryCode);
+  async setAssetCategoryIdInput(assetCategoryId) {
+    await this.assetCategoryIdInput.sendKeys(assetCategoryId);
   }
 
-  async getAssetCategoryCodeInput() {
-    return await this.assetCategoryCodeInput.getAttribute('value');
-  }
-
-  async setAssetCategoryInput(assetCategory) {
-    await this.assetCategoryInput.sendKeys(assetCategory);
-  }
-
-  async getAssetCategoryInput() {
-    return await this.assetCategoryInput.getAttribute('value');
+  async getAssetCategoryIdInput() {
+    return await this.assetCategoryIdInput.getAttribute('value');
   }
 
   async setFixedAssetSerialCodeInput(fixedAssetSerialCode) {

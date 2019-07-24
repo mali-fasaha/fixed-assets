@@ -73,8 +73,7 @@ class FixedAssetItemGatlingTest extends Simulation {
             .body(StringBody("""{
                 "id":null
                 , "serviceOutletCode":"SAMPLE_TEXT"
-                , "assetCategoryCode":"SAMPLE_TEXT"
-                , "assetCategory":"SAMPLE_TEXT"
+                , "assetCategoryId":null
                 , "fixedAssetSerialCode":"SAMPLE_TEXT"
                 , "fixedAssetDescription":"SAMPLE_TEXT"
                 , "purchaseDate":"2020-01-01T00:00:00.000Z"
