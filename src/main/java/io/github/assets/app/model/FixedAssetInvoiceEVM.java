@@ -18,23 +18,25 @@ public class FixedAssetInvoiceEVM implements Serializable {
     private static final long serialVersionUID = 4589504591791408432L;
     @ExcelRow
     private int rowIndex;
-    private String invoiceReference;
 
     @ExcelCell(0)
-    private LocalDate invoiceDate;
+    private String invoiceReference;
 
     @ExcelCell(1)
-    private double invoiceAmount;
+    private LocalDate invoiceDate;
 
     @ExcelCell(2)
-    private boolean isProforma;
+    private double invoiceAmount;
 
     @ExcelCell(3)
-    private boolean isCreditNote;
+    private boolean isProforma;
 
     @ExcelCell(4)
-    private long dealerId;
+    private boolean isCreditNote;
 
     @ExcelCell(5)
+    private long dealerId;
+
+    @ExcelCell(6)
     private String dealerName;
 }

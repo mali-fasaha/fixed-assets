@@ -31,16 +31,16 @@ public class ExcelFileUtilsTest {
         // @formatter:on
 
         log.info("ServiceOutlet # 1: {}", serviceOutlets.get(0));
-        log.info("ServiceOutlet # 1000: {}", serviceOutlets.get(999));
+        log.info("ServiceOutlet # 12: {}", serviceOutlets.get(11));
 
         assertEquals(1000, serviceOutlets.size());
         assertEquals("5 Springview Park", serviceOutlets.get(0).getLocation());
         assertEquals("Human Resources", serviceOutlets.get(0).getDescription());
         assertEquals("802", serviceOutlets.get(0).getServiceOutletCode());
 
-        assertEquals("17315 Fieldstone Center", serviceOutlets.get(999).getLocation());
-        assertEquals("Training", serviceOutlets.get(999).getDescription());
-        assertEquals("693", serviceOutlets.get(999).getServiceOutletCode());
+        assertEquals("17315 Fieldstone Center", serviceOutlets.get(11).getLocation());
+        assertEquals("Training", serviceOutlets.get(11).getDescription());
+        assertEquals("693", serviceOutlets.get(11).getServiceOutletCode());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ExcelFileUtilsTest {
         // @formatter:off
         List<DealerEVM> dealers =
             ExcelFileUtils
-                .deserializeDealerFile(toBytes(readFile("asset_transactions.xlsx")));
+                .deserializeDealerFile(toBytes(readFile("dealers.xlsx")));
         // @formatter:on
 
         assertEquals(1000, dealers.size());
@@ -92,7 +92,7 @@ public class ExcelFileUtilsTest {
         // @formatter:off
         List<FixedAssetAssessmentEVM> assessments =
             ExcelFileUtils
-                .deserializeFixedAssetAssessmentFile(toBytes(readFile("asset_transactions.xlsx")));
+                .deserializeFixedAssetAssessmentFile(toBytes(readFile("asset_assessment.xlsx")));
         // @formatter:on
 
         assertEquals(1000, assessments.size());
@@ -106,7 +106,7 @@ public class ExcelFileUtilsTest {
         // @formatter:off
         List<FixedAssetCategoryEVM> categories =
             ExcelFileUtils
-                .deserializeFixedAssetCategoryFile(toBytes(readFile("asset_transactions.xlsx")));
+                .deserializeFixedAssetCategoryFile(toBytes(readFile("asset_category.xlsx")));
         // @formatter:on
 
         assertEquals(1000, categories.size());
@@ -120,7 +120,7 @@ public class ExcelFileUtilsTest {
         // @formatter:off
         List<FixedAssetInvoiceEVM> invoices =
             ExcelFileUtils
-                .deserializeFixedAssetInvoiceFile(toBytes(readFile("asset_transactions.xlsx")));
+                .deserializeFixedAssetInvoiceFile(toBytes(readFile("asset_invoice.xlsx")));
         // @formatter:on
 
         assertEquals(1000, invoices.size());
@@ -134,7 +134,7 @@ public class ExcelFileUtilsTest {
         // @formatter:off
         List<FixedAssetItemEVM> assetItems =
             ExcelFileUtils
-                .deserializeFixedAssetItemFile(toBytes(readFile("asset_transactions.xlsx")));
+                .deserializeFixedAssetItemFile(toBytes(readFile("asset_item.xlsx")));
         // @formatter:on
 
         assertEquals(1000, assetItems.size());

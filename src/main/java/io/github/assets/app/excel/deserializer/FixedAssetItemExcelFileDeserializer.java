@@ -22,6 +22,6 @@ public class FixedAssetItemExcelFileDeserializer implements ExcelFileDeserialize
      */
     @Override
     public List<FixedAssetItemEVM> deserialize(final byte[] excelFile) {
-        return null;
+        return deserializer.deserialize(excelFile);
     }
 }
