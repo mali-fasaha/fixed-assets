@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-8">
+        <createTable tableName="asset_depreciation">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="asset_depreciationPK"/>
+            </column>
+            <column name="asset_item_id" type="BIGINT"/>
+            <column name="category_id" type="BIGINT"/>
+            <column name="depreciation_amount" type="numeric(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="depreciation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-1">
+        <dropUniqueConstraint constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_ASSET_CODE_COL" tableName="fixed_asset_category"/>
+        <addUniqueConstraint columnNames="category_asset_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_ASSET_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-2">
+        <dropUniqueConstraint constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_DEPRECIATION_CODE_COL" tableName="fixed_asset_category"/>
+        <addUniqueConstraint columnNames="category_depreciation_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_DEPRECIATION_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-3">
+        <dropUniqueConstraint constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_NAME_COL" tableName="fixed_asset_category"/>
+        <addUniqueConstraint columnNames="category_name" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_NAME_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-4">
+        <dropUniqueConstraint constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-5">
+        <dropUniqueConstraint constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-6">
+        <dropUniqueConstraint constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_CODE_COL" tableName="service_outlet"/>
+        <addUniqueConstraint columnNames="service_outlet_code" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_CODE_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1563984818190-7">
+        <dropUniqueConstraint constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_DESIGNATION_COL" tableName="service_outlet"/>
+        <addUniqueConstraint columnNames="service_outlet_designation" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_DESIGNATION_COL" tableName="service_outlet"/>
+    </changeSet>
+</databaseChangeLog>
