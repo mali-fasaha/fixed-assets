@@ -4,14 +4,6 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "categoryCode",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "unique"
-            ]
-        },
-        {
             "fieldName": "categoryName",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -22,6 +14,22 @@
         {
             "fieldName": "categoryDescription",
             "fieldType": "String"
+        },
+        {
+          "fieldName": "categoryAssetCode",
+          "fieldType": "String",
+          "fieldValidateRules": [
+            "required",
+            "unique"
+          ]
+        },
+        {
+          "fieldName": "categoryDepreciationCode",
+          "fieldType": "String",
+          "fieldValidateRules": [
+            "required",
+            "unique"
+          ]
         },
         {
             "fieldName": "depreciationRegimeId",

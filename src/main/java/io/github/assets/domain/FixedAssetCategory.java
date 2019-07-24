@@ -29,15 +29,19 @@ public class FixedAssetCategory implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "category_code", nullable = false, unique = true)
-    private String categoryCode;
-
-    @NotNull
     @Column(name = "category_name", nullable = false, unique = true)
     private String categoryName;
 
     @Column(name = "category_description")
     private String categoryDescription;
+
+    @NotNull
+    @Column(name = "category_asset_code", nullable = false, unique = true)
+    private String categoryAssetCode;
+
+    @NotNull
+    @Column(name = "category_depreciation_code", nullable = false, unique = true)
+    private String categoryDepreciationCode;
 
     @Column(name = "depreciation_regime_id")
     private Long depreciationRegimeId;
@@ -49,19 +53,6 @@ public class FixedAssetCategory implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCategoryCode() {
-        return categoryCode;
-    }
-
-    public FixedAssetCategory categoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
-        return this;
-    }
-
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
     }
 
     public String getCategoryName() {
@@ -88,6 +79,32 @@ public class FixedAssetCategory implements Serializable {
 
     public void setCategoryDescription(String categoryDescription) {
         this.categoryDescription = categoryDescription;
+    }
+
+    public String getCategoryAssetCode() {
+        return categoryAssetCode;
+    }
+
+    public FixedAssetCategory categoryAssetCode(String categoryAssetCode) {
+        this.categoryAssetCode = categoryAssetCode;
+        return this;
+    }
+
+    public void setCategoryAssetCode(String categoryAssetCode) {
+        this.categoryAssetCode = categoryAssetCode;
+    }
+
+    public String getCategoryDepreciationCode() {
+        return categoryDepreciationCode;
+    }
+
+    public FixedAssetCategory categoryDepreciationCode(String categoryDepreciationCode) {
+        this.categoryDepreciationCode = categoryDepreciationCode;
+        return this;
+    }
+
+    public void setCategoryDepreciationCode(String categoryDepreciationCode) {
+        this.categoryDepreciationCode = categoryDepreciationCode;
     }
 
     public Long getDepreciationRegimeId() {
@@ -124,9 +141,10 @@ public class FixedAssetCategory implements Serializable {
     public String toString() {
         return "FixedAssetCategory{" +
             "id=" + getId() +
-            ", categoryCode='" + getCategoryCode() + "'" +
             ", categoryName='" + getCategoryName() + "'" +
             ", categoryDescription='" + getCategoryDescription() + "'" +
+            ", categoryAssetCode='" + getCategoryAssetCode() + "'" +
+            ", categoryDepreciationCode='" + getCategoryDepreciationCode() + "'" +
             ", depreciationRegimeId=" + getDepreciationRegimeId() +
             "}";
     }

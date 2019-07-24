@@ -11,18 +11,11 @@
             ]
         },
         {
-            "fieldName": "assetCategoryCode",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "assetCategory",
-            "fieldType": "String",
-            "fieldValidateRules": [
-          "required"
-        ]
+          "fieldName": "assetCategoryId",
+          "fieldType": "Long",
+                      "fieldValidateRules": [
+                          "required"
+                      ]
         },
         {
             "fieldName": "fixedAssetSerialCode",

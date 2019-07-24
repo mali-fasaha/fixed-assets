@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(FixedAssetCategoryService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new FixedAssetCategory(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0);
+      elemDefault = new FixedAssetCategory(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0);
     });
 
     describe('Service methods', () => {
@@ -59,9 +59,10 @@ describe('Service Tests', () => {
       it('should update a FixedAssetCategory', async () => {
         const returnedFromService = Object.assign(
           {
-            categoryCode: 'BBBBBB',
             categoryName: 'BBBBBB',
             categoryDescription: 'BBBBBB',
+            categoryAssetCode: 'BBBBBB',
+            categoryDepreciationCode: 'BBBBBB',
             depreciationRegimeId: 1
           },
           elemDefault
@@ -80,9 +81,10 @@ describe('Service Tests', () => {
       it('should return a list of FixedAssetCategory', async () => {
         const returnedFromService = Object.assign(
           {
-            categoryCode: 'BBBBBB',
             categoryName: 'BBBBBB',
             categoryDescription: 'BBBBBB',
+            categoryAssetCode: 'BBBBBB',
+            categoryDepreciationCode: 'BBBBBB',
             depreciationRegimeId: 1
           },
           elemDefault

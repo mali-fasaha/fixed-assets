@@ -11,12 +11,15 @@ public class FixedAssetCategoryDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String categoryCode;
-
-    @NotNull
     private String categoryName;
 
     private String categoryDescription;
+
+    @NotNull
+    private String categoryAssetCode;
+
+    @NotNull
+    private String categoryDepreciationCode;
 
     private Long depreciationRegimeId;
 
@@ -27,14 +30,6 @@ public class FixedAssetCategoryDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCategoryCode() {
-        return categoryCode;
-    }
-
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
     }
 
     public String getCategoryName() {
@@ -51,6 +46,22 @@ public class FixedAssetCategoryDTO implements Serializable {
 
     public void setCategoryDescription(String categoryDescription) {
         this.categoryDescription = categoryDescription;
+    }
+
+    public String getCategoryAssetCode() {
+        return categoryAssetCode;
+    }
+
+    public void setCategoryAssetCode(String categoryAssetCode) {
+        this.categoryAssetCode = categoryAssetCode;
+    }
+
+    public String getCategoryDepreciationCode() {
+        return categoryDepreciationCode;
+    }
+
+    public void setCategoryDepreciationCode(String categoryDepreciationCode) {
+        this.categoryDepreciationCode = categoryDepreciationCode;
     }
 
     public Long getDepreciationRegimeId() {
@@ -86,9 +97,10 @@ public class FixedAssetCategoryDTO implements Serializable {
     public String toString() {
         return "FixedAssetCategoryDTO{" +
             "id=" + getId() +
-            ", categoryCode='" + getCategoryCode() + "'" +
             ", categoryName='" + getCategoryName() + "'" +
             ", categoryDescription='" + getCategoryDescription() + "'" +
+            ", categoryAssetCode='" + getCategoryAssetCode() + "'" +
+            ", categoryDepreciationCode='" + getCategoryDepreciationCode() + "'" +
             ", depreciationRegimeId=" + getDepreciationRegimeId() +
             "}";
     }

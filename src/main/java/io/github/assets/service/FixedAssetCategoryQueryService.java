@@ -93,14 +93,17 @@ public class FixedAssetCategoryQueryService extends QueryService<FixedAssetCateg
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), FixedAssetCategory_.id));
             }
-            if (criteria.getCategoryCode() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getCategoryCode(), FixedAssetCategory_.categoryCode));
-            }
             if (criteria.getCategoryName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCategoryName(), FixedAssetCategory_.categoryName));
             }
             if (criteria.getCategoryDescription() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCategoryDescription(), FixedAssetCategory_.categoryDescription));
+            }
+            if (criteria.getCategoryAssetCode() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCategoryAssetCode(), FixedAssetCategory_.categoryAssetCode));
+            }
+            if (criteria.getCategoryDepreciationCode() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCategoryDepreciationCode(), FixedAssetCategory_.categoryDepreciationCode));
             }
             if (criteria.getDepreciationRegimeId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDepreciationRegimeId(), FixedAssetCategory_.depreciationRegimeId));

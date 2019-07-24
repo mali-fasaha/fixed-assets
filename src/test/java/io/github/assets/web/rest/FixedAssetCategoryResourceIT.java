@@ -44,14 +44,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FixedAssetsApp.class)
 public class FixedAssetCategoryResourceIT {
 
-    private static final String DEFAULT_CATEGORY_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CATEGORY_CODE = "BBBBBBBBBB";
-
     private static final String DEFAULT_CATEGORY_NAME = "AAAAAAAAAA";
     private static final String UPDATED_CATEGORY_NAME = "BBBBBBBBBB";
 
     private static final String DEFAULT_CATEGORY_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_CATEGORY_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CATEGORY_ASSET_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_CATEGORY_ASSET_CODE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CATEGORY_DEPRECIATION_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_CATEGORY_DEPRECIATION_CODE = "BBBBBBBBBB";
 
     private static final Long DEFAULT_DEPRECIATION_REGIME_ID = 1L;
     private static final Long UPDATED_DEPRECIATION_REGIME_ID = 2L;
@@ -115,9 +118,10 @@ public class FixedAssetCategoryResourceIT {
      */
     public static FixedAssetCategory createEntity(EntityManager em) {
         FixedAssetCategory fixedAssetCategory = new FixedAssetCategory()
-            .categoryCode(DEFAULT_CATEGORY_CODE)
             .categoryName(DEFAULT_CATEGORY_NAME)
             .categoryDescription(DEFAULT_CATEGORY_DESCRIPTION)
+            .categoryAssetCode(DEFAULT_CATEGORY_ASSET_CODE)
+            .categoryDepreciationCode(DEFAULT_CATEGORY_DEPRECIATION_CODE)
             .depreciationRegimeId(DEFAULT_DEPRECIATION_REGIME_ID);
         return fixedAssetCategory;
     }
@@ -129,9 +133,10 @@ public class FixedAssetCategoryResourceIT {
      */
     public static FixedAssetCategory createUpdatedEntity(EntityManager em) {
         FixedAssetCategory fixedAssetCategory = new FixedAssetCategory()
-            .categoryCode(UPDATED_CATEGORY_CODE)
             .categoryName(UPDATED_CATEGORY_NAME)
             .categoryDescription(UPDATED_CATEGORY_DESCRIPTION)
+            .categoryAssetCode(UPDATED_CATEGORY_ASSET_CODE)
+            .categoryDepreciationCode(UPDATED_CATEGORY_DEPRECIATION_CODE)
             .depreciationRegimeId(UPDATED_DEPRECIATION_REGIME_ID);
         return fixedAssetCategory;
     }
@@ -157,9 +162,10 @@ public class FixedAssetCategoryResourceIT {
         List<FixedAssetCategory> fixedAssetCategoryList = fixedAssetCategoryRepository.findAll();
         assertThat(fixedAssetCategoryList).hasSize(databaseSizeBeforeCreate + 1);
         FixedAssetCategory testFixedAssetCategory = fixedAssetCategoryList.get(fixedAssetCategoryList.size() - 1);
-        assertThat(testFixedAssetCategory.getCategoryCode()).isEqualTo(DEFAULT_CATEGORY_CODE);
         assertThat(testFixedAssetCategory.getCategoryName()).isEqualTo(DEFAULT_CATEGORY_NAME);
         assertThat(testFixedAssetCategory.getCategoryDescription()).isEqualTo(DEFAULT_CATEGORY_DESCRIPTION);
+        assertThat(testFixedAssetCategory.getCategoryAssetCode()).isEqualTo(DEFAULT_CATEGORY_ASSET_CODE);
+        assertThat(testFixedAssetCategory.getCategoryDepreciationCode()).isEqualTo(DEFAULT_CATEGORY_DEPRECIATION_CODE);
         assertThat(testFixedAssetCategory.getDepreciationRegimeId()).isEqualTo(DEFAULT_DEPRECIATION_REGIME_ID);
 
         // Validate the FixedAssetCategory in Elasticsearch
@@ -192,10 +198,10 @@ public class FixedAssetCategoryResourceIT {
 
     @Test
     @Transactional
-    public void checkCategoryCodeIsRequired() throws Exception {
+    public void checkCategoryNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = fixedAssetCategoryRepository.findAll().size();
         // set the field null
-        fixedAssetCategory.setCategoryCode(null);
+        fixedAssetCategory.setCategoryName(null);
 
         // Create the FixedAssetCategory, which fails.
         FixedAssetCategoryDTO fixedAssetCategoryDTO = fixedAssetCategoryMapper.toDto(fixedAssetCategory);
@@ -211,10 +217,29 @@ public class FixedAssetCategoryResourceIT {
 
     @Test
     @Transactional
-    public void checkCategoryNameIsRequired() throws Exception {
+    public void checkCategoryAssetCodeIsRequired() throws Exception {
         int databaseSizeBeforeTest = fixedAssetCategoryRepository.findAll().size();
         // set the field null
-        fixedAssetCategory.setCategoryName(null);
+        fixedAssetCategory.setCategoryAssetCode(null);
+
+        // Create the FixedAssetCategory, which fails.
+        FixedAssetCategoryDTO fixedAssetCategoryDTO = fixedAssetCategoryMapper.toDto(fixedAssetCategory);
+
+        restFixedAssetCategoryMockMvc.perform(post("/api/fixed-asset-categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(fixedAssetCategoryDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<FixedAssetCategory> fixedAssetCategoryList = fixedAssetCategoryRepository.findAll();
+        assertThat(fixedAssetCategoryList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCategoryDepreciationCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = fixedAssetCategoryRepository.findAll().size();
+        // set the field null
+        fixedAssetCategory.setCategoryDepreciationCode(null);
 
         // Create the FixedAssetCategory, which fails.
         FixedAssetCategoryDTO fixedAssetCategoryDTO = fixedAssetCategoryMapper.toDto(fixedAssetCategory);
@@ -239,9 +264,10 @@ public class FixedAssetCategoryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fixedAssetCategory.getId().intValue())))
-            .andExpect(jsonPath("$.[*].categoryCode").value(hasItem(DEFAULT_CATEGORY_CODE.toString())))
             .andExpect(jsonPath("$.[*].categoryName").value(hasItem(DEFAULT_CATEGORY_NAME.toString())))
             .andExpect(jsonPath("$.[*].categoryDescription").value(hasItem(DEFAULT_CATEGORY_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].categoryAssetCode").value(hasItem(DEFAULT_CATEGORY_ASSET_CODE.toString())))
+            .andExpect(jsonPath("$.[*].categoryDepreciationCode").value(hasItem(DEFAULT_CATEGORY_DEPRECIATION_CODE.toString())))
             .andExpect(jsonPath("$.[*].depreciationRegimeId").value(hasItem(DEFAULT_DEPRECIATION_REGIME_ID.intValue())));
     }
     
@@ -256,49 +282,11 @@ public class FixedAssetCategoryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(fixedAssetCategory.getId().intValue()))
-            .andExpect(jsonPath("$.categoryCode").value(DEFAULT_CATEGORY_CODE.toString()))
             .andExpect(jsonPath("$.categoryName").value(DEFAULT_CATEGORY_NAME.toString()))
             .andExpect(jsonPath("$.categoryDescription").value(DEFAULT_CATEGORY_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.categoryAssetCode").value(DEFAULT_CATEGORY_ASSET_CODE.toString()))
+            .andExpect(jsonPath("$.categoryDepreciationCode").value(DEFAULT_CATEGORY_DEPRECIATION_CODE.toString()))
             .andExpect(jsonPath("$.depreciationRegimeId").value(DEFAULT_DEPRECIATION_REGIME_ID.intValue()));
-    }
-
-    @Test
-    @Transactional
-    public void getAllFixedAssetCategoriesByCategoryCodeIsEqualToSomething() throws Exception {
-        // Initialize the database
-        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
-
-        // Get all the fixedAssetCategoryList where categoryCode equals to DEFAULT_CATEGORY_CODE
-        defaultFixedAssetCategoryShouldBeFound("categoryCode.equals=" + DEFAULT_CATEGORY_CODE);
-
-        // Get all the fixedAssetCategoryList where categoryCode equals to UPDATED_CATEGORY_CODE
-        defaultFixedAssetCategoryShouldNotBeFound("categoryCode.equals=" + UPDATED_CATEGORY_CODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllFixedAssetCategoriesByCategoryCodeIsInShouldWork() throws Exception {
-        // Initialize the database
-        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
-
-        // Get all the fixedAssetCategoryList where categoryCode in DEFAULT_CATEGORY_CODE or UPDATED_CATEGORY_CODE
-        defaultFixedAssetCategoryShouldBeFound("categoryCode.in=" + DEFAULT_CATEGORY_CODE + "," + UPDATED_CATEGORY_CODE);
-
-        // Get all the fixedAssetCategoryList where categoryCode equals to UPDATED_CATEGORY_CODE
-        defaultFixedAssetCategoryShouldNotBeFound("categoryCode.in=" + UPDATED_CATEGORY_CODE);
-    }
-
-    @Test
-    @Transactional
-    public void getAllFixedAssetCategoriesByCategoryCodeIsNullOrNotNull() throws Exception {
-        // Initialize the database
-        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
-
-        // Get all the fixedAssetCategoryList where categoryCode is not null
-        defaultFixedAssetCategoryShouldBeFound("categoryCode.specified=true");
-
-        // Get all the fixedAssetCategoryList where categoryCode is null
-        defaultFixedAssetCategoryShouldNotBeFound("categoryCode.specified=false");
     }
 
     @Test
@@ -381,6 +369,84 @@ public class FixedAssetCategoryResourceIT {
 
     @Test
     @Transactional
+    public void getAllFixedAssetCategoriesByCategoryAssetCodeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
+
+        // Get all the fixedAssetCategoryList where categoryAssetCode equals to DEFAULT_CATEGORY_ASSET_CODE
+        defaultFixedAssetCategoryShouldBeFound("categoryAssetCode.equals=" + DEFAULT_CATEGORY_ASSET_CODE);
+
+        // Get all the fixedAssetCategoryList where categoryAssetCode equals to UPDATED_CATEGORY_ASSET_CODE
+        defaultFixedAssetCategoryShouldNotBeFound("categoryAssetCode.equals=" + UPDATED_CATEGORY_ASSET_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFixedAssetCategoriesByCategoryAssetCodeIsInShouldWork() throws Exception {
+        // Initialize the database
+        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
+
+        // Get all the fixedAssetCategoryList where categoryAssetCode in DEFAULT_CATEGORY_ASSET_CODE or UPDATED_CATEGORY_ASSET_CODE
+        defaultFixedAssetCategoryShouldBeFound("categoryAssetCode.in=" + DEFAULT_CATEGORY_ASSET_CODE + "," + UPDATED_CATEGORY_ASSET_CODE);
+
+        // Get all the fixedAssetCategoryList where categoryAssetCode equals to UPDATED_CATEGORY_ASSET_CODE
+        defaultFixedAssetCategoryShouldNotBeFound("categoryAssetCode.in=" + UPDATED_CATEGORY_ASSET_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFixedAssetCategoriesByCategoryAssetCodeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
+
+        // Get all the fixedAssetCategoryList where categoryAssetCode is not null
+        defaultFixedAssetCategoryShouldBeFound("categoryAssetCode.specified=true");
+
+        // Get all the fixedAssetCategoryList where categoryAssetCode is null
+        defaultFixedAssetCategoryShouldNotBeFound("categoryAssetCode.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllFixedAssetCategoriesByCategoryDepreciationCodeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
+
+        // Get all the fixedAssetCategoryList where categoryDepreciationCode equals to DEFAULT_CATEGORY_DEPRECIATION_CODE
+        defaultFixedAssetCategoryShouldBeFound("categoryDepreciationCode.equals=" + DEFAULT_CATEGORY_DEPRECIATION_CODE);
+
+        // Get all the fixedAssetCategoryList where categoryDepreciationCode equals to UPDATED_CATEGORY_DEPRECIATION_CODE
+        defaultFixedAssetCategoryShouldNotBeFound("categoryDepreciationCode.equals=" + UPDATED_CATEGORY_DEPRECIATION_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFixedAssetCategoriesByCategoryDepreciationCodeIsInShouldWork() throws Exception {
+        // Initialize the database
+        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
+
+        // Get all the fixedAssetCategoryList where categoryDepreciationCode in DEFAULT_CATEGORY_DEPRECIATION_CODE or UPDATED_CATEGORY_DEPRECIATION_CODE
+        defaultFixedAssetCategoryShouldBeFound("categoryDepreciationCode.in=" + DEFAULT_CATEGORY_DEPRECIATION_CODE + "," + UPDATED_CATEGORY_DEPRECIATION_CODE);
+
+        // Get all the fixedAssetCategoryList where categoryDepreciationCode equals to UPDATED_CATEGORY_DEPRECIATION_CODE
+        defaultFixedAssetCategoryShouldNotBeFound("categoryDepreciationCode.in=" + UPDATED_CATEGORY_DEPRECIATION_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllFixedAssetCategoriesByCategoryDepreciationCodeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
+
+        // Get all the fixedAssetCategoryList where categoryDepreciationCode is not null
+        defaultFixedAssetCategoryShouldBeFound("categoryDepreciationCode.specified=true");
+
+        // Get all the fixedAssetCategoryList where categoryDepreciationCode is null
+        defaultFixedAssetCategoryShouldNotBeFound("categoryDepreciationCode.specified=false");
+    }
+
+    @Test
+    @Transactional
     public void getAllFixedAssetCategoriesByDepreciationRegimeIdIsEqualToSomething() throws Exception {
         // Initialize the database
         fixedAssetCategoryRepository.saveAndFlush(fixedAssetCategory);
@@ -452,9 +518,10 @@ public class FixedAssetCategoryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fixedAssetCategory.getId().intValue())))
-            .andExpect(jsonPath("$.[*].categoryCode").value(hasItem(DEFAULT_CATEGORY_CODE)))
             .andExpect(jsonPath("$.[*].categoryName").value(hasItem(DEFAULT_CATEGORY_NAME)))
             .andExpect(jsonPath("$.[*].categoryDescription").value(hasItem(DEFAULT_CATEGORY_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].categoryAssetCode").value(hasItem(DEFAULT_CATEGORY_ASSET_CODE)))
+            .andExpect(jsonPath("$.[*].categoryDepreciationCode").value(hasItem(DEFAULT_CATEGORY_DEPRECIATION_CODE)))
             .andExpect(jsonPath("$.[*].depreciationRegimeId").value(hasItem(DEFAULT_DEPRECIATION_REGIME_ID.intValue())));
 
         // Check, that the count call also returns 1
@@ -503,9 +570,10 @@ public class FixedAssetCategoryResourceIT {
         // Disconnect from session so that the updates on updatedFixedAssetCategory are not directly saved in db
         em.detach(updatedFixedAssetCategory);
         updatedFixedAssetCategory
-            .categoryCode(UPDATED_CATEGORY_CODE)
             .categoryName(UPDATED_CATEGORY_NAME)
             .categoryDescription(UPDATED_CATEGORY_DESCRIPTION)
+            .categoryAssetCode(UPDATED_CATEGORY_ASSET_CODE)
+            .categoryDepreciationCode(UPDATED_CATEGORY_DEPRECIATION_CODE)
             .depreciationRegimeId(UPDATED_DEPRECIATION_REGIME_ID);
         FixedAssetCategoryDTO fixedAssetCategoryDTO = fixedAssetCategoryMapper.toDto(updatedFixedAssetCategory);
 
@@ -518,9 +586,10 @@ public class FixedAssetCategoryResourceIT {
         List<FixedAssetCategory> fixedAssetCategoryList = fixedAssetCategoryRepository.findAll();
         assertThat(fixedAssetCategoryList).hasSize(databaseSizeBeforeUpdate);
         FixedAssetCategory testFixedAssetCategory = fixedAssetCategoryList.get(fixedAssetCategoryList.size() - 1);
-        assertThat(testFixedAssetCategory.getCategoryCode()).isEqualTo(UPDATED_CATEGORY_CODE);
         assertThat(testFixedAssetCategory.getCategoryName()).isEqualTo(UPDATED_CATEGORY_NAME);
         assertThat(testFixedAssetCategory.getCategoryDescription()).isEqualTo(UPDATED_CATEGORY_DESCRIPTION);
+        assertThat(testFixedAssetCategory.getCategoryAssetCode()).isEqualTo(UPDATED_CATEGORY_ASSET_CODE);
+        assertThat(testFixedAssetCategory.getCategoryDepreciationCode()).isEqualTo(UPDATED_CATEGORY_DEPRECIATION_CODE);
         assertThat(testFixedAssetCategory.getDepreciationRegimeId()).isEqualTo(UPDATED_DEPRECIATION_REGIME_ID);
 
         // Validate the FixedAssetCategory in Elasticsearch
@@ -582,9 +651,10 @@ public class FixedAssetCategoryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fixedAssetCategory.getId().intValue())))
-            .andExpect(jsonPath("$.[*].categoryCode").value(hasItem(DEFAULT_CATEGORY_CODE)))
             .andExpect(jsonPath("$.[*].categoryName").value(hasItem(DEFAULT_CATEGORY_NAME)))
             .andExpect(jsonPath("$.[*].categoryDescription").value(hasItem(DEFAULT_CATEGORY_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].categoryAssetCode").value(hasItem(DEFAULT_CATEGORY_ASSET_CODE)))
+            .andExpect(jsonPath("$.[*].categoryDepreciationCode").value(hasItem(DEFAULT_CATEGORY_DEPRECIATION_CODE)))
             .andExpect(jsonPath("$.[*].depreciationRegimeId").value(hasItem(DEFAULT_DEPRECIATION_REGIME_ID.intValue())));
     }
 

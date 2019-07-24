@@ -44,15 +44,12 @@ describe('FixedAssetCategory e2e test', () => {
 
     await fixedAssetCategoryComponentsPage.clickOnCreateButton();
     await promise.all([
-      fixedAssetCategoryUpdatePage.setCategoryCodeInput('categoryCode'),
       fixedAssetCategoryUpdatePage.setCategoryNameInput('categoryName'),
       fixedAssetCategoryUpdatePage.setCategoryDescriptionInput('categoryDescription'),
+      fixedAssetCategoryUpdatePage.setCategoryAssetCodeInput('categoryAssetCode'),
+      fixedAssetCategoryUpdatePage.setCategoryDepreciationCodeInput('categoryDepreciationCode'),
       fixedAssetCategoryUpdatePage.setDepreciationRegimeIdInput('5')
     ]);
-    expect(await fixedAssetCategoryUpdatePage.getCategoryCodeInput()).to.eq(
-      'categoryCode',
-      'Expected CategoryCode value to be equals to categoryCode'
-    );
     expect(await fixedAssetCategoryUpdatePage.getCategoryNameInput()).to.eq(
       'categoryName',
       'Expected CategoryName value to be equals to categoryName'
@@ -60,6 +57,14 @@ describe('FixedAssetCategory e2e test', () => {
     expect(await fixedAssetCategoryUpdatePage.getCategoryDescriptionInput()).to.eq(
       'categoryDescription',
       'Expected CategoryDescription value to be equals to categoryDescription'
+    );
+    expect(await fixedAssetCategoryUpdatePage.getCategoryAssetCodeInput()).to.eq(
+      'categoryAssetCode',
+      'Expected CategoryAssetCode value to be equals to categoryAssetCode'
+    );
+    expect(await fixedAssetCategoryUpdatePage.getCategoryDepreciationCodeInput()).to.eq(
+      'categoryDepreciationCode',
+      'Expected CategoryDepreciationCode value to be equals to categoryDepreciationCode'
     );
     expect(await fixedAssetCategoryUpdatePage.getDepreciationRegimeIdInput()).to.eq(
       '5',

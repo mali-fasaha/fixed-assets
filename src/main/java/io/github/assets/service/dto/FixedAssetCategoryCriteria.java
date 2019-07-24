@@ -26,11 +26,13 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
 
     private LongFilter id;
 
-    private StringFilter categoryCode;
-
     private StringFilter categoryName;
 
     private StringFilter categoryDescription;
+
+    private StringFilter categoryAssetCode;
+
+    private StringFilter categoryDepreciationCode;
 
     private LongFilter depreciationRegimeId;
 
@@ -39,9 +41,10 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
 
     public FixedAssetCategoryCriteria(FixedAssetCategoryCriteria other){
         this.id = other.id == null ? null : other.id.copy();
-        this.categoryCode = other.categoryCode == null ? null : other.categoryCode.copy();
         this.categoryName = other.categoryName == null ? null : other.categoryName.copy();
         this.categoryDescription = other.categoryDescription == null ? null : other.categoryDescription.copy();
+        this.categoryAssetCode = other.categoryAssetCode == null ? null : other.categoryAssetCode.copy();
+        this.categoryDepreciationCode = other.categoryDepreciationCode == null ? null : other.categoryDepreciationCode.copy();
         this.depreciationRegimeId = other.depreciationRegimeId == null ? null : other.depreciationRegimeId.copy();
     }
 
@@ -58,14 +61,6 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
         this.id = id;
     }
 
-    public StringFilter getCategoryCode() {
-        return categoryCode;
-    }
-
-    public void setCategoryCode(StringFilter categoryCode) {
-        this.categoryCode = categoryCode;
-    }
-
     public StringFilter getCategoryName() {
         return categoryName;
     }
@@ -80,6 +75,22 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
 
     public void setCategoryDescription(StringFilter categoryDescription) {
         this.categoryDescription = categoryDescription;
+    }
+
+    public StringFilter getCategoryAssetCode() {
+        return categoryAssetCode;
+    }
+
+    public void setCategoryAssetCode(StringFilter categoryAssetCode) {
+        this.categoryAssetCode = categoryAssetCode;
+    }
+
+    public StringFilter getCategoryDepreciationCode() {
+        return categoryDepreciationCode;
+    }
+
+    public void setCategoryDepreciationCode(StringFilter categoryDepreciationCode) {
+        this.categoryDepreciationCode = categoryDepreciationCode;
     }
 
     public LongFilter getDepreciationRegimeId() {
@@ -102,9 +113,10 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
         final FixedAssetCategoryCriteria that = (FixedAssetCategoryCriteria) o;
         return
             Objects.equals(id, that.id) &&
-            Objects.equals(categoryCode, that.categoryCode) &&
             Objects.equals(categoryName, that.categoryName) &&
             Objects.equals(categoryDescription, that.categoryDescription) &&
+            Objects.equals(categoryAssetCode, that.categoryAssetCode) &&
+            Objects.equals(categoryDepreciationCode, that.categoryDepreciationCode) &&
             Objects.equals(depreciationRegimeId, that.depreciationRegimeId);
     }
 
@@ -112,9 +124,10 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
     public int hashCode() {
         return Objects.hash(
         id,
-        categoryCode,
         categoryName,
         categoryDescription,
+        categoryAssetCode,
+        categoryDepreciationCode,
         depreciationRegimeId
         );
     }
@@ -123,9 +136,10 @@ public class FixedAssetCategoryCriteria implements Serializable, Criteria {
     public String toString() {
         return "FixedAssetCategoryCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
-                (categoryCode != null ? "categoryCode=" + categoryCode + ", " : "") +
                 (categoryName != null ? "categoryName=" + categoryName + ", " : "") +
                 (categoryDescription != null ? "categoryDescription=" + categoryDescription + ", " : "") +
+                (categoryAssetCode != null ? "categoryAssetCode=" + categoryAssetCode + ", " : "") +
+                (categoryDepreciationCode != null ? "categoryDepreciationCode=" + categoryDepreciationCode + ", " : "") +
                 (depreciationRegimeId != null ? "depreciationRegimeId=" + depreciationRegimeId + ", " : "") +
             "}";
     }

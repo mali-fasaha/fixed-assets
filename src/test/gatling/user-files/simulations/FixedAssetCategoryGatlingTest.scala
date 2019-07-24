@@ -72,9 +72,10 @@ class FixedAssetCategoryGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
-                , "categoryCode":"SAMPLE_TEXT"
                 , "categoryName":"SAMPLE_TEXT"
                 , "categoryDescription":"SAMPLE_TEXT"
+                , "categoryAssetCode":"SAMPLE_TEXT"
+                , "categoryDepreciationCode":"SAMPLE_TEXT"
                 , "depreciationRegimeId":null
                 }""")).asJson
             .check(status.is(201))

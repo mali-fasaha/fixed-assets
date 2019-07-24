@@ -30,9 +30,10 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="categoryCode"><span>Category Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="categoryName"><span>Category Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="categoryDescription"><span>Category Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoryAssetCode"><span>Category Asset Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoryDepreciationCode"><span>Category Depreciation Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="depreciationRegimeId"><span>Depreciation Regime Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -40,9 +41,10 @@
             <tbody>
             <tr *ngFor="let fixedAssetCategory of fixedAssetCategories ;trackBy: trackId">
                 <td><a [routerLink]="['/fixed-asset-category', fixedAssetCategory.id, 'view' ]">{{fixedAssetCategory.id}}</a></td>
-                <td>{{fixedAssetCategory.categoryCode}}</td>
                 <td>{{fixedAssetCategory.categoryName}}</td>
                 <td>{{fixedAssetCategory.categoryDescription}}</td>
+                <td>{{fixedAssetCategory.categoryAssetCode}}</td>
+                <td>{{fixedAssetCategory.categoryDepreciationCode}}</td>
                 <td>{{fixedAssetCategory.depreciationRegimeId}}</td>
                 <td class="text-right">
                     <div class="btn-group">

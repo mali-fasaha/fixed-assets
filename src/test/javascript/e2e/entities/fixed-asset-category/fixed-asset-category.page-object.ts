@@ -26,21 +26,14 @@ export class FixedAssetCategoryUpdatePage {
   pageTitle = element(by.id('gha-fixed-asset-category-heading'));
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
-  categoryCodeInput = element(by.id('field_categoryCode'));
   categoryNameInput = element(by.id('field_categoryName'));
   categoryDescriptionInput = element(by.id('field_categoryDescription'));
+  categoryAssetCodeInput = element(by.id('field_categoryAssetCode'));
+  categoryDepreciationCodeInput = element(by.id('field_categoryDepreciationCode'));
   depreciationRegimeIdInput = element(by.id('field_depreciationRegimeId'));
 
   async getPageTitle() {
     return this.pageTitle.getText();
-  }
-
-  async setCategoryCodeInput(categoryCode) {
-    await this.categoryCodeInput.sendKeys(categoryCode);
-  }
-
-  async getCategoryCodeInput() {
-    return await this.categoryCodeInput.getAttribute('value');
   }
 
   async setCategoryNameInput(categoryName) {
@@ -57,6 +50,22 @@ export class FixedAssetCategoryUpdatePage {
 
   async getCategoryDescriptionInput() {
     return await this.categoryDescriptionInput.getAttribute('value');
+  }
+
+  async setCategoryAssetCodeInput(categoryAssetCode) {
+    await this.categoryAssetCodeInput.sendKeys(categoryAssetCode);
+  }
+
+  async getCategoryAssetCodeInput() {
+    return await this.categoryAssetCodeInput.getAttribute('value');
+  }
+
+  async setCategoryDepreciationCodeInput(categoryDepreciationCode) {
+    await this.categoryDepreciationCodeInput.sendKeys(categoryDepreciationCode);
+  }
+
+  async getCategoryDepreciationCodeInput() {
+    return await this.categoryDepreciationCodeInput.getAttribute('value');
   }
 
   async setDepreciationRegimeIdInput(depreciationRegimeId) {

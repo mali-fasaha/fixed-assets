@@ -16,9 +16,10 @@ export class FixedAssetCategoryUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    categoryCode: [null, [Validators.required]],
     categoryName: [null, [Validators.required]],
     categoryDescription: [],
+    categoryAssetCode: [null, [Validators.required]],
+    categoryDepreciationCode: [null, [Validators.required]],
     depreciationRegimeId: []
   });
 
@@ -39,9 +40,10 @@ export class FixedAssetCategoryUpdateComponent implements OnInit {
   updateForm(fixedAssetCategory: IFixedAssetCategory) {
     this.editForm.patchValue({
       id: fixedAssetCategory.id,
-      categoryCode: fixedAssetCategory.categoryCode,
       categoryName: fixedAssetCategory.categoryName,
       categoryDescription: fixedAssetCategory.categoryDescription,
+      categoryAssetCode: fixedAssetCategory.categoryAssetCode,
+      categoryDepreciationCode: fixedAssetCategory.categoryDepreciationCode,
       depreciationRegimeId: fixedAssetCategory.depreciationRegimeId
     });
   }
@@ -64,9 +66,10 @@ export class FixedAssetCategoryUpdateComponent implements OnInit {
     const entity = {
       ...new FixedAssetCategory(),
       id: this.editForm.get(['id']).value,
-      categoryCode: this.editForm.get(['categoryCode']).value,
       categoryName: this.editForm.get(['categoryName']).value,
       categoryDescription: this.editForm.get(['categoryDescription']).value,
+      categoryAssetCode: this.editForm.get(['categoryAssetCode']).value,
+      categoryDepreciationCode: this.editForm.get(['categoryDepreciationCode']).value,
       depreciationRegimeId: this.editForm.get(['depreciationRegimeId']).value
     };
     return entity;

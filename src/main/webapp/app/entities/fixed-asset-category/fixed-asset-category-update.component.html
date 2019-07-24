@@ -10,17 +10,6 @@
                         readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="field_categoryCode">Category Code</label>
-                    <input type="text" class="form-control" name="categoryCode" id="field_categoryCode"
-                           formControlName="categoryCode"/>
-                    <div *ngIf="editForm.get('categoryCode').invalid && (editForm.get('categoryCode').dirty || editForm.get('categoryCode').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('categoryCode').errors.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" for="field_categoryName">Category Name</label>
                     <input type="text" class="form-control" name="categoryName" id="field_categoryName"
                            formControlName="categoryName"/>
@@ -35,6 +24,28 @@
                     <label class="form-control-label" for="field_categoryDescription">Category Description</label>
                     <input type="text" class="form-control" name="categoryDescription" id="field_categoryDescription"
                            formControlName="categoryDescription"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_categoryAssetCode">Category Asset Code</label>
+                    <input type="text" class="form-control" name="categoryAssetCode" id="field_categoryAssetCode"
+                           formControlName="categoryAssetCode"/>
+                    <div *ngIf="editForm.get('categoryAssetCode').invalid && (editForm.get('categoryAssetCode').dirty || editForm.get('categoryAssetCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('categoryAssetCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_categoryDepreciationCode">Category Depreciation Code</label>
+                    <input type="text" class="form-control" name="categoryDepreciationCode" id="field_categoryDepreciationCode"
+                           formControlName="categoryDepreciationCode"/>
+                    <div *ngIf="editForm.get('categoryDepreciationCode').invalid && (editForm.get('categoryDepreciationCode').dirty || editForm.get('categoryDepreciationCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('categoryDepreciationCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_depreciationRegimeId">Depreciation Regime Id</label>
