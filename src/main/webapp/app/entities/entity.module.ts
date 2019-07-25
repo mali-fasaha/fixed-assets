@@ -83,6 +83,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'capital-work-in-progress',
         loadChildren: './capital-work-in-progress/capital-work-in-progress.module#FixedAssetsCapitalWorkInProgressModule'
+      },
+      {
+        path: 'cwip-transfer',
+        loadChildren: './cwip-transfer/cwip-transfer.module#FixedAssetsCwipTransferModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

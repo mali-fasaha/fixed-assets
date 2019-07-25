@@ -1,0 +1,95 @@
+<div>
+    <h2 id="page-heading">
+        <span>Cwip Transfers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cwip-transfer" [routerLink]="['/cwip-transfer/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Cwip Transfer
+            </span>
+        </button>
+    </h2>
+    <gha-alert></gha-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="cwipTransfers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transferMonth"><span>Transfer Month</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetSerialTag"><span>Asset Serial Tag</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="serviceOutletCode"><span>Service Outlet Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transferTransactionId"><span>Transfer Transaction Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetCategoryId"><span>Asset Category Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cwipTransactionId"><span>Cwip Transaction Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transferDetails"><span>Transfer Details</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transferAmount"><span>Transfer Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dealerId"><span>Dealer Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transactionInvoiceId"><span>Transaction Invoice Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cwipTransfer of cwipTransfers ;trackBy: trackId">
+                <td><a [routerLink]="['/cwip-transfer', cwipTransfer.id, 'view' ]">{{cwipTransfer.id}}</a></td>
+                <td>{{cwipTransfer.transferMonth | date:'mediumDate'}}</td>
+                <td>{{cwipTransfer.assetSerialTag}}</td>
+                <td>{{cwipTransfer.serviceOutletCode}}</td>
+                <td>{{cwipTransfer.transferTransactionId}}</td>
+                <td>{{cwipTransfer.assetCategoryId}}</td>
+                <td>{{cwipTransfer.cwipTransactionId}}</td>
+                <td>{{cwipTransfer.transferDetails}}</td>
+                <td>{{cwipTransfer.transferAmount}}</td>
+                <td>{{cwipTransfer.dealerId}}</td>
+                <td>{{cwipTransfer.transactionInvoiceId}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cwip-transfer', cwipTransfer.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cwip-transfer', cwipTransfer.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'cwip-transfer', { outlets: { popup: cwipTransfer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="cwipTransfers && cwipTransfers.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

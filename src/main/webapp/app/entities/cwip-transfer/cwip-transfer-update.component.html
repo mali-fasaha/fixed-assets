@@ -1,0 +1,142 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-cwip-transfer-heading">Create or edit a Cwip Transfer</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!cwipTransfer.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transferMonth">Transfer Month</label>
+                    <div class="input-group">
+                        <input id="field_transferMonth" type="text" class="form-control" name="transferMonth" ngbDatepicker  #transferMonthDp="ngbDatepicker" formControlName="transferMonth"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="transferMonthDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('transferMonth').invalid && (editForm.get('transferMonth').dirty || editForm.get('transferMonth').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transferMonth').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetSerialTag">Asset Serial Tag</label>
+                    <input type="text" class="form-control" name="assetSerialTag" id="field_assetSerialTag"
+                           formControlName="assetSerialTag"/>
+                    <div *ngIf="editForm.get('assetSerialTag').invalid && (editForm.get('assetSerialTag').dirty || editForm.get('assetSerialTag').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetSerialTag').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceOutletCode">Service Outlet Code</label>
+                    <input type="text" class="form-control" name="serviceOutletCode" id="field_serviceOutletCode"
+                           formControlName="serviceOutletCode"/>
+                    <div *ngIf="editForm.get('serviceOutletCode').invalid && (editForm.get('serviceOutletCode').dirty || editForm.get('serviceOutletCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('serviceOutletCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transferTransactionId">Transfer Transaction Id</label>
+                    <input type="number" class="form-control" name="transferTransactionId" id="field_transferTransactionId"
+                           formControlName="transferTransactionId"/>
+                    <div *ngIf="editForm.get('transferTransactionId').invalid && (editForm.get('transferTransactionId').dirty || editForm.get('transferTransactionId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transferTransactionId').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('transferTransactionId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetCategoryId">Asset Category Id</label>
+                    <input type="number" class="form-control" name="assetCategoryId" id="field_assetCategoryId"
+                           formControlName="assetCategoryId"/>
+                    <div *ngIf="editForm.get('assetCategoryId').invalid && (editForm.get('assetCategoryId').dirty || editForm.get('assetCategoryId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetCategoryId').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('assetCategoryId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cwipTransactionId">Cwip Transaction Id</label>
+                    <input type="number" class="form-control" name="cwipTransactionId" id="field_cwipTransactionId"
+                           formControlName="cwipTransactionId"/>
+                    <div *ngIf="editForm.get('cwipTransactionId').invalid && (editForm.get('cwipTransactionId').dirty || editForm.get('cwipTransactionId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cwipTransactionId').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('cwipTransactionId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transferDetails">Transfer Details</label>
+                    <input type="text" class="form-control" name="transferDetails" id="field_transferDetails"
+                           formControlName="transferDetails"/>
+                    <div *ngIf="editForm.get('transferDetails').invalid && (editForm.get('transferDetails').dirty || editForm.get('transferDetails').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transferDetails').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transferAmount">Transfer Amount</label>
+                    <input type="number" class="form-control" name="transferAmount" id="field_transferAmount"
+                           formControlName="transferAmount"/>
+                    <div *ngIf="editForm.get('transferAmount').invalid && (editForm.get('transferAmount').dirty || editForm.get('transferAmount').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transferAmount').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('transferAmount')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dealerId">Dealer Id</label>
+                    <input type="number" class="form-control" name="dealerId" id="field_dealerId"
+                           formControlName="dealerId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transactionInvoiceId">Transaction Invoice Id</label>
+                    <input type="number" class="form-control" name="transactionInvoiceId" id="field_transactionInvoiceId"
+                           formControlName="transactionInvoiceId"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

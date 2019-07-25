@@ -114,6 +114,12 @@
                             <span>Capital Work In Progress</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="cwip-transfer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Cwip Transfer</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

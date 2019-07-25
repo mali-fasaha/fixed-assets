@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cwipTransfer">
+            <h2><span>Cwip Transfer</span> {{cwipTransfer.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transfer Month</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.transferMonth}}</span>
+                </dd>
+                <dt><span>Asset Serial Tag</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.assetSerialTag}}</span>
+                </dd>
+                <dt><span>Service Outlet Code</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.serviceOutletCode}}</span>
+                </dd>
+                <dt><span>Transfer Transaction Id</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.transferTransactionId}}</span>
+                </dd>
+                <dt><span>Asset Category Id</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.assetCategoryId}}</span>
+                </dd>
+                <dt><span>Cwip Transaction Id</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.cwipTransactionId}}</span>
+                </dd>
+                <dt><span>Transfer Details</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.transferDetails}}</span>
+                </dd>
+                <dt><span>Transfer Amount</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.transferAmount}}</span>
+                </dd>
+                <dt><span>Dealer Id</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.dealerId}}</span>
+                </dd>
+                <dt><span>Transaction Invoice Id</span></dt>
+                <dd>
+                    <span>{{cwipTransfer.transactionInvoiceId}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cwip-transfer', cwipTransfer.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
