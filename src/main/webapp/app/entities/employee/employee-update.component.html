@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-employee-heading">Create or edit a Employee</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!employee.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeName">Employee Name</label>
+                    <input type="text" class="form-control" name="employeeName" id="field_employeeName"
+                           formControlName="employeeName"/>
+                    <div *ngIf="editForm.get('employeeName').invalid && (editForm.get('employeeName').dirty || editForm.get('employeeName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('employeeName').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceOutletCode">Service Outlet Code</label>
+                    <input type="text" class="form-control" name="serviceOutletCode" id="field_serviceOutletCode"
+                           formControlName="serviceOutletCode"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeRole">Employee Role</label>
+                    <input type="text" class="form-control" name="employeeRole" id="field_employeeRole"
+                           formControlName="employeeRole"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeStaffCode">Employee Staff Code</label>
+                    <input type="text" class="form-control" name="employeeStaffCode" id="field_employeeStaffCode"
+                           formControlName="employeeStaffCode"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeSignature">Employee Signature</label>
+                    <div>
+                        <div *ngIf="editForm.get('employeeSignature').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('employeeSignatureContentType').value, editForm.get('employeeSignature').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('employeeSignatureContentType').value}}, {{byteSize(editForm.get('employeeSignature').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({employeeSignature: null});editForm.patchValue({employeeSignatureContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_employeeSignature" (change)="setFileData($event, 'employeeSignature', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="employeeSignature" id="field_employeeSignature"
+                           formControlName="employeeSignature"/>
+                    <input type="hidden" class="form-control" name="employeeSignatureContentType" id="field_employeeSignatureContentType"
+                           formControlName="employeeSignatureContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employeeEmail">Employee Email</label>
+                    <input type="text" class="form-control" name="employeeEmail" id="field_employeeEmail"
+                           formControlName="employeeEmail"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

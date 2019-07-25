@@ -87,6 +87,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'cwip-transfer',
         loadChildren: './cwip-transfer/cwip-transfer.module#FixedAssetsCwipTransferModule'
+      },
+      {
+        path: 'employee',
+        loadChildren: './employee/employee.module#FixedAssetsEmployeeModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
