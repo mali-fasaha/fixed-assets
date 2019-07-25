@@ -18,10 +18,11 @@ import io.github.assets.app.model.FixedAssetCategoryEVM;
 import io.github.assets.app.model.FixedAssetInvoiceEVM;
 import io.github.assets.app.model.FixedAssetItemEVM;
 import io.github.assets.app.model.ServiceOutletEVM;
-import io.github.assets.domain.DepreciationRegime;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import static io.github.assets.app.excel.PoijiOptionsConfig.getDefaultPoijiOptions;
 
 /**
  * Controls the business logic for deserializing excel file data and initialization of file
@@ -38,11 +39,6 @@ public class ExcelFileUtils {
     private static final ExcelFileDeserializer<FixedAssetCategoryEVM> fixedAssetCategoryExcelFileDeserializer = new FixedAssetCategoryExcelFileDeserializer(getDefaultPoijiOptions());
     private static final ExcelFileDeserializer<FixedAssetInvoiceEVM> fixedAssetInvoiceExcelFileDeserializer = new FixedAssetInvoiceExcelFileDeserializer(getDefaultPoijiOptions());
     private static final ExcelFileDeserializer<FixedAssetItemEVM> fixedAssetItemExcelFileDeserializer = new FixedAssetItemExcelFileDeserializer(getDefaultPoijiOptions());
-
-
-    public static PoijiOptions getDefaultPoijiOptions() {
-        return PoijiOptionsHolder.getInstance();
-    }
 
     public static List<ServiceOutletEVM> deserializeServiceOutletFile(byte[] dataEntryFile) {
         return serviceOutletxcelFileDeserializer.deserialize(dataEntryFile);
@@ -74,34 +70,5 @@ public class ExcelFileUtils {
 
     public static List<FixedAssetItemEVM> deserializeFixedAssetItemFile(byte[] dataEntry) {
         return fixedAssetItemExcelFileDeserializer.deserialize(dataEntry);
-    }
-
-    /**
-     * PoijiOptions is a configurations object. As it may appear to bewildered eye that the PoijiOptionsHolder
-     * is an instance of over-engineering, but I would sooner ensure that I only have one PoijiOptions in the
-     * entire applications because engineering for changes in this configuration would be too hard.
-     * It is better to have an on demand initialization singleton that is also a double-locking checked
-     * PoijiOptions as this object is used from reactive components running on Kafka generating messaging
-     * events at any time during the application run, so there...
-     */
-    private static class PoijiOptionsHolder {
-        private static volatile PoijiOptions INSTANCE;
-        private static PoijiOptions getInstance() {
-            if (INSTANCE == null) {
-                synchronized (PoijiOptionsHolder.class) {
-                    if (INSTANCE == null) {
-                        // @formatter:off
-                        INSTANCE = PoijiOptionsBuilder.settings()
-                                                         .ignoreHiddenSheets(true)
-                                                         .preferNullOverDefault(true)
-                                                         .datePattern("yyyy/MM/dd")
-                                                         .dateTimeFormatter(DateTimeFormatter.ISO_DATE_TIME)
-                                                         .build();
-                        // @formatter:on
-                    }
-                }
-            }
-            return INSTANCE;
-        }
     }
 }

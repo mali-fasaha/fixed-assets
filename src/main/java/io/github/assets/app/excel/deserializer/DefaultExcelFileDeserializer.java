@@ -21,15 +21,6 @@ public class DefaultExcelFileDeserializer<T> {
         this.poijiOptions = poijiOptions;
     }
 
-    /*public DefaultExcelFileDeserializer(final Class<T> deserializationClass) {
-        this(deserializationClass, PoijiOptionsBuilder.settings().ignoreHiddenSheets(true).preferNullOverDefault(true).datePattern("yyyy/MM/dd").dateTimeFormatter(DateTimeFormatter.ISO_DATE_TIME).build());
-    }*/
-
-    /*public DefaultExcelFileDeserializer(final PoijiOptions poijiOptions) {
-        this.deserializationClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
-        this.poijiOptions = poijiOptions;
-    }*/
-
     /**
      * This method opens a byte stream and converts the data file into a list of data items contained in its rows
      *
