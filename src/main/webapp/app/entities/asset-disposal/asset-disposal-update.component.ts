@@ -15,12 +15,12 @@ import { AssetDisposalService } from './asset-disposal.service';
 export class AssetDisposalUpdateComponent implements OnInit {
   assetDisposal: IAssetDisposal;
   isSaving: boolean;
-  disposalDateDp: any;
+  disposalMonthDp: any;
 
   editForm = this.fb.group({
     id: [],
     description: [null, [Validators.required]],
-    disposalDate: [],
+    disposalMonth: [null, [Validators.required]],
     assetCategoryId: [null, [Validators.required]],
     assetItemId: [null, [Validators.required]],
     disposalProceeds: [null, [Validators.required]],
@@ -53,7 +53,7 @@ export class AssetDisposalUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: assetDisposal.id,
       description: assetDisposal.description,
-      disposalDate: assetDisposal.disposalDate,
+      disposalMonth: assetDisposal.disposalMonth,
       assetCategoryId: assetDisposal.assetCategoryId,
       assetItemId: assetDisposal.assetItemId,
       disposalProceeds: assetDisposal.disposalProceeds,
@@ -127,7 +127,7 @@ export class AssetDisposalUpdateComponent implements OnInit {
       ...new AssetDisposal(),
       id: this.editForm.get(['id']).value,
       description: this.editForm.get(['description']).value,
-      disposalDate: this.editForm.get(['disposalDate']).value,
+      disposalMonth: this.editForm.get(['disposalMonth']).value,
       assetCategoryId: this.editForm.get(['assetCategoryId']).value,
       assetItemId: this.editForm.get(['assetItemId']).value,
       disposalProceeds: this.editForm.get(['disposalProceeds']).value,

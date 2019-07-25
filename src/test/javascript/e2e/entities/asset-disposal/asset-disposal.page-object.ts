@@ -27,7 +27,7 @@ export class AssetDisposalUpdatePage {
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
   descriptionInput = element(by.id('field_description'));
-  disposalDateInput = element(by.id('field_disposalDate'));
+  disposalMonthInput = element(by.id('field_disposalMonth'));
   assetCategoryIdInput = element(by.id('field_assetCategoryId'));
   assetItemIdInput = element(by.id('field_assetItemId'));
   disposalProceedsInput = element(by.id('field_disposalProceeds'));
@@ -49,12 +49,12 @@ export class AssetDisposalUpdatePage {
     return await this.descriptionInput.getAttribute('value');
   }
 
-  async setDisposalDateInput(disposalDate) {
-    await this.disposalDateInput.sendKeys(disposalDate);
+  async setDisposalMonthInput(disposalMonth) {
+    await this.disposalMonthInput.sendKeys(disposalMonth);
   }
 
-  async getDisposalDateInput() {
-    return await this.disposalDateInput.getAttribute('value');
+  async getDisposalMonthInput() {
+    return await this.disposalMonthInput.getAttribute('value');
   }
 
   async setAssetCategoryIdInput(assetCategoryId) {

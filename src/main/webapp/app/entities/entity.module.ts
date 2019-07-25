@@ -71,6 +71,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'asset-disposal',
         loadChildren: './asset-disposal/asset-disposal.module#FixedAssetsAssetDisposalModule'
+      },
+      {
+        path: 'asset-disposal',
+        loadChildren: './asset-disposal/asset-disposal.module#FixedAssetsAssetDisposalModule'
+      },
+      {
+        path: 'asset-acquisition',
+        loadChildren: './asset-acquisition/asset-acquisition.module#FixedAssetsAssetAcquisitionModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

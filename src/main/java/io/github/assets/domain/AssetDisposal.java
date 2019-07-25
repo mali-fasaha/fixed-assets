@@ -34,8 +34,9 @@ public class AssetDisposal implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "disposal_date")
-    private LocalDate disposalDate;
+    @NotNull
+    @Column(name = "disposal_month", nullable = false)
+    private LocalDate disposalMonth;
 
     @NotNull
     @Column(name = "asset_category_id", nullable = false)
@@ -90,17 +91,17 @@ public class AssetDisposal implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getDisposalDate() {
-        return disposalDate;
+    public LocalDate getDisposalMonth() {
+        return disposalMonth;
     }
 
-    public AssetDisposal disposalDate(LocalDate disposalDate) {
-        this.disposalDate = disposalDate;
+    public AssetDisposal disposalMonth(LocalDate disposalMonth) {
+        this.disposalMonth = disposalMonth;
         return this;
     }
 
-    public void setDisposalDate(LocalDate disposalDate) {
-        this.disposalDate = disposalDate;
+    public void setDisposalMonth(LocalDate disposalMonth) {
+        this.disposalMonth = disposalMonth;
     }
 
     public Long getAssetCategoryId() {
@@ -242,7 +243,7 @@ public class AssetDisposal implements Serializable {
         return "AssetDisposal{" +
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
-            ", disposalDate='" + getDisposalDate() + "'" +
+            ", disposalMonth='" + getDisposalMonth() + "'" +
             ", assetCategoryId=" + getAssetCategoryId() +
             ", assetItemId=" + getAssetItemId() +
             ", disposalProceeds=" + getDisposalProceeds() +

@@ -6,15 +6,15 @@ import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
-import { AssetDisposalService } from 'app/entities/asset-disposal/asset-disposal.service';
-import { IAssetDisposal, AssetDisposal } from 'app/shared/model/asset-disposal.model';
+import { AssetAcquisitionService } from 'app/entities/asset-acquisition/asset-acquisition.service';
+import { IAssetAcquisition, AssetAcquisition } from 'app/shared/model/asset-acquisition.model';
 
 describe('Service Tests', () => {
-  describe('AssetDisposal Service', () => {
+  describe('AssetAcquisition Service', () => {
     let injector: TestBed;
-    let service: AssetDisposalService;
+    let service: AssetAcquisitionService;
     let httpMock: HttpTestingController;
-    let elemDefault: IAssetDisposal;
+    let elemDefault: IAssetAcquisition;
     let expectedResult;
     let currentDate: moment.Moment;
     beforeEach(() => {
@@ -23,18 +23,18 @@ describe('Service Tests', () => {
       });
       expectedResult = {};
       injector = getTestBed();
-      service = injector.get(AssetDisposalService);
+      service = injector.get(AssetAcquisitionService);
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new AssetDisposal(0, 'AAAAAAA', currentDate, 0, 0, 0, 0, 0, 0, 0, 'image/png', 'AAAAAAA');
+      elemDefault = new AssetAcquisition(0, 'AAAAAAA', currentDate, 'AAAAAAA', 'AAAAAAA', 0, 0, 0, 0, 0);
     });
 
     describe('Service methods', () => {
       it('should find an element', async () => {
         const returnedFromService = Object.assign(
           {
-            disposalMonth: currentDate.format(DATE_FORMAT)
+            acquisitionMonth: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
@@ -48,22 +48,22 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject({ body: elemDefault });
       });
 
-      it('should create a AssetDisposal', async () => {
+      it('should create a AssetAcquisition', async () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            disposalMonth: currentDate.format(DATE_FORMAT)
+            acquisitionMonth: currentDate.format(DATE_FORMAT)
           },
           elemDefault
         );
         const expected = Object.assign(
           {
-            disposalMonth: currentDate
+            acquisitionMonth: currentDate
           },
           returnedFromService
         );
         service
-          .create(new AssetDisposal(null))
+          .create(new AssetAcquisition(null))
           .pipe(take(1))
           .subscribe(resp => (expectedResult = resp));
         const req = httpMock.expectOne({ method: 'POST' });
@@ -71,26 +71,25 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject({ body: expected });
       });
 
-      it('should update a AssetDisposal', async () => {
+      it('should update a AssetAcquisition', async () => {
         const returnedFromService = Object.assign(
           {
             description: 'BBBBBB',
-            disposalMonth: currentDate.format(DATE_FORMAT),
+            acquisitionMonth: currentDate.format(DATE_FORMAT),
+            assetSerial: 'BBBBBB',
+            serviceOutletCode: 'BBBBBB',
+            acquisitionTransactionId: 1,
             assetCategoryId: 1,
-            assetItemId: 1,
-            disposalProceeds: 1,
-            netBookValue: 1,
-            profitOnDisposal: 1,
-            scannedDocumentId: 1,
+            purchaseAmount: 1,
             assetDealerId: 1,
-            assetPicture: 'BBBBBB'
+            assetInvoiceId: 1
           },
           elemDefault
         );
 
         const expected = Object.assign(
           {
-            disposalMonth: currentDate
+            acquisitionMonth: currentDate
           },
           returnedFromService
         );
@@ -103,25 +102,24 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject({ body: expected });
       });
 
-      it('should return a list of AssetDisposal', async () => {
+      it('should return a list of AssetAcquisition', async () => {
         const returnedFromService = Object.assign(
           {
             description: 'BBBBBB',
-            disposalMonth: currentDate.format(DATE_FORMAT),
+            acquisitionMonth: currentDate.format(DATE_FORMAT),
+            assetSerial: 'BBBBBB',
+            serviceOutletCode: 'BBBBBB',
+            acquisitionTransactionId: 1,
             assetCategoryId: 1,
-            assetItemId: 1,
-            disposalProceeds: 1,
-            netBookValue: 1,
-            profitOnDisposal: 1,
-            scannedDocumentId: 1,
+            purchaseAmount: 1,
             assetDealerId: 1,
-            assetPicture: 'BBBBBB'
+            assetInvoiceId: 1
           },
           elemDefault
         );
         const expected = Object.assign(
           {
-            disposalMonth: currentDate
+            acquisitionMonth: currentDate
           },
           returnedFromService
         );
@@ -138,7 +136,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toContainEqual(expected);
       });
 
-      it('should delete a AssetDisposal', async () => {
+      it('should delete a AssetAcquisition', async () => {
         const rxPromise = service.delete(123).subscribe(resp => (expectedResult = resp.ok));
 
         const req = httpMock.expectOne({ method: 'DELETE' });

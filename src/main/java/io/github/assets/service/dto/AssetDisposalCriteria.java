@@ -30,7 +30,7 @@ public class AssetDisposalCriteria implements Serializable, Criteria {
 
     private StringFilter description;
 
-    private LocalDateFilter disposalDate;
+    private LocalDateFilter disposalMonth;
 
     private LongFilter assetCategoryId;
 
@@ -52,7 +52,7 @@ public class AssetDisposalCriteria implements Serializable, Criteria {
     public AssetDisposalCriteria(AssetDisposalCriteria other){
         this.id = other.id == null ? null : other.id.copy();
         this.description = other.description == null ? null : other.description.copy();
-        this.disposalDate = other.disposalDate == null ? null : other.disposalDate.copy();
+        this.disposalMonth = other.disposalMonth == null ? null : other.disposalMonth.copy();
         this.assetCategoryId = other.assetCategoryId == null ? null : other.assetCategoryId.copy();
         this.assetItemId = other.assetItemId == null ? null : other.assetItemId.copy();
         this.disposalProceeds = other.disposalProceeds == null ? null : other.disposalProceeds.copy();
@@ -83,12 +83,12 @@ public class AssetDisposalCriteria implements Serializable, Criteria {
         this.description = description;
     }
 
-    public LocalDateFilter getDisposalDate() {
-        return disposalDate;
+    public LocalDateFilter getDisposalMonth() {
+        return disposalMonth;
     }
 
-    public void setDisposalDate(LocalDateFilter disposalDate) {
-        this.disposalDate = disposalDate;
+    public void setDisposalMonth(LocalDateFilter disposalMonth) {
+        this.disposalMonth = disposalMonth;
     }
 
     public LongFilter getAssetCategoryId() {
@@ -160,7 +160,7 @@ public class AssetDisposalCriteria implements Serializable, Criteria {
         return
             Objects.equals(id, that.id) &&
             Objects.equals(description, that.description) &&
-            Objects.equals(disposalDate, that.disposalDate) &&
+            Objects.equals(disposalMonth, that.disposalMonth) &&
             Objects.equals(assetCategoryId, that.assetCategoryId) &&
             Objects.equals(assetItemId, that.assetItemId) &&
             Objects.equals(disposalProceeds, that.disposalProceeds) &&
@@ -175,7 +175,7 @@ public class AssetDisposalCriteria implements Serializable, Criteria {
         return Objects.hash(
         id,
         description,
-        disposalDate,
+        disposalMonth,
         assetCategoryId,
         assetItemId,
         disposalProceeds,
@@ -191,7 +191,7 @@ public class AssetDisposalCriteria implements Serializable, Criteria {
         return "AssetDisposalCriteria{" +
                 (id != null ? "id=" + id + ", " : "") +
                 (description != null ? "description=" + description + ", " : "") +
-                (disposalDate != null ? "disposalDate=" + disposalDate + ", " : "") +
+                (disposalMonth != null ? "disposalMonth=" + disposalMonth + ", " : "") +
                 (assetCategoryId != null ? "assetCategoryId=" + assetCategoryId + ", " : "") +
                 (assetItemId != null ? "assetItemId=" + assetItemId + ", " : "") +
                 (disposalProceeds != null ? "disposalProceeds=" + disposalProceeds + ", " : "") +

@@ -59,15 +59,17 @@ export class AssetDisposalService {
 
   protected convertDateFromClient(assetDisposal: IAssetDisposal): IAssetDisposal {
     const copy: IAssetDisposal = Object.assign({}, assetDisposal, {
-      disposalDate:
-        assetDisposal.disposalDate != null && assetDisposal.disposalDate.isValid() ? assetDisposal.disposalDate.format(DATE_FORMAT) : null
+      disposalMonth:
+        assetDisposal.disposalMonth != null && assetDisposal.disposalMonth.isValid()
+          ? assetDisposal.disposalMonth.format(DATE_FORMAT)
+          : null
     });
     return copy;
   }
 
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
-      res.body.disposalDate = res.body.disposalDate != null ? moment(res.body.disposalDate) : null;
+      res.body.disposalMonth = res.body.disposalMonth != null ? moment(res.body.disposalMonth) : null;
     }
     return res;
   }
@@ -75,7 +77,7 @@ export class AssetDisposalService {
   protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
     if (res.body) {
       res.body.forEach((assetDisposal: IAssetDisposal) => {
-        assetDisposal.disposalDate = assetDisposal.disposalDate != null ? moment(assetDisposal.disposalDate) : null;
+        assetDisposal.disposalMonth = assetDisposal.disposalMonth != null ? moment(assetDisposal.disposalMonth) : null;
       });
     }
     return res;

@@ -51,8 +51,8 @@ public class AssetDisposalResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final LocalDate DEFAULT_DISPOSAL_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DISPOSAL_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_DISPOSAL_MONTH = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DISPOSAL_MONTH = LocalDate.now(ZoneId.systemDefault());
 
     private static final Long DEFAULT_ASSET_CATEGORY_ID = 1L;
     private static final Long UPDATED_ASSET_CATEGORY_ID = 2L;
@@ -140,7 +140,7 @@ public class AssetDisposalResourceIT {
     public static AssetDisposal createEntity(EntityManager em) {
         AssetDisposal assetDisposal = new AssetDisposal()
             .description(DEFAULT_DESCRIPTION)
-            .disposalDate(DEFAULT_DISPOSAL_DATE)
+            .disposalMonth(DEFAULT_DISPOSAL_MONTH)
             .assetCategoryId(DEFAULT_ASSET_CATEGORY_ID)
             .assetItemId(DEFAULT_ASSET_ITEM_ID)
             .disposalProceeds(DEFAULT_DISPOSAL_PROCEEDS)
@@ -161,7 +161,7 @@ public class AssetDisposalResourceIT {
     public static AssetDisposal createUpdatedEntity(EntityManager em) {
         AssetDisposal assetDisposal = new AssetDisposal()
             .description(UPDATED_DESCRIPTION)
-            .disposalDate(UPDATED_DISPOSAL_DATE)
+            .disposalMonth(UPDATED_DISPOSAL_MONTH)
             .assetCategoryId(UPDATED_ASSET_CATEGORY_ID)
             .assetItemId(UPDATED_ASSET_ITEM_ID)
             .disposalProceeds(UPDATED_DISPOSAL_PROCEEDS)
@@ -196,7 +196,7 @@ public class AssetDisposalResourceIT {
         assertThat(assetDisposalList).hasSize(databaseSizeBeforeCreate + 1);
         AssetDisposal testAssetDisposal = assetDisposalList.get(assetDisposalList.size() - 1);
         assertThat(testAssetDisposal.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testAssetDisposal.getDisposalDate()).isEqualTo(DEFAULT_DISPOSAL_DATE);
+        assertThat(testAssetDisposal.getDisposalMonth()).isEqualTo(DEFAULT_DISPOSAL_MONTH);
         assertThat(testAssetDisposal.getAssetCategoryId()).isEqualTo(DEFAULT_ASSET_CATEGORY_ID);
         assertThat(testAssetDisposal.getAssetItemId()).isEqualTo(DEFAULT_ASSET_ITEM_ID);
         assertThat(testAssetDisposal.getDisposalProceeds()).isEqualTo(DEFAULT_DISPOSAL_PROCEEDS);
@@ -241,6 +241,25 @@ public class AssetDisposalResourceIT {
         int databaseSizeBeforeTest = assetDisposalRepository.findAll().size();
         // set the field null
         assetDisposal.setDescription(null);
+
+        // Create the AssetDisposal, which fails.
+        AssetDisposalDTO assetDisposalDTO = assetDisposalMapper.toDto(assetDisposal);
+
+        restAssetDisposalMockMvc.perform(post("/api/asset-disposals")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(assetDisposalDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<AssetDisposal> assetDisposalList = assetDisposalRepository.findAll();
+        assertThat(assetDisposalList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDisposalMonthIsRequired() throws Exception {
+        int databaseSizeBeforeTest = assetDisposalRepository.findAll().size();
+        // set the field null
+        assetDisposal.setDisposalMonth(null);
 
         // Create the AssetDisposal, which fails.
         AssetDisposalDTO assetDisposalDTO = assetDisposalMapper.toDto(assetDisposal);
@@ -323,7 +342,7 @@ public class AssetDisposalResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(assetDisposal.getId().intValue())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].disposalDate").value(hasItem(DEFAULT_DISPOSAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].disposalMonth").value(hasItem(DEFAULT_DISPOSAL_MONTH.toString())))
             .andExpect(jsonPath("$.[*].assetCategoryId").value(hasItem(DEFAULT_ASSET_CATEGORY_ID.intValue())))
             .andExpect(jsonPath("$.[*].assetItemId").value(hasItem(DEFAULT_ASSET_ITEM_ID.intValue())))
             .andExpect(jsonPath("$.[*].disposalProceeds").value(hasItem(DEFAULT_DISPOSAL_PROCEEDS.intValue())))
@@ -347,7 +366,7 @@ public class AssetDisposalResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(assetDisposal.getId().intValue()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.disposalDate").value(DEFAULT_DISPOSAL_DATE.toString()))
+            .andExpect(jsonPath("$.disposalMonth").value(DEFAULT_DISPOSAL_MONTH.toString()))
             .andExpect(jsonPath("$.assetCategoryId").value(DEFAULT_ASSET_CATEGORY_ID.intValue()))
             .andExpect(jsonPath("$.assetItemId").value(DEFAULT_ASSET_ITEM_ID.intValue()))
             .andExpect(jsonPath("$.disposalProceeds").value(DEFAULT_DISPOSAL_PROCEEDS.intValue()))
@@ -400,67 +419,67 @@ public class AssetDisposalResourceIT {
 
     @Test
     @Transactional
-    public void getAllAssetDisposalsByDisposalDateIsEqualToSomething() throws Exception {
+    public void getAllAssetDisposalsByDisposalMonthIsEqualToSomething() throws Exception {
         // Initialize the database
         assetDisposalRepository.saveAndFlush(assetDisposal);
 
-        // Get all the assetDisposalList where disposalDate equals to DEFAULT_DISPOSAL_DATE
-        defaultAssetDisposalShouldBeFound("disposalDate.equals=" + DEFAULT_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth equals to DEFAULT_DISPOSAL_MONTH
+        defaultAssetDisposalShouldBeFound("disposalMonth.equals=" + DEFAULT_DISPOSAL_MONTH);
 
-        // Get all the assetDisposalList where disposalDate equals to UPDATED_DISPOSAL_DATE
-        defaultAssetDisposalShouldNotBeFound("disposalDate.equals=" + UPDATED_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth equals to UPDATED_DISPOSAL_MONTH
+        defaultAssetDisposalShouldNotBeFound("disposalMonth.equals=" + UPDATED_DISPOSAL_MONTH);
     }
 
     @Test
     @Transactional
-    public void getAllAssetDisposalsByDisposalDateIsInShouldWork() throws Exception {
+    public void getAllAssetDisposalsByDisposalMonthIsInShouldWork() throws Exception {
         // Initialize the database
         assetDisposalRepository.saveAndFlush(assetDisposal);
 
-        // Get all the assetDisposalList where disposalDate in DEFAULT_DISPOSAL_DATE or UPDATED_DISPOSAL_DATE
-        defaultAssetDisposalShouldBeFound("disposalDate.in=" + DEFAULT_DISPOSAL_DATE + "," + UPDATED_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth in DEFAULT_DISPOSAL_MONTH or UPDATED_DISPOSAL_MONTH
+        defaultAssetDisposalShouldBeFound("disposalMonth.in=" + DEFAULT_DISPOSAL_MONTH + "," + UPDATED_DISPOSAL_MONTH);
 
-        // Get all the assetDisposalList where disposalDate equals to UPDATED_DISPOSAL_DATE
-        defaultAssetDisposalShouldNotBeFound("disposalDate.in=" + UPDATED_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth equals to UPDATED_DISPOSAL_MONTH
+        defaultAssetDisposalShouldNotBeFound("disposalMonth.in=" + UPDATED_DISPOSAL_MONTH);
     }
 
     @Test
     @Transactional
-    public void getAllAssetDisposalsByDisposalDateIsNullOrNotNull() throws Exception {
+    public void getAllAssetDisposalsByDisposalMonthIsNullOrNotNull() throws Exception {
         // Initialize the database
         assetDisposalRepository.saveAndFlush(assetDisposal);
 
-        // Get all the assetDisposalList where disposalDate is not null
-        defaultAssetDisposalShouldBeFound("disposalDate.specified=true");
+        // Get all the assetDisposalList where disposalMonth is not null
+        defaultAssetDisposalShouldBeFound("disposalMonth.specified=true");
 
-        // Get all the assetDisposalList where disposalDate is null
-        defaultAssetDisposalShouldNotBeFound("disposalDate.specified=false");
+        // Get all the assetDisposalList where disposalMonth is null
+        defaultAssetDisposalShouldNotBeFound("disposalMonth.specified=false");
     }
 
     @Test
     @Transactional
-    public void getAllAssetDisposalsByDisposalDateIsGreaterThanOrEqualToSomething() throws Exception {
+    public void getAllAssetDisposalsByDisposalMonthIsGreaterThanOrEqualToSomething() throws Exception {
         // Initialize the database
         assetDisposalRepository.saveAndFlush(assetDisposal);
 
-        // Get all the assetDisposalList where disposalDate greater than or equals to DEFAULT_DISPOSAL_DATE
-        defaultAssetDisposalShouldBeFound("disposalDate.greaterOrEqualThan=" + DEFAULT_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth greater than or equals to DEFAULT_DISPOSAL_MONTH
+        defaultAssetDisposalShouldBeFound("disposalMonth.greaterOrEqualThan=" + DEFAULT_DISPOSAL_MONTH);
 
-        // Get all the assetDisposalList where disposalDate greater than or equals to UPDATED_DISPOSAL_DATE
-        defaultAssetDisposalShouldNotBeFound("disposalDate.greaterOrEqualThan=" + UPDATED_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth greater than or equals to UPDATED_DISPOSAL_MONTH
+        defaultAssetDisposalShouldNotBeFound("disposalMonth.greaterOrEqualThan=" + UPDATED_DISPOSAL_MONTH);
     }
 
     @Test
     @Transactional
-    public void getAllAssetDisposalsByDisposalDateIsLessThanSomething() throws Exception {
+    public void getAllAssetDisposalsByDisposalMonthIsLessThanSomething() throws Exception {
         // Initialize the database
         assetDisposalRepository.saveAndFlush(assetDisposal);
 
-        // Get all the assetDisposalList where disposalDate less than or equals to DEFAULT_DISPOSAL_DATE
-        defaultAssetDisposalShouldNotBeFound("disposalDate.lessThan=" + DEFAULT_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth less than or equals to DEFAULT_DISPOSAL_MONTH
+        defaultAssetDisposalShouldNotBeFound("disposalMonth.lessThan=" + DEFAULT_DISPOSAL_MONTH);
 
-        // Get all the assetDisposalList where disposalDate less than or equals to UPDATED_DISPOSAL_DATE
-        defaultAssetDisposalShouldBeFound("disposalDate.lessThan=" + UPDATED_DISPOSAL_DATE);
+        // Get all the assetDisposalList where disposalMonth less than or equals to UPDATED_DISPOSAL_MONTH
+        defaultAssetDisposalShouldBeFound("disposalMonth.lessThan=" + UPDATED_DISPOSAL_MONTH);
     }
 
 
@@ -853,7 +872,7 @@ public class AssetDisposalResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(assetDisposal.getId().intValue())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
-            .andExpect(jsonPath("$.[*].disposalDate").value(hasItem(DEFAULT_DISPOSAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].disposalMonth").value(hasItem(DEFAULT_DISPOSAL_MONTH.toString())))
             .andExpect(jsonPath("$.[*].assetCategoryId").value(hasItem(DEFAULT_ASSET_CATEGORY_ID.intValue())))
             .andExpect(jsonPath("$.[*].assetItemId").value(hasItem(DEFAULT_ASSET_ITEM_ID.intValue())))
             .andExpect(jsonPath("$.[*].disposalProceeds").value(hasItem(DEFAULT_DISPOSAL_PROCEEDS.intValue())))
@@ -911,7 +930,7 @@ public class AssetDisposalResourceIT {
         em.detach(updatedAssetDisposal);
         updatedAssetDisposal
             .description(UPDATED_DESCRIPTION)
-            .disposalDate(UPDATED_DISPOSAL_DATE)
+            .disposalMonth(UPDATED_DISPOSAL_MONTH)
             .assetCategoryId(UPDATED_ASSET_CATEGORY_ID)
             .assetItemId(UPDATED_ASSET_ITEM_ID)
             .disposalProceeds(UPDATED_DISPOSAL_PROCEEDS)
@@ -933,7 +952,7 @@ public class AssetDisposalResourceIT {
         assertThat(assetDisposalList).hasSize(databaseSizeBeforeUpdate);
         AssetDisposal testAssetDisposal = assetDisposalList.get(assetDisposalList.size() - 1);
         assertThat(testAssetDisposal.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testAssetDisposal.getDisposalDate()).isEqualTo(UPDATED_DISPOSAL_DATE);
+        assertThat(testAssetDisposal.getDisposalMonth()).isEqualTo(UPDATED_DISPOSAL_MONTH);
         assertThat(testAssetDisposal.getAssetCategoryId()).isEqualTo(UPDATED_ASSET_CATEGORY_ID);
         assertThat(testAssetDisposal.getAssetItemId()).isEqualTo(UPDATED_ASSET_ITEM_ID);
         assertThat(testAssetDisposal.getDisposalProceeds()).isEqualTo(UPDATED_DISPOSAL_PROCEEDS);
@@ -1004,7 +1023,7 @@ public class AssetDisposalResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(assetDisposal.getId().intValue())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
-            .andExpect(jsonPath("$.[*].disposalDate").value(hasItem(DEFAULT_DISPOSAL_DATE.toString())))
+            .andExpect(jsonPath("$.[*].disposalMonth").value(hasItem(DEFAULT_DISPOSAL_MONTH.toString())))
             .andExpect(jsonPath("$.[*].assetCategoryId").value(hasItem(DEFAULT_ASSET_CATEGORY_ID.intValue())))
             .andExpect(jsonPath("$.[*].assetItemId").value(hasItem(DEFAULT_ASSET_ITEM_ID.intValue())))
             .andExpect(jsonPath("$.[*].disposalProceeds").value(hasItem(DEFAULT_DISPOSAL_PROCEEDS.intValue())))

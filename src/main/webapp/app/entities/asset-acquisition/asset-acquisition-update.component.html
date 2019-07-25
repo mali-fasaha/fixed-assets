@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-asset-acquisition-heading">Create or edit a Asset Acquisition</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!assetAcquisition.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_acquisitionMonth">Acquisition Month</label>
+                    <div class="input-group">
+                        <input id="field_acquisitionMonth" type="text" class="form-control" name="acquisitionMonth" ngbDatepicker  #acquisitionMonthDp="ngbDatepicker" formControlName="acquisitionMonth"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="acquisitionMonthDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('acquisitionMonth').invalid && (editForm.get('acquisitionMonth').dirty || editForm.get('acquisitionMonth').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('acquisitionMonth').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetSerial">Asset Serial</label>
+                    <input type="text" class="form-control" name="assetSerial" id="field_assetSerial"
+                           formControlName="assetSerial"/>
+                    <div *ngIf="editForm.get('assetSerial').invalid && (editForm.get('assetSerial').dirty || editForm.get('assetSerial').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetSerial').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_serviceOutletCode">Service Outlet Code</label>
+                    <input type="text" class="form-control" name="serviceOutletCode" id="field_serviceOutletCode"
+                           formControlName="serviceOutletCode"/>
+                    <div *ngIf="editForm.get('serviceOutletCode').invalid && (editForm.get('serviceOutletCode').dirty || editForm.get('serviceOutletCode').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('serviceOutletCode').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_acquisitionTransactionId">Acquisition Transaction Id</label>
+                    <input type="number" class="form-control" name="acquisitionTransactionId" id="field_acquisitionTransactionId"
+                           formControlName="acquisitionTransactionId"/>
+                    <div *ngIf="editForm.get('acquisitionTransactionId').invalid && (editForm.get('acquisitionTransactionId').dirty || editForm.get('acquisitionTransactionId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('acquisitionTransactionId').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('acquisitionTransactionId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetCategoryId">Asset Category Id</label>
+                    <input type="number" class="form-control" name="assetCategoryId" id="field_assetCategoryId"
+                           formControlName="assetCategoryId"/>
+                    <div *ngIf="editForm.get('assetCategoryId').invalid && (editForm.get('assetCategoryId').dirty || editForm.get('assetCategoryId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('assetCategoryId').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('assetCategoryId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseAmount">Purchase Amount</label>
+                    <input type="number" class="form-control" name="purchaseAmount" id="field_purchaseAmount"
+                           formControlName="purchaseAmount"/>
+                    <div *ngIf="editForm.get('purchaseAmount').invalid && (editForm.get('purchaseAmount').dirty || editForm.get('purchaseAmount').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('purchaseAmount').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('purchaseAmount')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetDealerId">Asset Dealer Id</label>
+                    <input type="number" class="form-control" name="assetDealerId" id="field_assetDealerId"
+                           formControlName="assetDealerId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_assetInvoiceId">Asset Invoice Id</label>
+                    <input type="number" class="form-control" name="assetInvoiceId" id="field_assetInvoiceId"
+                           formControlName="assetInvoiceId"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="assetAcquisition">
+            <h2><span>Asset Acquisition</span> {{assetAcquisition.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.description}}</span>
+                </dd>
+                <dt><span>Acquisition Month</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.acquisitionMonth}}</span>
+                </dd>
+                <dt><span>Asset Serial</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.assetSerial}}</span>
+                </dd>
+                <dt><span>Service Outlet Code</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.serviceOutletCode}}</span>
+                </dd>
+                <dt><span>Acquisition Transaction Id</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.acquisitionTransactionId}}</span>
+                </dd>
+                <dt><span>Asset Category Id</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.assetCategoryId}}</span>
+                </dd>
+                <dt><span>Purchase Amount</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.purchaseAmount}}</span>
+                </dd>
+                <dt><span>Asset Dealer Id</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.assetDealerId}}</span>
+                </dd>
+                <dt><span>Asset Invoice Id</span></dt>
+                <dd>
+                    <span>{{assetAcquisition.assetInvoiceId}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/asset-acquisition', assetAcquisition.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

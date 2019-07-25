@@ -45,7 +45,7 @@ describe('AssetDisposal e2e test', () => {
     await assetDisposalComponentsPage.clickOnCreateButton();
     await promise.all([
       assetDisposalUpdatePage.setDescriptionInput('description'),
-      assetDisposalUpdatePage.setDisposalDateInput('2000-12-31'),
+      assetDisposalUpdatePage.setDisposalMonthInput('2000-12-31'),
       assetDisposalUpdatePage.setAssetCategoryIdInput('5'),
       assetDisposalUpdatePage.setAssetItemIdInput('5'),
       assetDisposalUpdatePage.setDisposalProceedsInput('5'),
@@ -59,9 +59,9 @@ describe('AssetDisposal e2e test', () => {
       'description',
       'Expected Description value to be equals to description'
     );
-    expect(await assetDisposalUpdatePage.getDisposalDateInput()).to.eq(
+    expect(await assetDisposalUpdatePage.getDisposalMonthInput()).to.eq(
       '2000-12-31',
-      'Expected disposalDate value to be equals to 2000-12-31'
+      'Expected disposalMonth value to be equals to 2000-12-31'
     );
     expect(await assetDisposalUpdatePage.getAssetCategoryIdInput()).to.eq('5', 'Expected assetCategoryId value to be equals to 5');
     expect(await assetDisposalUpdatePage.getAssetItemIdInput()).to.eq('5', 'Expected assetItemId value to be equals to 5');

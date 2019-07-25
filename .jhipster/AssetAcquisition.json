@@ -11,11 +11,32 @@
             ]
         },
         {
-            "fieldName": "disposalMonth",
+            "fieldName": "acquisitionMonth",
             "fieldType": "LocalDate",
-          "fieldValidateRules": [
-            "required"
-          ]
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "assetSerial",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "serviceOutletCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "acquisitionTransactionId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "assetCategoryId",
@@ -25,46 +46,26 @@
             ]
         },
         {
-            "fieldName": "assetItemId",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "disposalProceeds",
+            "fieldName": "purchaseAmount",
             "fieldType": "BigDecimal",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "netBookValue",
-            "fieldType": "BigDecimal"
-        },
-        {
-            "fieldName": "profitOnDisposal",
-            "fieldType": "BigDecimal"
-        },
-        {
-            "fieldName": "scannedDocumentId",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "assetDealerId",
             "fieldType": "Long"
         },
         {
-            "fieldName": "assetPicture",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "image"
+            "fieldName": "assetInvoiceId",
+            "fieldType": "Long"
         }
     ],
-    "changelogDate": "20190725143715",
+    "changelogDate": "20190725165704",
     "dto": "mapstruct",
     "searchEngine": "elasticsearch",
     "service": "serviceImpl",
-    "entityTableName": "asset_disposal",
+    "entityTableName": "asset_acquisition",
     "databaseType": "sql",
     "jpaMetamodelFiltering": true,
     "pagination": "pagination"

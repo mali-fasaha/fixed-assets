@@ -3,7 +3,7 @@ import { Moment } from 'moment';
 export interface IAssetDisposal {
   id?: number;
   description?: string;
-  disposalDate?: Moment;
+  disposalMonth?: Moment;
   assetCategoryId?: number;
   assetItemId?: number;
   disposalProceeds?: number;
@@ -19,7 +19,7 @@ export class AssetDisposal implements IAssetDisposal {
   constructor(
     public id?: number,
     public description?: string,
-    public disposalDate?: Moment,
+    public disposalMonth?: Moment,
     public assetCategoryId?: number,
     public assetItemId?: number,
     public disposalProceeds?: number,

@@ -16,7 +16,8 @@ public class AssetDisposalDTO implements Serializable {
     @NotNull
     private String description;
 
-    private LocalDate disposalDate;
+    @NotNull
+    private LocalDate disposalMonth;
 
     @NotNull
     private Long assetCategoryId;
@@ -56,12 +57,12 @@ public class AssetDisposalDTO implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getDisposalDate() {
-        return disposalDate;
+    public LocalDate getDisposalMonth() {
+        return disposalMonth;
     }
 
-    public void setDisposalDate(LocalDate disposalDate) {
-        this.disposalDate = disposalDate;
+    public void setDisposalMonth(LocalDate disposalMonth) {
+        this.disposalMonth = disposalMonth;
     }
 
     public Long getAssetCategoryId() {
@@ -162,7 +163,7 @@ public class AssetDisposalDTO implements Serializable {
         return "AssetDisposalDTO{" +
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
-            ", disposalDate='" + getDisposalDate() + "'" +
+            ", disposalMonth='" + getDisposalMonth() + "'" +
             ", assetCategoryId=" + getAssetCategoryId() +
             ", assetItemId=" + getAssetItemId() +
             ", disposalProceeds=" + getDisposalProceeds() +

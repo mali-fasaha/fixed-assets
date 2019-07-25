@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span>Asset Disposals</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-asset-disposal" [routerLink]="['/asset-disposal/new']">
+        <span>Asset Acquisitions</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-asset-acquisition" [routerLink]="['/asset-acquisition/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span class="hidden-sm-down" >
-            Create new Asset Disposal
+            Create new Asset Acquisition
             </span>
         </button>
     </h2>
@@ -25,58 +25,51 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="assetDisposals">
+    <div class="table-responsive" *ngIf="assetAcquisitions">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="disposalMonth"><span>Disposal Month</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="acquisitionMonth"><span>Acquisition Month</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetSerial"><span>Asset Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="serviceOutletCode"><span>Service Outlet Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="acquisitionTransactionId"><span>Acquisition Transaction Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="assetCategoryId"><span>Asset Category Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="assetItemId"><span>Asset Item Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="disposalProceeds"><span>Disposal Proceeds</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="netBookValue"><span>Net Book Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="profitOnDisposal"><span>Profit On Disposal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="scannedDocumentId"><span>Scanned Document Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="purchaseAmount"><span>Purchase Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="assetDealerId"><span>Asset Dealer Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="assetPicture"><span>Asset Picture</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="assetInvoiceId"><span>Asset Invoice Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let assetDisposal of assetDisposals ;trackBy: trackId">
-                <td><a [routerLink]="['/asset-disposal', assetDisposal.id, 'view' ]">{{assetDisposal.id}}</a></td>
-                <td>{{assetDisposal.description}}</td>
-                <td>{{assetDisposal.disposalMonth | date:'mediumDate'}}</td>
-                <td>{{assetDisposal.assetCategoryId}}</td>
-                <td>{{assetDisposal.assetItemId}}</td>
-                <td>{{assetDisposal.disposalProceeds}}</td>
-                <td>{{assetDisposal.netBookValue}}</td>
-                <td>{{assetDisposal.profitOnDisposal}}</td>
-                <td>{{assetDisposal.scannedDocumentId}}</td>
-                <td>{{assetDisposal.assetDealerId}}</td>
-                <td>
-                    <a *ngIf="assetDisposal.assetPicture" (click)="openFile(assetDisposal.assetPictureContentType, assetDisposal.assetPicture)">
-                        <img [src]="'data:' + assetDisposal.assetPictureContentType + ';base64,' + assetDisposal.assetPicture" style="max-height: 30px;" alt="assetDisposal image"/>
-                    </a>
-                    <span *ngIf="assetDisposal.assetPicture">{{assetDisposal.assetPictureContentType}}, {{byteSize(assetDisposal.assetPicture)}}</span>
-                </td>
+            <tr *ngFor="let assetAcquisition of assetAcquisitions ;trackBy: trackId">
+                <td><a [routerLink]="['/asset-acquisition', assetAcquisition.id, 'view' ]">{{assetAcquisition.id}}</a></td>
+                <td>{{assetAcquisition.description}}</td>
+                <td>{{assetAcquisition.acquisitionMonth | date:'mediumDate'}}</td>
+                <td>{{assetAcquisition.assetSerial}}</td>
+                <td>{{assetAcquisition.serviceOutletCode}}</td>
+                <td>{{assetAcquisition.acquisitionTransactionId}}</td>
+                <td>{{assetAcquisition.assetCategoryId}}</td>
+                <td>{{assetAcquisition.purchaseAmount}}</td>
+                <td>{{assetAcquisition.assetDealerId}}</td>
+                <td>{{assetAcquisition.assetInvoiceId}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
-                                [routerLink]="['/asset-disposal', assetDisposal.id, 'view' ]"
+                                [routerLink]="['/asset-acquisition', assetAcquisition.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/asset-disposal', assetDisposal.id, 'edit']"
+                                [routerLink]="['/asset-acquisition', assetAcquisition.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'asset-disposal', { outlets: { popup: assetDisposal.id + '/delete'} }]"
+                                [routerLink]="['/', 'asset-acquisition', { outlets: { popup: assetAcquisition.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
@@ -89,7 +82,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="assetDisposals && assetDisposals.length">
+    <div *ngIf="assetAcquisitions && assetAcquisitions.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the AssetDisposal entity.
+ * Performance test for the AssetAcquisition entity.
  */
-class AssetDisposalGatlingTest extends Simulation {
+class AssetAcquisitionGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -43,7 +43,7 @@ class AssetDisposalGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the AssetDisposal entity")
+    val scn = scenario("Test the AssetAcquisition entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -62,38 +62,37 @@ class AssetDisposalGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all assetDisposals")
-            .get("/api/asset-disposals")
+            exec(http("Get all assetAcquisitions")
+            .get("/api/asset-acquisitions")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new assetDisposal")
-            .post("/api/asset-disposals")
+            .exec(http("Create new assetAcquisition")
+            .post("/api/asset-acquisitions")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
                 , "description":"SAMPLE_TEXT"
-                , "disposalMonth":"2020-01-01T00:00:00.000Z"
+                , "acquisitionMonth":"2020-01-01T00:00:00.000Z"
+                , "assetSerial":"SAMPLE_TEXT"
+                , "serviceOutletCode":"SAMPLE_TEXT"
+                , "acquisitionTransactionId":null
                 , "assetCategoryId":null
-                , "assetItemId":null
-                , "disposalProceeds":"0"
-                , "netBookValue":"0"
-                , "profitOnDisposal":"0"
-                , "scannedDocumentId":null
+                , "purchaseAmount":"0"
                 , "assetDealerId":null
-                , "assetPicture":null
+                , "assetInvoiceId":null
                 }""")).asJson
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_assetDisposal_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_assetAcquisition_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created assetDisposal")
-                .get("${new_assetDisposal_url}")
+                exec(http("Get created assetAcquisition")
+                .get("${new_assetAcquisition_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created assetDisposal")
-            .delete("${new_assetDisposal_url}")
+            .exec(http("Delete created assetAcquisition")
+            .delete("${new_assetAcquisition_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

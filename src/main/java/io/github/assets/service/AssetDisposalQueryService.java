@@ -96,8 +96,8 @@ public class AssetDisposalQueryService extends QueryService<AssetDisposal> {
             if (criteria.getDescription() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getDescription(), AssetDisposal_.description));
             }
-            if (criteria.getDisposalDate() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getDisposalDate(), AssetDisposal_.disposalDate));
+            if (criteria.getDisposalMonth() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDisposalMonth(), AssetDisposal_.disposalMonth));
             }
             if (criteria.getAssetCategoryId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getAssetCategoryId(), AssetDisposal_.assetCategoryId));

@@ -8,10 +8,10 @@
 
 
     <!--
-        Added the entity AssetDisposal.
+        Added the entity AssetAcquisition.
     -->
-    <changeSet id="20190725143715-1" author="jhipster">
-        <createTable tableName="asset_disposal">
+    <changeSet id="20190725165704-1" author="jhipster">
+        <createTable tableName="asset_acquisition">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -19,7 +19,19 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="disposal_month" type="date">
+            <column name="acquisition_month" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="asset_serial" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="service_outlet_code" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="acquisition_transaction_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 
@@ -27,34 +39,15 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="asset_item_id" type="bigint">
+            <column name="purchase_amount" type="decimal(21,2)">
                 <constraints nullable="false" />
-            </column>
-
-            <column name="disposal_proceeds" type="decimal(21,2)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="net_book_value" type="decimal(21,2)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="profit_on_disposal" type="decimal(21,2)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="scanned_document_id" type="bigint">
-                <constraints nullable="true" />
             </column>
 
             <column name="asset_dealer_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
-            <column name="asset_picture" type="longblob">
-                <constraints nullable="true" />
-            </column>
-            <column name="asset_picture_content_type" type="varchar(255)">
+            <column name="asset_invoice_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
@@ -71,28 +64,26 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20190725143715-1-data" author="jhipster" context="faker">
+    <changeSet id="20190725165704-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/data/asset_disposal.csv"
+                  file="config/liquibase/data/asset_acquisition.csv"
                   separator=";"
-                  tableName="asset_disposal"
+                  tableName="asset_acquisition"
                   context="dev">
             <column name="id" type="numeric"/>
             <column name="description" type="string"/>
-            <column name="disposal_month" type="date"/>
+            <column name="acquisition_month" type="date"/>
+            <column name="asset_serial" type="string"/>
+            <column name="service_outlet_code" type="string"/>
+            <column name="acquisition_transaction_id" type="numeric"/>
             <column name="asset_category_id" type="numeric"/>
-            <column name="asset_item_id" type="numeric"/>
-            <column name="disposal_proceeds" type="numeric"/>
-            <column name="net_book_value" type="numeric"/>
-            <column name="profit_on_disposal" type="numeric"/>
-            <column name="scanned_document_id" type="numeric"/>
+            <column name="purchase_amount" type="numeric"/>
             <column name="asset_dealer_id" type="numeric"/>
-            <column name="asset_picture" type="string"/>
-            <column name="asset_picture_content_type" type="string"/>
+            <column name="asset_invoice_id" type="numeric"/>
         </loadData>
     </changeSet>
 
-    <changeSet id="20190725143715-1-relations" author="jhipster">
+    <changeSet id="20190725165704-1-relations" author="jhipster">
 
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
