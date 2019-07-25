@@ -76,8 +76,8 @@ public class DealerResourceIT {
     private static final String DEFAULT_BANK_PHYSICAL_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_BANK_PHYSICAL_ADDRESS = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_LOCALLY_DOMICILED = false;
-    private static final Boolean UPDATED_LOCALLY_DOMICILED = true;
+    private static final String DEFAULT_DOMICILE = "AAAAAAAAAA";
+    private static final String UPDATED_DOMICILE = "BBBBBBBBBB";
 
     private static final String DEFAULT_TAX_AUTHORITY_REF = "AAAAAAAAAA";
     private static final String UPDATED_TAX_AUTHORITY_REF = "BBBBBBBBBB";
@@ -151,7 +151,7 @@ public class DealerResourceIT {
             .bankBranch(DEFAULT_BANK_BRANCH)
             .bankSwiftCode(DEFAULT_BANK_SWIFT_CODE)
             .bankPhysicalAddress(DEFAULT_BANK_PHYSICAL_ADDRESS)
-            .locallyDomiciled(DEFAULT_LOCALLY_DOMICILED)
+            .domicile(DEFAULT_DOMICILE)
             .taxAuthorityRef(DEFAULT_TAX_AUTHORITY_REF);
         return dealer;
     }
@@ -173,7 +173,7 @@ public class DealerResourceIT {
             .bankBranch(UPDATED_BANK_BRANCH)
             .bankSwiftCode(UPDATED_BANK_SWIFT_CODE)
             .bankPhysicalAddress(UPDATED_BANK_PHYSICAL_ADDRESS)
-            .locallyDomiciled(UPDATED_LOCALLY_DOMICILED)
+            .domicile(UPDATED_DOMICILE)
             .taxAuthorityRef(UPDATED_TAX_AUTHORITY_REF);
         return dealer;
     }
@@ -209,7 +209,7 @@ public class DealerResourceIT {
         assertThat(testDealer.getBankBranch()).isEqualTo(DEFAULT_BANK_BRANCH);
         assertThat(testDealer.getBankSwiftCode()).isEqualTo(DEFAULT_BANK_SWIFT_CODE);
         assertThat(testDealer.getBankPhysicalAddress()).isEqualTo(DEFAULT_BANK_PHYSICAL_ADDRESS);
-        assertThat(testDealer.isLocallyDomiciled()).isEqualTo(DEFAULT_LOCALLY_DOMICILED);
+        assertThat(testDealer.getDomicile()).isEqualTo(DEFAULT_DOMICILE);
         assertThat(testDealer.getTaxAuthorityRef()).isEqualTo(DEFAULT_TAX_AUTHORITY_REF);
 
         // Validate the Dealer in Elasticsearch
@@ -299,7 +299,7 @@ public class DealerResourceIT {
             .andExpect(jsonPath("$.[*].bankBranch").value(hasItem(DEFAULT_BANK_BRANCH.toString())))
             .andExpect(jsonPath("$.[*].bankSwiftCode").value(hasItem(DEFAULT_BANK_SWIFT_CODE.toString())))
             .andExpect(jsonPath("$.[*].bankPhysicalAddress").value(hasItem(DEFAULT_BANK_PHYSICAL_ADDRESS.toString())))
-            .andExpect(jsonPath("$.[*].locallyDomiciled").value(hasItem(DEFAULT_LOCALLY_DOMICILED.booleanValue())))
+            .andExpect(jsonPath("$.[*].domicile").value(hasItem(DEFAULT_DOMICILE.toString())))
             .andExpect(jsonPath("$.[*].taxAuthorityRef").value(hasItem(DEFAULT_TAX_AUTHORITY_REF.toString())));
     }
     
@@ -324,7 +324,7 @@ public class DealerResourceIT {
             .andExpect(jsonPath("$.bankBranch").value(DEFAULT_BANK_BRANCH.toString()))
             .andExpect(jsonPath("$.bankSwiftCode").value(DEFAULT_BANK_SWIFT_CODE.toString()))
             .andExpect(jsonPath("$.bankPhysicalAddress").value(DEFAULT_BANK_PHYSICAL_ADDRESS.toString()))
-            .andExpect(jsonPath("$.locallyDomiciled").value(DEFAULT_LOCALLY_DOMICILED.booleanValue()))
+            .andExpect(jsonPath("$.domicile").value(DEFAULT_DOMICILE.toString()))
             .andExpect(jsonPath("$.taxAuthorityRef").value(DEFAULT_TAX_AUTHORITY_REF.toString()));
     }
 
@@ -720,41 +720,41 @@ public class DealerResourceIT {
 
     @Test
     @Transactional
-    public void getAllDealersByLocallyDomiciledIsEqualToSomething() throws Exception {
+    public void getAllDealersByDomicileIsEqualToSomething() throws Exception {
         // Initialize the database
         dealerRepository.saveAndFlush(dealer);
 
-        // Get all the dealerList where locallyDomiciled equals to DEFAULT_LOCALLY_DOMICILED
-        defaultDealerShouldBeFound("locallyDomiciled.equals=" + DEFAULT_LOCALLY_DOMICILED);
+        // Get all the dealerList where domicile equals to DEFAULT_DOMICILE
+        defaultDealerShouldBeFound("domicile.equals=" + DEFAULT_DOMICILE);
 
-        // Get all the dealerList where locallyDomiciled equals to UPDATED_LOCALLY_DOMICILED
-        defaultDealerShouldNotBeFound("locallyDomiciled.equals=" + UPDATED_LOCALLY_DOMICILED);
+        // Get all the dealerList where domicile equals to UPDATED_DOMICILE
+        defaultDealerShouldNotBeFound("domicile.equals=" + UPDATED_DOMICILE);
     }
 
     @Test
     @Transactional
-    public void getAllDealersByLocallyDomiciledIsInShouldWork() throws Exception {
+    public void getAllDealersByDomicileIsInShouldWork() throws Exception {
         // Initialize the database
         dealerRepository.saveAndFlush(dealer);
 
-        // Get all the dealerList where locallyDomiciled in DEFAULT_LOCALLY_DOMICILED or UPDATED_LOCALLY_DOMICILED
-        defaultDealerShouldBeFound("locallyDomiciled.in=" + DEFAULT_LOCALLY_DOMICILED + "," + UPDATED_LOCALLY_DOMICILED);
+        // Get all the dealerList where domicile in DEFAULT_DOMICILE or UPDATED_DOMICILE
+        defaultDealerShouldBeFound("domicile.in=" + DEFAULT_DOMICILE + "," + UPDATED_DOMICILE);
 
-        // Get all the dealerList where locallyDomiciled equals to UPDATED_LOCALLY_DOMICILED
-        defaultDealerShouldNotBeFound("locallyDomiciled.in=" + UPDATED_LOCALLY_DOMICILED);
+        // Get all the dealerList where domicile equals to UPDATED_DOMICILE
+        defaultDealerShouldNotBeFound("domicile.in=" + UPDATED_DOMICILE);
     }
 
     @Test
     @Transactional
-    public void getAllDealersByLocallyDomiciledIsNullOrNotNull() throws Exception {
+    public void getAllDealersByDomicileIsNullOrNotNull() throws Exception {
         // Initialize the database
         dealerRepository.saveAndFlush(dealer);
 
-        // Get all the dealerList where locallyDomiciled is not null
-        defaultDealerShouldBeFound("locallyDomiciled.specified=true");
+        // Get all the dealerList where domicile is not null
+        defaultDealerShouldBeFound("domicile.specified=true");
 
-        // Get all the dealerList where locallyDomiciled is null
-        defaultDealerShouldNotBeFound("locallyDomiciled.specified=false");
+        // Get all the dealerList where domicile is null
+        defaultDealerShouldNotBeFound("domicile.specified=false");
     }
 
     @Test
@@ -832,7 +832,7 @@ public class DealerResourceIT {
             .andExpect(jsonPath("$.[*].bankBranch").value(hasItem(DEFAULT_BANK_BRANCH)))
             .andExpect(jsonPath("$.[*].bankSwiftCode").value(hasItem(DEFAULT_BANK_SWIFT_CODE)))
             .andExpect(jsonPath("$.[*].bankPhysicalAddress").value(hasItem(DEFAULT_BANK_PHYSICAL_ADDRESS)))
-            .andExpect(jsonPath("$.[*].locallyDomiciled").value(hasItem(DEFAULT_LOCALLY_DOMICILED.booleanValue())))
+            .andExpect(jsonPath("$.[*].domicile").value(hasItem(DEFAULT_DOMICILE)))
             .andExpect(jsonPath("$.[*].taxAuthorityRef").value(hasItem(DEFAULT_TAX_AUTHORITY_REF)));
 
         // Check, that the count call also returns 1
@@ -891,7 +891,7 @@ public class DealerResourceIT {
             .bankBranch(UPDATED_BANK_BRANCH)
             .bankSwiftCode(UPDATED_BANK_SWIFT_CODE)
             .bankPhysicalAddress(UPDATED_BANK_PHYSICAL_ADDRESS)
-            .locallyDomiciled(UPDATED_LOCALLY_DOMICILED)
+            .domicile(UPDATED_DOMICILE)
             .taxAuthorityRef(UPDATED_TAX_AUTHORITY_REF);
         DealerDTO dealerDTO = dealerMapper.toDto(updatedDealer);
 
@@ -914,7 +914,7 @@ public class DealerResourceIT {
         assertThat(testDealer.getBankBranch()).isEqualTo(UPDATED_BANK_BRANCH);
         assertThat(testDealer.getBankSwiftCode()).isEqualTo(UPDATED_BANK_SWIFT_CODE);
         assertThat(testDealer.getBankPhysicalAddress()).isEqualTo(UPDATED_BANK_PHYSICAL_ADDRESS);
-        assertThat(testDealer.isLocallyDomiciled()).isEqualTo(UPDATED_LOCALLY_DOMICILED);
+        assertThat(testDealer.getDomicile()).isEqualTo(UPDATED_DOMICILE);
         assertThat(testDealer.getTaxAuthorityRef()).isEqualTo(UPDATED_TAX_AUTHORITY_REF);
 
         // Validate the Dealer in Elasticsearch
@@ -986,7 +986,7 @@ public class DealerResourceIT {
             .andExpect(jsonPath("$.[*].bankBranch").value(hasItem(DEFAULT_BANK_BRANCH)))
             .andExpect(jsonPath("$.[*].bankSwiftCode").value(hasItem(DEFAULT_BANK_SWIFT_CODE)))
             .andExpect(jsonPath("$.[*].bankPhysicalAddress").value(hasItem(DEFAULT_BANK_PHYSICAL_ADDRESS)))
-            .andExpect(jsonPath("$.[*].locallyDomiciled").value(hasItem(DEFAULT_LOCALLY_DOMICILED.booleanValue())))
+            .andExpect(jsonPath("$.[*].domicile").value(hasItem(DEFAULT_DOMICILE)))
             .andExpect(jsonPath("$.[*].taxAuthorityRef").value(hasItem(DEFAULT_TAX_AUTHORITY_REF)));
     }
 

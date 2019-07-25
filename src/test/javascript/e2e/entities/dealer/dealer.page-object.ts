@@ -36,7 +36,7 @@ export class DealerUpdatePage {
   bankBranchInput = element(by.id('field_bankBranch'));
   bankSwiftCodeInput = element(by.id('field_bankSwiftCode'));
   bankPhysicalAddressInput = element(by.id('field_bankPhysicalAddress'));
-  locallyDomiciledInput = element(by.id('field_locallyDomiciled'));
+  domicileInput = element(by.id('field_domicile'));
   taxAuthorityRefInput = element(by.id('field_taxAuthorityRef'));
 
   async getPageTitle() {
@@ -130,9 +130,14 @@ export class DealerUpdatePage {
     return await this.bankPhysicalAddressInput.getAttribute('value');
   }
 
-  getLocallyDomiciledInput(timeout?: number) {
-    return this.locallyDomiciledInput;
+  async setDomicileInput(domicile) {
+    await this.domicileInput.sendKeys(domicile);
   }
+
+  async getDomicileInput() {
+    return await this.domicileInput.getAttribute('value');
+  }
+
   async setTaxAuthorityRefInput(taxAuthorityRef) {
     await this.taxAuthorityRefInput.sendKeys(taxAuthorityRef);
   }

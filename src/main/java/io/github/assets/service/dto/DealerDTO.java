@@ -33,7 +33,7 @@ public class DealerDTO implements Serializable {
 
     private String bankPhysicalAddress;
 
-    private Boolean locallyDomiciled;
+    private String domicile;
 
     private String taxAuthorityRef;
 
@@ -126,12 +126,12 @@ public class DealerDTO implements Serializable {
         this.bankPhysicalAddress = bankPhysicalAddress;
     }
 
-    public Boolean isLocallyDomiciled() {
-        return locallyDomiciled;
+    public String getDomicile() {
+        return domicile;
     }
 
-    public void setLocallyDomiciled(Boolean locallyDomiciled) {
-        this.locallyDomiciled = locallyDomiciled;
+    public void setDomicile(String domicile) {
+        this.domicile = domicile;
     }
 
     public String getTaxAuthorityRef() {
@@ -177,7 +177,7 @@ public class DealerDTO implements Serializable {
             ", bankBranch='" + getBankBranch() + "'" +
             ", bankSwiftCode='" + getBankSwiftCode() + "'" +
             ", bankPhysicalAddress='" + getBankPhysicalAddress() + "'" +
-            ", locallyDomiciled='" + isLocallyDomiciled() + "'" +
+            ", domicile='" + getDomicile() + "'" +
             ", taxAuthorityRef='" + getTaxAuthorityRef() + "'" +
             "}";
     }

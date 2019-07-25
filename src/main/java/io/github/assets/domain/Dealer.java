@@ -66,8 +66,8 @@ public class Dealer implements Serializable {
     @Column(name = "bank_physical_address")
     private String bankPhysicalAddress;
 
-    @Column(name = "locally_domiciled")
-    private Boolean locallyDomiciled;
+    @Column(name = "domicile")
+    private String domicile;
 
     @Column(name = "tax_authority_ref")
     private String taxAuthorityRef;
@@ -215,17 +215,17 @@ public class Dealer implements Serializable {
         this.bankPhysicalAddress = bankPhysicalAddress;
     }
 
-    public Boolean isLocallyDomiciled() {
-        return locallyDomiciled;
+    public String getDomicile() {
+        return domicile;
     }
 
-    public Dealer locallyDomiciled(Boolean locallyDomiciled) {
-        this.locallyDomiciled = locallyDomiciled;
+    public Dealer domicile(String domicile) {
+        this.domicile = domicile;
         return this;
     }
 
-    public void setLocallyDomiciled(Boolean locallyDomiciled) {
-        this.locallyDomiciled = locallyDomiciled;
+    public void setDomicile(String domicile) {
+        this.domicile = domicile;
     }
 
     public String getTaxAuthorityRef() {
@@ -297,7 +297,7 @@ public class Dealer implements Serializable {
             ", bankBranch='" + getBankBranch() + "'" +
             ", bankSwiftCode='" + getBankSwiftCode() + "'" +
             ", bankPhysicalAddress='" + getBankPhysicalAddress() + "'" +
-            ", locallyDomiciled='" + isLocallyDomiciled() + "'" +
+            ", domicile='" + getDomicile() + "'" +
             ", taxAuthorityRef='" + getTaxAuthorityRef() + "'" +
             "}";
     }

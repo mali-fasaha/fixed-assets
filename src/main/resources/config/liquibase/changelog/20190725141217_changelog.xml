@@ -1,0 +1,299 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-1">
+        <createSequence sequenceName="sequence_generator"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-2">
+        <createTable tableName="asset_depreciation">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="asset_depreciationPK"/>
+            </column>
+            <column name="asset_item_id" type="BIGINT"/>
+            <column name="category_id" type="BIGINT"/>
+            <column name="depreciation_amount" type="numeric(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="depreciation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-3">
+        <createTable tableName="asset_transaction">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="asset_transactionPK"/>
+            </column>
+            <column name="scanned_document_id" type="BIGINT"/>
+            <column name="transaction_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_reference" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-4">
+        <createTable tableName="dealer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="dealerPK"/>
+            </column>
+            <column name="bank_account_number" type="VARCHAR(255)"/>
+            <column name="bank_branch" type="VARCHAR(255)"/>
+            <column name="bank_name" type="VARCHAR(255)"/>
+            <column name="bank_physical_address" type="VARCHAR(255)"/>
+            <column name="bank_swift_code" type="VARCHAR(255)"/>
+            <column name="dealer_address" type="VARCHAR(255)"/>
+            <column name="dealer_email" type="VARCHAR(255)"/>
+            <column name="dealer_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dealer_phone_number" type="VARCHAR(255)"/>
+            <column name="domicile" type="VARCHAR(255)"/>
+            <column name="tax_authority_ref" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-5">
+        <createTable tableName="depreciation_regime">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="depreciation_regimePK"/>
+            </column>
+            <column name="asset_decay_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="depreciation_rate" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-6">
+        <createTable tableName="fixed_asset_assessment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_assessmentPK"/>
+            </column>
+            <column name="assessment_date" type="date"/>
+            <column name="assessment_remarks" type="VARCHAR(255)"/>
+            <column name="asset_condition" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_physical_address" type="VARCHAR(255)"/>
+            <column name="current_service_outlet_code" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="estimated_useful_months" type="FLOAT8"/>
+            <column name="estimated_value" type="numeric(21, 2)"/>
+            <column name="fixed_asset_item_id" type="BIGINT"/>
+            <column name="fixed_asset_picture" type="OID"/>
+            <column name="fixed_asset_picture_content_type" type="VARCHAR(255)"/>
+            <column name="name_of_assessing_staff" type="VARCHAR(255)"/>
+            <column name="name_of_assessment_contractor" type="VARCHAR(255)"/>
+            <column name="name_of_user" type="VARCHAR(255)"/>
+            <column name="next_assessment_date" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-7">
+        <createTable tableName="fixed_asset_category">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_categoryPK"/>
+            </column>
+            <column name="category_asset_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_depreciation_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_description" type="VARCHAR(255)"/>
+            <column name="category_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="depreciation_regime_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-8">
+        <createTable tableName="fixed_asset_invoice">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_invoicePK"/>
+            </column>
+            <column name="attachments" type="OID"/>
+            <column name="attachments_content_type" type="VARCHAR(255)"/>
+            <column name="invoice_amount" type="numeric(21, 2)"/>
+            <column name="invoice_date" type="date"/>
+            <column name="invoice_reference" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_credit_note" type="BOOLEAN"/>
+            <column name="is_proforma" type="BOOLEAN"/>
+            <column name="dealer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-9">
+        <createTable tableName="fixed_asset_item">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fixed_asset_itemPK"/>
+            </column>
+            <column name="asset_category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_picture" type="OID"/>
+            <column name="asset_picture_content_type" type="VARCHAR(255)"/>
+            <column name="fixed_asset_description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fixed_asset_serial_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ownership_document_id" type="BIGINT"/>
+            <column name="purchase_cost" type="numeric(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_transaction_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_outlet_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-10">
+        <createTable tableName="gha_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints primaryKey="true" primaryKeyName="gha_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-11">
+        <createTable tableName="gha_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="gha_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-12">
+        <createTable tableName="gha_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-13">
+        <createTable tableName="gha_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="gha_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-14">
+        <createTable tableName="gha_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-15">
+        <createTable tableName="scanned_document">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="scanned_documentPK"/>
+            </column>
+            <column name="approval_document" type="OID"/>
+            <column name="approval_document_content_type" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="invoice_document" type="OID"/>
+            <column name="invoice_document_content_type" type="VARCHAR(255)"/>
+            <column name="lpo_document" type="OID"/>
+            <column name="lpo_document_content_type" type="VARCHAR(255)"/>
+            <column name="other_documents" type="OID"/>
+            <column name="other_documents_content_type" type="VARCHAR(255)"/>
+            <column name="requisition_document" type="OID"/>
+            <column name="requisition_document_content_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-16">
+        <createTable tableName="service_outlet">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="service_outletPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="service_outlet_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_outlet_designation" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-17">
+        <addUniqueConstraint columnNames="category_asset_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_ASSET_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-18">
+        <addUniqueConstraint columnNames="category_depreciation_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_DEPRECIATION_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-19">
+        <addUniqueConstraint columnNames="category_name" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_NAME_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-20">
+        <addUniqueConstraint columnNames="email" constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-21">
+        <addUniqueConstraint columnNames="login" constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-22">
+        <addUniqueConstraint columnNames="service_outlet_code" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_CODE_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-23">
+        <addUniqueConstraint columnNames="service_outlet_designation" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_DESIGNATION_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-24">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="gha_user_authority" constraintName="FK7vpii2smu77en3hw0ypiknl4r" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="gha_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-25">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="gha_persistent_audit_evt_data" constraintName="FKj4lrxuk5snmvbbk82tjs767r0" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="gha_persistent_audit_event" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-26">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="gha_user_authority" constraintName="FKm0rqfeneuk5xl48iyj1hcp7p3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="gha_user" validate="true"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1564064192445-27">
+        <addForeignKeyConstraint baseColumnNames="dealer_id" baseTableName="fixed_asset_invoice" constraintName="FKs8x5ffb1g3nmacdvapfbli5hr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="dealer" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

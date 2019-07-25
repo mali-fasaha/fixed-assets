@@ -123,8 +123,8 @@ public class DealerQueryService extends QueryService<Dealer> {
             if (criteria.getBankPhysicalAddress() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getBankPhysicalAddress(), Dealer_.bankPhysicalAddress));
             }
-            if (criteria.getLocallyDomiciled() != null) {
-                specification = specification.and(buildSpecification(criteria.getLocallyDomiciled(), Dealer_.locallyDomiciled));
+            if (criteria.getDomicile() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getDomicile(), Dealer_.domicile));
             }
             if (criteria.getTaxAuthorityRef() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getTaxAuthorityRef(), Dealer_.taxAuthorityRef));

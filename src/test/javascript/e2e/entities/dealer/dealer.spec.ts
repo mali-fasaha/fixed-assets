@@ -50,6 +50,7 @@ describe('Dealer e2e test', () => {
       dealerUpdatePage.setBankBranchInput('bankBranch'),
       dealerUpdatePage.setBankSwiftCodeInput('bankSwiftCode'),
       dealerUpdatePage.setBankPhysicalAddressInput('bankPhysicalAddress'),
+      dealerUpdatePage.setDomicileInput('domicile'),
       dealerUpdatePage.setTaxAuthorityRefInput('taxAuthorityRef')
     ]);
     expect(await dealerUpdatePage.getDealerNameInput()).to.eq('dealerName', 'Expected DealerName value to be equals to dealerName');
@@ -76,14 +77,7 @@ describe('Dealer e2e test', () => {
       'bankPhysicalAddress',
       'Expected BankPhysicalAddress value to be equals to bankPhysicalAddress'
     );
-    const selectedLocallyDomiciled = dealerUpdatePage.getLocallyDomiciledInput();
-    if (await selectedLocallyDomiciled.isSelected()) {
-      await dealerUpdatePage.getLocallyDomiciledInput().click();
-      expect(await dealerUpdatePage.getLocallyDomiciledInput().isSelected(), 'Expected locallyDomiciled not to be selected').to.be.false;
-    } else {
-      await dealerUpdatePage.getLocallyDomiciledInput().click();
-      expect(await dealerUpdatePage.getLocallyDomiciledInput().isSelected(), 'Expected locallyDomiciled to be selected').to.be.true;
-    }
+    expect(await dealerUpdatePage.getDomicileInput()).to.eq('domicile', 'Expected Domicile value to be equals to domicile');
     expect(await dealerUpdatePage.getTaxAuthorityRefInput()).to.eq(
       'taxAuthorityRef',
       'Expected TaxAuthorityRef value to be equals to taxAuthorityRef'

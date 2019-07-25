@@ -82,7 +82,7 @@ class DealerGatlingTest extends Simulation {
                 , "bankBranch":"SAMPLE_TEXT"
                 , "bankSwiftCode":"SAMPLE_TEXT"
                 , "bankPhysicalAddress":"SAMPLE_TEXT"
-                , "locallyDomiciled":null
+                , "domicile":"SAMPLE_TEXT"
                 , "taxAuthorityRef":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))

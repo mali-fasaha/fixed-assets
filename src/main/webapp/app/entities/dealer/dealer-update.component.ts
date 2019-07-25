@@ -26,7 +26,7 @@ export class DealerUpdateComponent implements OnInit {
     bankBranch: [],
     bankSwiftCode: [],
     bankPhysicalAddress: [],
-    locallyDomiciled: [],
+    domicile: [],
     taxAuthorityRef: []
   });
 
@@ -53,7 +53,7 @@ export class DealerUpdateComponent implements OnInit {
       bankBranch: dealer.bankBranch,
       bankSwiftCode: dealer.bankSwiftCode,
       bankPhysicalAddress: dealer.bankPhysicalAddress,
-      locallyDomiciled: dealer.locallyDomiciled,
+      domicile: dealer.domicile,
       taxAuthorityRef: dealer.taxAuthorityRef
     });
   }
@@ -86,7 +86,7 @@ export class DealerUpdateComponent implements OnInit {
       bankBranch: this.editForm.get(['bankBranch']).value,
       bankSwiftCode: this.editForm.get(['bankSwiftCode']).value,
       bankPhysicalAddress: this.editForm.get(['bankPhysicalAddress']).value,
-      locallyDomiciled: this.editForm.get(['locallyDomiciled']).value,
+      domicile: this.editForm.get(['domicile']).value,
       taxAuthorityRef: this.editForm.get(['taxAuthorityRef']).value
     };
     return entity;

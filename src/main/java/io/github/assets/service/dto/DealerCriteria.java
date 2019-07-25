@@ -65,7 +65,7 @@ public class DealerCriteria implements Serializable, Criteria {
 
     private StringFilter bankPhysicalAddress;
 
-    private BooleanFilter locallyDomiciled;
+    private StringFilter domicile;
 
     private StringFilter taxAuthorityRef;
 
@@ -86,7 +86,7 @@ public class DealerCriteria implements Serializable, Criteria {
         this.bankBranch = other.bankBranch == null ? null : other.bankBranch.copy();
         this.bankSwiftCode = other.bankSwiftCode == null ? null : other.bankSwiftCode.copy();
         this.bankPhysicalAddress = other.bankPhysicalAddress == null ? null : other.bankPhysicalAddress.copy();
-        this.locallyDomiciled = other.locallyDomiciled == null ? null : other.locallyDomiciled.copy();
+        this.domicile = other.domicile == null ? null : other.domicile.copy();
         this.taxAuthorityRef = other.taxAuthorityRef == null ? null : other.taxAuthorityRef.copy();
         this.fixedAssetInvoiceId = other.fixedAssetInvoiceId == null ? null : other.fixedAssetInvoiceId.copy();
     }
@@ -184,12 +184,12 @@ public class DealerCriteria implements Serializable, Criteria {
         this.bankPhysicalAddress = bankPhysicalAddress;
     }
 
-    public BooleanFilter getLocallyDomiciled() {
-        return locallyDomiciled;
+    public StringFilter getDomicile() {
+        return domicile;
     }
 
-    public void setLocallyDomiciled(BooleanFilter locallyDomiciled) {
-        this.locallyDomiciled = locallyDomiciled;
+    public void setDomicile(StringFilter domicile) {
+        this.domicile = domicile;
     }
 
     public StringFilter getTaxAuthorityRef() {
@@ -230,7 +230,7 @@ public class DealerCriteria implements Serializable, Criteria {
             Objects.equals(bankBranch, that.bankBranch) &&
             Objects.equals(bankSwiftCode, that.bankSwiftCode) &&
             Objects.equals(bankPhysicalAddress, that.bankPhysicalAddress) &&
-            Objects.equals(locallyDomiciled, that.locallyDomiciled) &&
+            Objects.equals(domicile, that.domicile) &&
             Objects.equals(taxAuthorityRef, that.taxAuthorityRef) &&
             Objects.equals(fixedAssetInvoiceId, that.fixedAssetInvoiceId);
     }
@@ -249,7 +249,7 @@ public class DealerCriteria implements Serializable, Criteria {
         bankBranch,
         bankSwiftCode,
         bankPhysicalAddress,
-        locallyDomiciled,
+        domicile,
         taxAuthorityRef,
         fixedAssetInvoiceId
         );
@@ -269,7 +269,7 @@ public class DealerCriteria implements Serializable, Criteria {
                 (bankBranch != null ? "bankBranch=" + bankBranch + ", " : "") +
                 (bankSwiftCode != null ? "bankSwiftCode=" + bankSwiftCode + ", " : "") +
                 (bankPhysicalAddress != null ? "bankPhysicalAddress=" + bankPhysicalAddress + ", " : "") +
-                (locallyDomiciled != null ? "locallyDomiciled=" + locallyDomiciled + ", " : "") +
+                (domicile != null ? "domicile=" + domicile + ", " : "") +
                 (taxAuthorityRef != null ? "taxAuthorityRef=" + taxAuthorityRef + ", " : "") +
                 (fixedAssetInvoiceId != null ? "fixedAssetInvoiceId=" + fixedAssetInvoiceId + ", " : "") +
             "}";

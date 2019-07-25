@@ -29,7 +29,7 @@ export interface IDealer {
   bankBranch?: string;
   bankSwiftCode?: string;
   bankPhysicalAddress?: string;
-  locallyDomiciled?: boolean;
+  domicile?: string;
   taxAuthorityRef?: string;
   fixedAssetInvoices?: IFixedAssetInvoice[];
 }
@@ -47,10 +47,8 @@ export class Dealer implements IDealer {
     public bankBranch?: string,
     public bankSwiftCode?: string,
     public bankPhysicalAddress?: string,
-    public locallyDomiciled?: boolean,
+    public domicile?: string,
     public taxAuthorityRef?: string,
     public fixedAssetInvoices?: IFixedAssetInvoice[]
-  ) {
-    this.locallyDomiciled = this.locallyDomiciled || false;
-  }
+  ) {}
 }
