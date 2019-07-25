@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="assetDisposal">
+            <h2><span>Asset Disposal</span> {{assetDisposal.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{assetDisposal.description}}</span>
+                </dd>
+                <dt><span>Disposal Date</span></dt>
+                <dd>
+                    <span>{{assetDisposal.disposalDate}}</span>
+                </dd>
+                <dt><span>Asset Category Id</span></dt>
+                <dd>
+                    <span>{{assetDisposal.assetCategoryId}}</span>
+                </dd>
+                <dt><span>Asset Item Id</span></dt>
+                <dd>
+                    <span>{{assetDisposal.assetItemId}}</span>
+                </dd>
+                <dt><span>Disposal Proceeds</span></dt>
+                <dd>
+                    <span>{{assetDisposal.disposalProceeds}}</span>
+                </dd>
+                <dt><span>Net Book Value</span></dt>
+                <dd>
+                    <span>{{assetDisposal.netBookValue}}</span>
+                </dd>
+                <dt><span>Profit On Disposal</span></dt>
+                <dd>
+                    <span>{{assetDisposal.profitOnDisposal}}</span>
+                </dd>
+                <dt><span>Scanned Document Id</span></dt>
+                <dd>
+                    <span>{{assetDisposal.scannedDocumentId}}</span>
+                </dd>
+                <dt><span>Asset Dealer Id</span></dt>
+                <dd>
+                    <span>{{assetDisposal.assetDealerId}}</span>
+                </dd>
+                <dt><span>Asset Picture</span></dt>
+                <dd>
+                    <div *ngIf="assetDisposal.assetPicture">
+                        <a (click)="openFile(assetDisposal.assetPictureContentType, assetDisposal.assetPicture)">
+                            <img [src]="'data:' + assetDisposal.assetPictureContentType + ';base64,' + assetDisposal.assetPicture" style="max-width: 100%;" alt="assetDisposal image"/>
+                        </a>
+                        {{assetDisposal.assetPictureContentType}}, {{byteSize(assetDisposal.assetPicture)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/asset-disposal', assetDisposal.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
