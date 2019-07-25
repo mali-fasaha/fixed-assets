@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity TransactionApproval.
+    -->
+    <changeSet id="20190725183036-1" author="jhipster">
+        <createTable tableName="transaction_approval">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="requested_by" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="recommended_by" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_transaction_approval_recommended_by" />
+            </column>
+
+            <column name="reviewed_by" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_transaction_approval_reviewed_by" />
+            </column>
+
+            <column name="first_approver" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_transaction_approval_first_approver" />
+            </column>
+
+            <column name="second_approver" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_transaction_approval_second_approver" />
+            </column>
+
+            <column name="third_approver" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_transaction_approval_third_approver" />
+            </column>
+
+            <column name="fourth_approver" type="varchar(255)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_transaction_approval_fourth_approver" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+
+    </changeSet>
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20190725183036-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/transaction_approval.csv"
+                  separator=";"
+                  tableName="transaction_approval"
+                  context="dev">
+            <column name="id" type="numeric"/>
+            <column name="description" type="string"/>
+            <column name="requested_by" type="numeric"/>
+            <column name="recommended_by" type="string"/>
+            <column name="reviewed_by" type="string"/>
+            <column name="first_approver" type="string"/>
+            <column name="second_approver" type="string"/>
+            <column name="third_approver" type="string"/>
+            <column name="fourth_approver" type="string"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="20190725183036-1-relations" author="jhipster">
+
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

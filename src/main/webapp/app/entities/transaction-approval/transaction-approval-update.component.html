@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-transaction-approval-heading">Create or edit a Transaction Approval</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!transactionApproval.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_requestedBy">Requested By</label>
+                    <input type="number" class="form-control" name="requestedBy" id="field_requestedBy"
+                           formControlName="requestedBy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_recommendedBy">Recommended By</label>
+                    <input type="text" class="form-control" name="recommendedBy" id="field_recommendedBy"
+                           formControlName="recommendedBy"/>
+                    <div *ngIf="editForm.get('recommendedBy').invalid && (editForm.get('recommendedBy').dirty || editForm.get('recommendedBy').touched)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reviewedBy">Reviewed By</label>
+                    <input type="text" class="form-control" name="reviewedBy" id="field_reviewedBy"
+                           formControlName="reviewedBy"/>
+                    <div *ngIf="editForm.get('reviewedBy').invalid && (editForm.get('reviewedBy').dirty || editForm.get('reviewedBy').touched)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstApprover">First Approver</label>
+                    <input type="text" class="form-control" name="firstApprover" id="field_firstApprover"
+                           formControlName="firstApprover"/>
+                    <div *ngIf="editForm.get('firstApprover').invalid && (editForm.get('firstApprover').dirty || editForm.get('firstApprover').touched)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_secondApprover">Second Approver</label>
+                    <input type="text" class="form-control" name="secondApprover" id="field_secondApprover"
+                           formControlName="secondApprover"/>
+                    <div *ngIf="editForm.get('secondApprover').invalid && (editForm.get('secondApprover').dirty || editForm.get('secondApprover').touched)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_thirdApprover">Third Approver</label>
+                    <input type="text" class="form-control" name="thirdApprover" id="field_thirdApprover"
+                           formControlName="thirdApprover"/>
+                    <div *ngIf="editForm.get('thirdApprover').invalid && (editForm.get('thirdApprover').dirty || editForm.get('thirdApprover').touched)">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fourthApprover">Fourth Approver</label>
+                    <input type="text" class="form-control" name="fourthApprover" id="field_fourthApprover"
+                           formControlName="fourthApprover"/>
+                    <div *ngIf="editForm.get('fourthApprover').invalid && (editForm.get('fourthApprover').dirty || editForm.get('fourthApprover').touched)">
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

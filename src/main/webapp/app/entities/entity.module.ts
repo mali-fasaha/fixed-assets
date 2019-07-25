@@ -91,6 +91,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'employee',
         loadChildren: './employee/employee.module#FixedAssetsEmployeeModule'
+      },
+      {
+        path: 'transaction-approval',
+        loadChildren: './transaction-approval/transaction-approval.module#FixedAssetsTransactionApprovalModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
