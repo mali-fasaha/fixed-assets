@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="capitalWorkInProgress">
+            <h2><span>Capital Work In Progress</span> {{capitalWorkInProgress.id}}</h2>
+            <hr>
+            <gha-alert-error></gha-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Transaction Month</span></dt>
+                <dd>
+                    <span>{{capitalWorkInProgress.transactionMonth}}</span>
+                </dd>
+                <dt><span>Asset Serial Tag</span></dt>
+                <dd>
+                    <span>{{capitalWorkInProgress.assetSerialTag}}</span>
+                </dd>
+                <dt><span>Service Outlet Code</span></dt>
+                <dd>
+                    <span>{{capitalWorkInProgress.serviceOutletCode}}</span>
+                </dd>
+                <dt><span>Transaction Id</span></dt>
+                <dd>
+                    <span>{{capitalWorkInProgress.transactionId}}</span>
+                </dd>
+                <dt><span>Transaction Details</span></dt>
+                <dd>
+                    <span>{{capitalWorkInProgress.transactionDetails}}</span>
+                </dd>
+                <dt><span>Transaction Amount</span></dt>
+                <dd>
+                    <span>{{capitalWorkInProgress.transactionAmount}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/capital-work-in-progress', capitalWorkInProgress.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
