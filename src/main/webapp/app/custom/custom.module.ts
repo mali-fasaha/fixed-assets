@@ -8,6 +8,7 @@ import { NavigationModule } from './navigation/navigation.module';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { AppDataTablesModule } from './app-data-tables/app-data-tables.module';
 import { ReportingModule } from './reporting/reporting.module';
+import { SideNavigationModule } from './side-navigation/side-navigation.module';
 
 @NgModule({
   declarations: [],
@@ -18,8 +19,9 @@ import { ReportingModule } from './reporting/reporting.module';
     NavigationModule,
     QuestionnaireModule,
     AppDataTablesModule,
-    ReportingModule
+    ReportingModule,
+    SideNavigationModule
   ],
-  exports: [AboutFixedAssetsModule, AboutFixedAssetsRoutingModule, NavigationModule]
+  exports: [AboutFixedAssetsModule, AboutFixedAssetsRoutingModule, NavigationModule, SideNavigationModule]
 })
 export class CustomModule {}
