@@ -99,6 +99,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'asset-transaction',
         loadChildren: './asset-transaction/asset-transaction.module#FixedAssetsAssetTransactionModule'
+      },
+      {
+        path: 'message-token',
+        loadChildren: './message-token/message-token.module#FixedAssetsMessageTokenModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
