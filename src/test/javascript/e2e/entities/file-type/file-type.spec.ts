@@ -1,0 +1,72 @@
+/* tslint:disable no-unused-expression */
+import { browser, ExpectedConditions as ec, promise } from 'protractor';
+import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
+
+import { FileTypeComponentsPage, FileTypeDeleteDialog, FileTypeUpdatePage } from './file-type.page-object';
+
+const expect = chai.expect;
+
+describe('FileType e2e test', () => {
+  let navBarPage: NavBarPage;
+  let signInPage: SignInPage;
+  let fileTypeUpdatePage: FileTypeUpdatePage;
+  let fileTypeComponentsPage: FileTypeComponentsPage;
+  let fileTypeDeleteDialog: FileTypeDeleteDialog;
+
+  before(async () => {
+    await browser.get('/');
+    navBarPage = new NavBarPage();
+    signInPage = await navBarPage.getSignInPage();
+    await signInPage.autoSignInUsing('admin', 'admin');
+    await browser.wait(ec.visibilityOf(navBarPage.entityMenu), 5000);
+  });
+
+  it('should load FileTypes', async () => {
+    await navBarPage.goToEntity('file-type');
+    fileTypeComponentsPage = new FileTypeComponentsPage();
+    await browser.wait(ec.visibilityOf(fileTypeComponentsPage.title), 5000);
+    expect(await fileTypeComponentsPage.getTitle()).to.eq('File Types');
+  });
+
+  it('should load create FileType page', async () => {
+    await fileTypeComponentsPage.clickOnCreateButton();
+    fileTypeUpdatePage = new FileTypeUpdatePage();
+    expect(await fileTypeUpdatePage.getPageTitle()).to.eq('Create or edit a File Type');
+    await fileTypeUpdatePage.cancel();
+  });
+
+  it('should create and save FileTypes', async () => {
+    const nbButtonsBeforeCreate = await fileTypeComponentsPage.countDeleteButtons();
+
+    await fileTypeComponentsPage.clickOnCreateButton();
+    await promise.all([
+      fileTypeUpdatePage.setFileTypeNameInput('fileTypeName'),
+      fileTypeUpdatePage.fileMediumTypeSelectLastOption(),
+      fileTypeUpdatePage.setDescriptionInput('description')
+    ]);
+    expect(await fileTypeUpdatePage.getFileTypeNameInput()).to.eq(
+      'fileTypeName',
+      'Expected FileTypeName value to be equals to fileTypeName'
+    );
+    expect(await fileTypeUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
+    await fileTypeUpdatePage.save();
+    expect(await fileTypeUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+
+    expect(await fileTypeComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+  });
+
+  it('should delete last FileType', async () => {
+    const nbButtonsBeforeDelete = await fileTypeComponentsPage.countDeleteButtons();
+    await fileTypeComponentsPage.clickOnLastDeleteButton();
+
+    fileTypeDeleteDialog = new FileTypeDeleteDialog();
+    expect(await fileTypeDeleteDialog.getDialogTitle()).to.eq('Are you sure you want to delete this File Type?');
+    await fileTypeDeleteDialog.clickOnConfirmButton();
+
+    expect(await fileTypeComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+  });
+
+  after(async () => {
+    await navBarPage.autoSignOut();
+  });
+});

@@ -103,6 +103,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'message-token',
         loadChildren: './message-token/message-token.module#FixedAssetsMessageTokenModule'
+      },
+      {
+        path: 'file-type',
+        loadChildren: './file-type/file-type.module#FixedAssetsFileTypeModule'
+      },
+      {
+        path: 'file-upload',
+        loadChildren: './file-upload/file-upload.module#FixedAssetsFileUploadModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

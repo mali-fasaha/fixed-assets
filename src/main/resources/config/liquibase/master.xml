@@ -31,6 +31,8 @@
     <include file="config/liquibase/changelog/20190725182420_added_entity_Employee.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190725183036_added_entity_TransactionApproval.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190726061845_added_entity_MessageToken.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190726070646_added_entity_FileType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190726071459_added_entity_FileUpload.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190717061217_added_entity_constraints_FixedAssetInvoice.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

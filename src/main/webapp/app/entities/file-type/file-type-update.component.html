@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="gha-file-type-heading">Create or edit a File Type</h2>
+            <div>
+                <gha-alert-error></gha-alert-error>
+                <div class="form-group" [hidden]="!fileType.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileTypeName">File Type Name</label>
+                    <input type="text" class="form-control" name="fileTypeName" id="field_fileTypeName"
+                           formControlName="fileTypeName"/>
+                    <div *ngIf="editForm.get('fileTypeName').invalid && (editForm.get('fileTypeName').dirty || editForm.get('fileTypeName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fileTypeName').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileMediumType">File Medium Type</label>
+                    <select class="form-control" name="fileMediumType" formControlName="fileMediumType" id="field_fileMediumType">
+                        <option value="EXCEL">EXCEL</option>
+                        <option value="PDF">PDF</option>
+                        <option value="POWERPOINT">POWERPOINT</option>
+                        <option value="DOC">DOC</option>
+                        <option value="TEXT">TEXT</option>
+                        <option value="JSON">JSON</option>
+                        <option value="HTML5">HTML5</option>
+                    </select>
+                    <div *ngIf="editForm.get('fileMediumType').invalid && (editForm.get('fileMediumType').dirty || editForm.get('fileMediumType').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fileMediumType').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
