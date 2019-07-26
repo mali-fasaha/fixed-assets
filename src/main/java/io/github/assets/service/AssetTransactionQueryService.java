@@ -85,10 +85,8 @@ public class AssetTransactionQueryService extends QueryService<AssetTransaction>
     }
 
     /**
-     * Function to convert ConsumerCriteria to a {@link Specification}
-     * @param criteria The object which holds all the filters, which the entities should match.
-     * @return the matching {@link Specification} of the entity.
-     */    
+     * Function to convert AssetTransactionCriteria to a {@link Specification}.
+     */
     private Specification<AssetTransaction> createSpecification(AssetTransactionCriteria criteria) {
         Specification<AssetTransaction> specification = Specification.where(null);
         if (criteria != null) {
@@ -103,6 +101,9 @@ public class AssetTransactionQueryService extends QueryService<AssetTransaction>
             }
             if (criteria.getScannedDocumentId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getScannedDocumentId(), AssetTransaction_.scannedDocumentId));
+            }
+            if (criteria.getTransactionApprovalId() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getTransactionApprovalId(), AssetTransaction_.transactionApprovalId));
             }
         }
         return specification;

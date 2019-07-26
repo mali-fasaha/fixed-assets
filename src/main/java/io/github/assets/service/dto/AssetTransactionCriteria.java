@@ -33,6 +33,8 @@ public class AssetTransactionCriteria implements Serializable, Criteria {
 
     private LongFilter scannedDocumentId;
 
+    private LongFilter transactionApprovalId;
+
     public AssetTransactionCriteria(){
     }
 
@@ -41,6 +43,7 @@ public class AssetTransactionCriteria implements Serializable, Criteria {
         this.transactionReference = other.transactionReference == null ? null : other.transactionReference.copy();
         this.transactionDate = other.transactionDate == null ? null : other.transactionDate.copy();
         this.scannedDocumentId = other.scannedDocumentId == null ? null : other.scannedDocumentId.copy();
+        this.transactionApprovalId = other.transactionApprovalId == null ? null : other.transactionApprovalId.copy();
     }
 
     @Override
@@ -80,6 +83,14 @@ public class AssetTransactionCriteria implements Serializable, Criteria {
         this.scannedDocumentId = scannedDocumentId;
     }
 
+    public LongFilter getTransactionApprovalId() {
+        return transactionApprovalId;
+    }
+
+    public void setTransactionApprovalId(LongFilter transactionApprovalId) {
+        this.transactionApprovalId = transactionApprovalId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -94,7 +105,8 @@ public class AssetTransactionCriteria implements Serializable, Criteria {
             Objects.equals(id, that.id) &&
             Objects.equals(transactionReference, that.transactionReference) &&
             Objects.equals(transactionDate, that.transactionDate) &&
-            Objects.equals(scannedDocumentId, that.scannedDocumentId);
+            Objects.equals(scannedDocumentId, that.scannedDocumentId) &&
+            Objects.equals(transactionApprovalId, that.transactionApprovalId);
     }
 
     @Override
@@ -103,7 +115,8 @@ public class AssetTransactionCriteria implements Serializable, Criteria {
         id,
         transactionReference,
         transactionDate,
-        scannedDocumentId
+        scannedDocumentId,
+        transactionApprovalId
         );
     }
 
@@ -114,6 +127,7 @@ public class AssetTransactionCriteria implements Serializable, Criteria {
                 (transactionReference != null ? "transactionReference=" + transactionReference + ", " : "") +
                 (transactionDate != null ? "transactionDate=" + transactionDate + ", " : "") +
                 (scannedDocumentId != null ? "scannedDocumentId=" + scannedDocumentId + ", " : "") +
+                (transactionApprovalId != null ? "transactionApprovalId=" + transactionApprovalId + ", " : "") +
             "}";
     }
 

@@ -19,6 +19,8 @@ public class AssetTransactionDTO implements Serializable {
 
     private Long scannedDocumentId;
 
+    private Long transactionApprovalId;
+
 
     public Long getId() {
         return id;
@@ -52,6 +54,14 @@ public class AssetTransactionDTO implements Serializable {
         this.scannedDocumentId = scannedDocumentId;
     }
 
+    public Long getTransactionApprovalId() {
+        return transactionApprovalId;
+    }
+
+    public void setTransactionApprovalId(Long transactionApprovalId) {
+        this.transactionApprovalId = transactionApprovalId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -80,6 +90,7 @@ public class AssetTransactionDTO implements Serializable {
             ", transactionReference='" + getTransactionReference() + "'" +
             ", transactionDate='" + getTransactionDate() + "'" +
             ", scannedDocumentId=" + getScannedDocumentId() +
+            ", transactionApprovalId=" + getTransactionApprovalId() +
             "}";
     }
 }

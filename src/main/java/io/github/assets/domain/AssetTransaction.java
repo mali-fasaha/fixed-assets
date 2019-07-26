@@ -1,4 +1,6 @@
 package io.github.assets.domain;
+
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +10,7 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * A AssetTransaction.
@@ -36,6 +39,9 @@ public class AssetTransaction implements Serializable {
 
     @Column(name = "scanned_document_id")
     private Long scannedDocumentId;
+
+    @Column(name = "transaction_approval_id")
+    private Long transactionApprovalId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -84,6 +90,19 @@ public class AssetTransaction implements Serializable {
     public void setScannedDocumentId(Long scannedDocumentId) {
         this.scannedDocumentId = scannedDocumentId;
     }
+
+    public Long getTransactionApprovalId() {
+        return transactionApprovalId;
+    }
+
+    public AssetTransaction transactionApprovalId(Long transactionApprovalId) {
+        this.transactionApprovalId = transactionApprovalId;
+        return this;
+    }
+
+    public void setTransactionApprovalId(Long transactionApprovalId) {
+        this.transactionApprovalId = transactionApprovalId;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -109,6 +128,7 @@ public class AssetTransaction implements Serializable {
             ", transactionReference='" + getTransactionReference() + "'" +
             ", transactionDate='" + getTransactionDate() + "'" +
             ", scannedDocumentId=" + getScannedDocumentId() +
+            ", transactionApprovalId=" + getTransactionApprovalId() +
             "}";
     }
 }

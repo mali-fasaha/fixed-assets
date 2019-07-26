@@ -12,6 +12,7 @@ import { AssetTransactionService } from './asset-transaction.service';
   templateUrl: './asset-transaction-update.component.html'
 })
 export class AssetTransactionUpdateComponent implements OnInit {
+  assetTransaction: IAssetTransaction;
   isSaving: boolean;
   transactionDateDp: any;
 
@@ -19,7 +20,8 @@ export class AssetTransactionUpdateComponent implements OnInit {
     id: [],
     transactionReference: [null, [Validators.required]],
     transactionDate: [null, [Validators.required]],
-    scannedDocumentId: []
+    scannedDocumentId: [],
+    transactionApprovalId: []
   });
 
   constructor(
@@ -32,6 +34,7 @@ export class AssetTransactionUpdateComponent implements OnInit {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ assetTransaction }) => {
       this.updateForm(assetTransaction);
+      this.assetTransaction = assetTransaction;
     });
   }
 
@@ -40,7 +43,8 @@ export class AssetTransactionUpdateComponent implements OnInit {
       id: assetTransaction.id,
       transactionReference: assetTransaction.transactionReference,
       transactionDate: assetTransaction.transactionDate,
-      scannedDocumentId: assetTransaction.scannedDocumentId
+      scannedDocumentId: assetTransaction.scannedDocumentId,
+      transactionApprovalId: assetTransaction.transactionApprovalId
     });
   }
 
@@ -59,17 +63,19 @@ export class AssetTransactionUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IAssetTransaction {
-    return {
+    const entity = {
       ...new AssetTransaction(),
       id: this.editForm.get(['id']).value,
       transactionReference: this.editForm.get(['transactionReference']).value,
       transactionDate: this.editForm.get(['transactionDate']).value,
-      scannedDocumentId: this.editForm.get(['scannedDocumentId']).value
+      scannedDocumentId: this.editForm.get(['scannedDocumentId']).value,
+      transactionApprovalId: this.editForm.get(['transactionApprovalId']).value
     };
+    return entity;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IAssetTransaction>>) {
-    result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
+    result.subscribe((res: HttpResponse<IAssetTransaction>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
   }
 
   protected onSaveSuccess() {

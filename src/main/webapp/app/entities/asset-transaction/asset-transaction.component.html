@@ -25,10 +25,7 @@
         </div>
     </div>
     <br/>
-    <div class="alert alert-warning" *ngIf="assetTransactions?.length === 0">
-        <span>No assetTransactions found</span>
-    </div>
-    <div class="table-responsive" *ngIf="assetTransactions?.length > 0">
+    <div class="table-responsive" *ngIf="assetTransactions">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -36,6 +33,7 @@
             <th jhiSortBy="transactionReference"><span>Transaction Reference</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="transactionDate"><span>Transaction Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="scannedDocumentId"><span>Scanned Document Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transactionApprovalId"><span>Transaction Approval Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -45,6 +43,7 @@
                 <td>{{assetTransaction.transactionReference}}</td>
                 <td>{{assetTransaction.transactionDate | date:'mediumDate'}}</td>
                 <td>{{assetTransaction.scannedDocumentId}}</td>
+                <td>{{assetTransaction.transactionApprovalId}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
@@ -73,7 +72,7 @@
             </tbody>
         </table>
     </div>
-    <div [hidden]="assetTransactions?.length === 0">
+    <div *ngIf="assetTransactions && assetTransactions.length">
         <div class="row justify-content-center">
             <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>

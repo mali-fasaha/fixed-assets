@@ -5,6 +5,7 @@ export interface IAssetTransaction {
   transactionReference?: string;
   transactionDate?: Moment;
   scannedDocumentId?: number;
+  transactionApprovalId?: number;
 }
 
 export class AssetTransaction implements IAssetTransaction {
@@ -12,6 +13,7 @@ export class AssetTransaction implements IAssetTransaction {
     public id?: number,
     public transactionReference?: string,
     public transactionDate?: Moment,
-    public scannedDocumentId?: number
+    public scannedDocumentId?: number,
+    public transactionApprovalId?: number
   ) {}
 }

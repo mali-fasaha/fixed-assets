@@ -27,7 +27,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new AssetTransaction(0, 'AAAAAAA', currentDate, 0);
+      elemDefault = new AssetTransaction(0, 'AAAAAAA', currentDate, 0, 0);
     });
 
     describe('Service methods', () => {
@@ -76,7 +76,8 @@ describe('Service Tests', () => {
           {
             transactionReference: 'BBBBBB',
             transactionDate: currentDate.format(DATE_FORMAT),
-            scannedDocumentId: 1
+            scannedDocumentId: 1,
+            transactionApprovalId: 1
           },
           elemDefault
         );
@@ -101,7 +102,8 @@ describe('Service Tests', () => {
           {
             transactionReference: 'BBBBBB',
             transactionDate: currentDate.format(DATE_FORMAT),
-            scannedDocumentId: 1
+            scannedDocumentId: 1,
+            transactionApprovalId: 1
           },
           elemDefault
         );

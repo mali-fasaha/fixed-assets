@@ -1,9 +1,9 @@
 version: '2'
 services:
-  fixedassets-elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.3
+  fixedAssets-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.13
     # volumes:
-    #     - ~/volumes/jhipster/fixedAssets/elasticsearch/:/usr/share/elasticsearch/data/
+    #     - ~/volumes/jhipster/preps/elasticsearch/:/usr/share/elasticsearch/data/
     ports:
       - 9200:9200
       - 9300:9300

@@ -42,7 +42,8 @@ describe('AssetTransaction e2e test', () => {
     await promise.all([
       assetTransactionUpdatePage.setTransactionReferenceInput('transactionReference'),
       assetTransactionUpdatePage.setTransactionDateInput('2000-12-31'),
-      assetTransactionUpdatePage.setScannedDocumentIdInput('5')
+      assetTransactionUpdatePage.setScannedDocumentIdInput('5'),
+      assetTransactionUpdatePage.setTransactionApprovalIdInput('5')
     ]);
     expect(await assetTransactionUpdatePage.getTransactionReferenceInput()).to.eq(
       'transactionReference',
@@ -53,6 +54,10 @@ describe('AssetTransaction e2e test', () => {
       'Expected transactionDate value to be equals to 2000-12-31'
     );
     expect(await assetTransactionUpdatePage.getScannedDocumentIdInput()).to.eq('5', 'Expected scannedDocumentId value to be equals to 5');
+    expect(await assetTransactionUpdatePage.getTransactionApprovalIdInput()).to.eq(
+      '5',
+      'Expected transactionApprovalId value to be equals to 5'
+    );
     await assetTransactionUpdatePage.save();
     expect(await assetTransactionUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 

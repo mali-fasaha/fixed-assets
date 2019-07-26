@@ -98,8 +98,6 @@ public class AssetTransactionResource {
      * {@code GET  /asset-transactions} : get all the assetTransactions.
      *
      * @param pageable the pagination information.
-     * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of assetTransactions in body.
      */
@@ -155,8 +153,6 @@ public class AssetTransactionResource {
      *
      * @param query the query of the assetTransaction search.
      * @param pageable the pagination information.
-     * @param queryParams a {@link MultiValueMap} query parameters.
-     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the result of the search.
      */
     @GetMapping("/_search/asset-transactions")

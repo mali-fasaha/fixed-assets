@@ -21,7 +21,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +43,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@Link AssetTransactionResource} REST controller.
  */
-@EmbeddedKafka
 @SpringBootTest(classes = FixedAssetsApp.class)
 public class AssetTransactionResourceIT {
 
@@ -56,6 +54,9 @@ public class AssetTransactionResourceIT {
 
     private static final Long DEFAULT_SCANNED_DOCUMENT_ID = 1L;
     private static final Long UPDATED_SCANNED_DOCUMENT_ID = 2L;
+
+    private static final Long DEFAULT_TRANSACTION_APPROVAL_ID = 1L;
+    private static final Long UPDATED_TRANSACTION_APPROVAL_ID = 2L;
 
     @Autowired
     private AssetTransactionRepository assetTransactionRepository;
@@ -118,7 +119,8 @@ public class AssetTransactionResourceIT {
         AssetTransaction assetTransaction = new AssetTransaction()
             .transactionReference(DEFAULT_TRANSACTION_REFERENCE)
             .transactionDate(DEFAULT_TRANSACTION_DATE)
-            .scannedDocumentId(DEFAULT_SCANNED_DOCUMENT_ID);
+            .scannedDocumentId(DEFAULT_SCANNED_DOCUMENT_ID)
+            .transactionApprovalId(DEFAULT_TRANSACTION_APPROVAL_ID);
         return assetTransaction;
     }
     /**
@@ -131,7 +133,8 @@ public class AssetTransactionResourceIT {
         AssetTransaction assetTransaction = new AssetTransaction()
             .transactionReference(UPDATED_TRANSACTION_REFERENCE)
             .transactionDate(UPDATED_TRANSACTION_DATE)
-            .scannedDocumentId(UPDATED_SCANNED_DOCUMENT_ID);
+            .scannedDocumentId(UPDATED_SCANNED_DOCUMENT_ID)
+            .transactionApprovalId(UPDATED_TRANSACTION_APPROVAL_ID);
         return assetTransaction;
     }
 
@@ -159,6 +162,7 @@ public class AssetTransactionResourceIT {
         assertThat(testAssetTransaction.getTransactionReference()).isEqualTo(DEFAULT_TRANSACTION_REFERENCE);
         assertThat(testAssetTransaction.getTransactionDate()).isEqualTo(DEFAULT_TRANSACTION_DATE);
         assertThat(testAssetTransaction.getScannedDocumentId()).isEqualTo(DEFAULT_SCANNED_DOCUMENT_ID);
+        assertThat(testAssetTransaction.getTransactionApprovalId()).isEqualTo(DEFAULT_TRANSACTION_APPROVAL_ID);
 
         // Validate the AssetTransaction in Elasticsearch
         verify(mockAssetTransactionSearchRepository, times(1)).save(testAssetTransaction);
@@ -239,7 +243,8 @@ public class AssetTransactionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(assetTransaction.getId().intValue())))
             .andExpect(jsonPath("$.[*].transactionReference").value(hasItem(DEFAULT_TRANSACTION_REFERENCE.toString())))
             .andExpect(jsonPath("$.[*].transactionDate").value(hasItem(DEFAULT_TRANSACTION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].scannedDocumentId").value(hasItem(DEFAULT_SCANNED_DOCUMENT_ID.intValue())));
+            .andExpect(jsonPath("$.[*].scannedDocumentId").value(hasItem(DEFAULT_SCANNED_DOCUMENT_ID.intValue())))
+            .andExpect(jsonPath("$.[*].transactionApprovalId").value(hasItem(DEFAULT_TRANSACTION_APPROVAL_ID.intValue())));
     }
     
     @Test
@@ -255,7 +260,8 @@ public class AssetTransactionResourceIT {
             .andExpect(jsonPath("$.id").value(assetTransaction.getId().intValue()))
             .andExpect(jsonPath("$.transactionReference").value(DEFAULT_TRANSACTION_REFERENCE.toString()))
             .andExpect(jsonPath("$.transactionDate").value(DEFAULT_TRANSACTION_DATE.toString()))
-            .andExpect(jsonPath("$.scannedDocumentId").value(DEFAULT_SCANNED_DOCUMENT_ID.intValue()));
+            .andExpect(jsonPath("$.scannedDocumentId").value(DEFAULT_SCANNED_DOCUMENT_ID.intValue()))
+            .andExpect(jsonPath("$.transactionApprovalId").value(DEFAULT_TRANSACTION_APPROVAL_ID.intValue()));
     }
 
     @Test
@@ -428,6 +434,72 @@ public class AssetTransactionResourceIT {
         defaultAssetTransactionShouldBeFound("scannedDocumentId.lessThan=" + UPDATED_SCANNED_DOCUMENT_ID);
     }
 
+
+    @Test
+    @Transactional
+    public void getAllAssetTransactionsByTransactionApprovalIdIsEqualToSomething() throws Exception {
+        // Initialize the database
+        assetTransactionRepository.saveAndFlush(assetTransaction);
+
+        // Get all the assetTransactionList where transactionApprovalId equals to DEFAULT_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldBeFound("transactionApprovalId.equals=" + DEFAULT_TRANSACTION_APPROVAL_ID);
+
+        // Get all the assetTransactionList where transactionApprovalId equals to UPDATED_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldNotBeFound("transactionApprovalId.equals=" + UPDATED_TRANSACTION_APPROVAL_ID);
+    }
+
+    @Test
+    @Transactional
+    public void getAllAssetTransactionsByTransactionApprovalIdIsInShouldWork() throws Exception {
+        // Initialize the database
+        assetTransactionRepository.saveAndFlush(assetTransaction);
+
+        // Get all the assetTransactionList where transactionApprovalId in DEFAULT_TRANSACTION_APPROVAL_ID or UPDATED_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldBeFound("transactionApprovalId.in=" + DEFAULT_TRANSACTION_APPROVAL_ID + "," + UPDATED_TRANSACTION_APPROVAL_ID);
+
+        // Get all the assetTransactionList where transactionApprovalId equals to UPDATED_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldNotBeFound("transactionApprovalId.in=" + UPDATED_TRANSACTION_APPROVAL_ID);
+    }
+
+    @Test
+    @Transactional
+    public void getAllAssetTransactionsByTransactionApprovalIdIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        assetTransactionRepository.saveAndFlush(assetTransaction);
+
+        // Get all the assetTransactionList where transactionApprovalId is not null
+        defaultAssetTransactionShouldBeFound("transactionApprovalId.specified=true");
+
+        // Get all the assetTransactionList where transactionApprovalId is null
+        defaultAssetTransactionShouldNotBeFound("transactionApprovalId.specified=false");
+    }
+
+    @Test
+    @Transactional
+    public void getAllAssetTransactionsByTransactionApprovalIdIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        assetTransactionRepository.saveAndFlush(assetTransaction);
+
+        // Get all the assetTransactionList where transactionApprovalId greater than or equals to DEFAULT_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldBeFound("transactionApprovalId.greaterOrEqualThan=" + DEFAULT_TRANSACTION_APPROVAL_ID);
+
+        // Get all the assetTransactionList where transactionApprovalId greater than or equals to UPDATED_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldNotBeFound("transactionApprovalId.greaterOrEqualThan=" + UPDATED_TRANSACTION_APPROVAL_ID);
+    }
+
+    @Test
+    @Transactional
+    public void getAllAssetTransactionsByTransactionApprovalIdIsLessThanSomething() throws Exception {
+        // Initialize the database
+        assetTransactionRepository.saveAndFlush(assetTransaction);
+
+        // Get all the assetTransactionList where transactionApprovalId less than or equals to DEFAULT_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldNotBeFound("transactionApprovalId.lessThan=" + DEFAULT_TRANSACTION_APPROVAL_ID);
+
+        // Get all the assetTransactionList where transactionApprovalId less than or equals to UPDATED_TRANSACTION_APPROVAL_ID
+        defaultAssetTransactionShouldBeFound("transactionApprovalId.lessThan=" + UPDATED_TRANSACTION_APPROVAL_ID);
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -438,7 +510,8 @@ public class AssetTransactionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(assetTransaction.getId().intValue())))
             .andExpect(jsonPath("$.[*].transactionReference").value(hasItem(DEFAULT_TRANSACTION_REFERENCE)))
             .andExpect(jsonPath("$.[*].transactionDate").value(hasItem(DEFAULT_TRANSACTION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].scannedDocumentId").value(hasItem(DEFAULT_SCANNED_DOCUMENT_ID.intValue())));
+            .andExpect(jsonPath("$.[*].scannedDocumentId").value(hasItem(DEFAULT_SCANNED_DOCUMENT_ID.intValue())))
+            .andExpect(jsonPath("$.[*].transactionApprovalId").value(hasItem(DEFAULT_TRANSACTION_APPROVAL_ID.intValue())));
 
         // Check, that the count call also returns 1
         restAssetTransactionMockMvc.perform(get("/api/asset-transactions/count?sort=id,desc&" + filter))
@@ -488,7 +561,8 @@ public class AssetTransactionResourceIT {
         updatedAssetTransaction
             .transactionReference(UPDATED_TRANSACTION_REFERENCE)
             .transactionDate(UPDATED_TRANSACTION_DATE)
-            .scannedDocumentId(UPDATED_SCANNED_DOCUMENT_ID);
+            .scannedDocumentId(UPDATED_SCANNED_DOCUMENT_ID)
+            .transactionApprovalId(UPDATED_TRANSACTION_APPROVAL_ID);
         AssetTransactionDTO assetTransactionDTO = assetTransactionMapper.toDto(updatedAssetTransaction);
 
         restAssetTransactionMockMvc.perform(put("/api/asset-transactions")
@@ -503,6 +577,7 @@ public class AssetTransactionResourceIT {
         assertThat(testAssetTransaction.getTransactionReference()).isEqualTo(UPDATED_TRANSACTION_REFERENCE);
         assertThat(testAssetTransaction.getTransactionDate()).isEqualTo(UPDATED_TRANSACTION_DATE);
         assertThat(testAssetTransaction.getScannedDocumentId()).isEqualTo(UPDATED_SCANNED_DOCUMENT_ID);
+        assertThat(testAssetTransaction.getTransactionApprovalId()).isEqualTo(UPDATED_TRANSACTION_APPROVAL_ID);
 
         // Validate the AssetTransaction in Elasticsearch
         verify(mockAssetTransactionSearchRepository, times(1)).save(testAssetTransaction);
@@ -543,7 +618,7 @@ public class AssetTransactionResourceIT {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isNoContent());
 
-        // Validate the database contains one less item
+        // Validate the database is empty
         List<AssetTransaction> assetTransactionList = assetTransactionRepository.findAll();
         assertThat(assetTransactionList).hasSize(databaseSizeBeforeDelete - 1);
 
@@ -565,7 +640,8 @@ public class AssetTransactionResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(assetTransaction.getId().intValue())))
             .andExpect(jsonPath("$.[*].transactionReference").value(hasItem(DEFAULT_TRANSACTION_REFERENCE)))
             .andExpect(jsonPath("$.[*].transactionDate").value(hasItem(DEFAULT_TRANSACTION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].scannedDocumentId").value(hasItem(DEFAULT_SCANNED_DOCUMENT_ID.intValue())));
+            .andExpect(jsonPath("$.[*].scannedDocumentId").value(hasItem(DEFAULT_SCANNED_DOCUMENT_ID.intValue())))
+            .andExpect(jsonPath("$.[*].transactionApprovalId").value(hasItem(DEFAULT_TRANSACTION_APPROVAL_ID.intValue())));
     }
 
     @Test

@@ -75,6 +75,7 @@ class AssetTransactionGatlingTest extends Simulation {
                 , "transactionReference":"SAMPLE_TEXT"
                 , "transactionDate":"2020-01-01T00:00:00.000Z"
                 , "scannedDocumentId":null
+                , "transactionApprovalId":null
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_assetTransaction_url"))).exitHereIfFailed

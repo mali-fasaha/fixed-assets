@@ -29,6 +29,7 @@ export class AssetTransactionUpdatePage {
   transactionReferenceInput = element(by.id('field_transactionReference'));
   transactionDateInput = element(by.id('field_transactionDate'));
   scannedDocumentIdInput = element(by.id('field_scannedDocumentId'));
+  transactionApprovalIdInput = element(by.id('field_transactionApprovalId'));
 
   async getPageTitle() {
     return this.pageTitle.getText();
@@ -56,6 +57,14 @@ export class AssetTransactionUpdatePage {
 
   async getScannedDocumentIdInput() {
     return await this.scannedDocumentIdInput.getAttribute('value');
+  }
+
+  async setTransactionApprovalIdInput(transactionApprovalId) {
+    await this.transactionApprovalIdInput.sendKeys(transactionApprovalId);
+  }
+
+  async getTransactionApprovalIdInput() {
+    return await this.transactionApprovalIdInput.getAttribute('value');
   }
 
   async save(timeout?: number) {

@@ -20,6 +20,10 @@
         {
             "fieldName": "scannedDocumentId",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "transactionApprovalId",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20190716120450",

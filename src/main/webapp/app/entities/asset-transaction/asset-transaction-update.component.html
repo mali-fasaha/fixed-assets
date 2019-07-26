@@ -4,7 +4,7 @@
             <h2 id="gha-asset-transaction-heading">Create or edit a Asset Transaction</h2>
             <div>
                 <gha-alert-error></gha-alert-error>
-                <div class="form-group" [hidden]="!editForm.get('id').value">
+                <div class="form-group" [hidden]="!assetTransaction.id">
                     <label for="id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
@@ -39,6 +39,11 @@
                     <label class="form-control-label" for="field_scannedDocumentId">Scanned Document Id</label>
                     <input type="number" class="form-control" name="scannedDocumentId" id="field_scannedDocumentId"
                            formControlName="scannedDocumentId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transactionApprovalId">Transaction Approval Id</label>
+                    <input type="number" class="form-control" name="transactionApprovalId" id="field_transactionApprovalId"
+                           formControlName="transactionApprovalId"/>
                 </div>
 
             </div>
