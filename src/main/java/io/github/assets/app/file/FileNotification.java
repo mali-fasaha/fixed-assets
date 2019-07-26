@@ -1,5 +1,6 @@
 package io.github.assets.app.file;
 
+import io.github.assets.domain.MessageToken;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +18,5 @@ public class FileNotification {
 
     private String filename;
 
-    private String token;
+    private MessageToken token;
 }
