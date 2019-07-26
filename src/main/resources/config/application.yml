@@ -134,13 +134,13 @@ jhipster:
   swagger:
     default-include-pattern: /api/.*
     title: fixedAssets API
-    description: fixedAssets API documentation
+    description: FixedAssets API documentation
     version: 0.0.1
     terms-of-service-url:
-    contact-name:
+    contact-name: Edwin Njeru
     contact-url:
-    contact-email:
-    license:
+    contact-email: me.njeru@outlook.com
+    license: MIT
     license-url:
 # ===================================================================
 # Application specific properties
