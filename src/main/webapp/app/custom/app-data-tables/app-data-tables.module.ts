@@ -7,6 +7,7 @@ import { AssetAcquisitionDataTableModule } from './asset-acquisition-data-table/
 import { AssetDepreciationDataTableModule } from './asset-depreciation-data-table/asset-depreciation-data-table.module';
 import { AssetDisposalDataTableModule } from './asset-disposal-data-table/asset-disposal-data-table.module';
 import { CapitalWipDataTableModule } from './capital-wip-data-table/capital-wip-data-table.module';
+import { CwipTransferDataTableModule } from './cwip-transfer-data-table/cwip-transfer-data-table.module';
 
 /**
  * This module exists to portray data components in the form of web tables that can be exported
@@ -21,7 +22,8 @@ import { CapitalWipDataTableModule } from './capital-wip-data-table/capital-wip-
     AssetAcquisitionDataTableModule,
     AssetDepreciationDataTableModule,
     AssetDisposalDataTableModule,
-    CapitalWipDataTableModule
+    CapitalWipDataTableModule,
+    CwipTransferDataTableModule
   ]
 })
 export class AppDataTablesModule {}
