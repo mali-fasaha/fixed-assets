@@ -18,13 +18,8 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: './custom/about-fixed-assets/about-fixed-assets.module#AboutFixedAssetsModule'
         },
         {
-          path: 'data-tables',
-          loadChildren: './custom/app-data-tables/asset-item-data-table/asset-item-data-table.module#AssetItemDataTableModule'
-        },
-        {
-          path: 'data-tables',
-          loadChildren:
-            './custom/app-data-tables/asset-acquisition-data-table/asset-acquisition-data-table.module#AssetAcquisitionDataTableModule'
+          path: 'data',
+          loadChildren: './custom/app-data-tables/app-data-tables.module#AppDataTablesModule'
         },
         ...LAYOUT_ROUTES
       ],
