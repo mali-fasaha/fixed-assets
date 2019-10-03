@@ -17,6 +17,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'assets',
           loadChildren: './custom/about-fixed-assets/about-fixed-assets.module#AboutFixedAssetsModule'
         },
+        {
+          path: 'data-tables',
+          loadChildren: './custom/app-data-tables/asset-item-data-table/asset-item-data-table.module#AssetItemDataTableModule'
+        },
         ...LAYOUT_ROUTES
       ],
       { enableTracing: DEBUG_INFO_ENABLED }
