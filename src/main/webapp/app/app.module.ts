@@ -21,6 +21,7 @@ import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { GhaMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
 import { CustomModule } from './custom/custom.module';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { CustomModule } from './custom/custom.module';
     FixedAssetsCoreModule,
     FixedAssetsHomeModule,
     FixedAssetsAccountModule,
+    LoggerModule.forRoot({ serverLoggingUrl: '/api/logs', level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }),
     // jhipster-needle-angular-add-module JHipster will add new module here
     FixedAssetsEntityModule,
     FixedAssetsAppRoutingModule,
