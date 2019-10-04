@@ -5,10 +5,11 @@ import { AssetAcquisitionDataTableRoutingModule } from './asset-acquisition-data
 import { FixedAssetsSharedModule } from 'app/shared';
 import { DataTablesModule as DTModule } from 'angular-datatables';
 import { AssetAcquisitionDataTableComponent } from './asset-acquisition-data-table.component';
+import { FixedAssetsAssetAcquisitionModule } from 'app/entities/asset-acquisition/asset-acquisition.module';
 
 @NgModule({
   declarations: [AssetAcquisitionDataTableComponent],
-  imports: [CommonModule, AssetAcquisitionDataTableRoutingModule, FixedAssetsSharedModule, DTModule],
+  imports: [CommonModule, FixedAssetsAssetAcquisitionModule, AssetAcquisitionDataTableRoutingModule, FixedAssetsSharedModule, DTModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [AssetAcquisitionDataTableComponent],
   entryComponents: [AssetAcquisitionDataTableComponent]
