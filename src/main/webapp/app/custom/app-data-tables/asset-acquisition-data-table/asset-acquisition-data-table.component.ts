@@ -70,6 +70,10 @@ export class AssetAcquisitionDataTableComponent implements OnInit, OnDestroy {
     });
   }
 
+  protected view(id: number) {
+    this.router.navigateByUrl('/asset-acquisition/' + id + 'view/');
+  }
+
   loadAll() {
     if (this.currentSearch) {
       this.assetAcquisitionDataTableService
