@@ -41,7 +41,7 @@
                 <th><span>Purchase Amount</span></th>
                 <th><span>Asset Dealer Id</span></th>
                 <th><span>Asset Invoice Id</span></th>
-                <th></th>
+                <th  *ghaHasAnyAuthority="'ROLE_ADMIN'" ><span>Maintenance</span></th>
             </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@
                 <td>{{assetAcquisition.purchaseAmount}}</td>
                 <td>{{assetAcquisition.assetDealerId}}</td>
                 <td>{{assetAcquisition.assetInvoiceId}}</td>
-                <td class="text-right">
+                <td  *ghaHasAnyAuthority="'ROLE_ADMIN'" class="text-right">
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/asset-acquisition', assetAcquisition.id, 'view' ]"
