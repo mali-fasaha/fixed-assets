@@ -16,8 +16,8 @@ type EntityArrayResponseType = HttpResponse<IAssetAcquisition[]>;
 })
 export class AssetAcquisitionDataTableService {
   // TODO Use non-paging api
-  public resourceUrl = SERVER_API_URL + 'api/asset-acquisitions';
-  public resourceSearchUrl = SERVER_API_URL + 'api/_search/asset-acquisitions';
+  // public resourceUrl = SERVER_API_URL + 'api/asset-acquisitions';
+  public resourceUrl = 'http://5d9afe02686ed000144d1ab6.mockapi.io/api/assets-acquisition';
 
   constructor(protected http: HttpClient) {}
 
@@ -41,22 +41,14 @@ export class AssetAcquisitionDataTableService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
+  fetchAllAssetAcquisitions(): Observable<EntityArrayResponseType> {
     return this.http
-      .get<IAssetAcquisition[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .get<IAssetAcquisition[]>(this.resourceUrl, { observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
-  }
-
-  search(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http
-      .get<IAssetAcquisition[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   protected convertDateFromClient(assetAcquisition: IAssetAcquisition): IAssetAcquisition {

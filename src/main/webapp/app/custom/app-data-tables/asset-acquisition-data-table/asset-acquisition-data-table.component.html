@@ -29,17 +29,17 @@
         <table class="table table-striped table-bordered table-sm row-border hover"
                datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="acquisitionMonth"><span>Acquisition Month</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="assetSerial"><span>Asset Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="serviceOutletCode"><span>Service Outlet Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="acquisitionTransactionId"><span>Acquisition Transaction Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="assetCategoryId"><span>Asset Category Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="purchaseAmount"><span>Purchase Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="assetDealerId"><span>Asset Dealer Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="assetInvoiceId"><span>Asset Invoice Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Description</span></th>
+                <th><span>Acquisition Month</span></th>
+                <th><span>Asset Serial</span></th>
+                <th><span>Service Outlet Code</span></th>
+                <th><span>Acquisition Transaction Id</span></th>
+                <th><span>Asset Category Id</span></th>
+                <th><span>Purchase Amount</span></th>
+                <th><span>Asset Dealer Id</span></th>
+                <th><span>Asset Invoice Id</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -82,13 +82,5 @@
             </tr>
             </tbody>
         </table>
-    </div>
-    <div *ngIf="assetAcquisitions && assetAcquisitions.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
     </div>
 </div>
