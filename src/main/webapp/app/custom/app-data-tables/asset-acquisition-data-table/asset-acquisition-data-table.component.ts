@@ -30,7 +30,8 @@ export class AssetAcquisitionDataTableComponent implements OnInit, OnDestroy {
     protected activatedRoute: ActivatedRoute,
     protected assetAcquisitionDataTableService: AssetAcquisitionDataTableService
   ) {
-    this.loadAmortizationEntities();
+    // we were able to remove this by removing *ngIf="assetAcquisitions" from the template
+    // this.loadAmortizationEntities();
   }
 
   ngOnInit() {
