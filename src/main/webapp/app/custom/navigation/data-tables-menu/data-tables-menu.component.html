@@ -1,15 +1,15 @@
 <li *ghaHasAnyAuthority="'ROLE_USER'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
     <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
-                    <span>
-                        <fa-icon icon="tachometer-alt"></fa-icon>
-                        <span>
-                            Data Tables
-                        </span>
-                    </span>
+        <span>
+            <fa-icon icon="tachometer-alt"></fa-icon>
+            <span>
+                Data Tables
+            </span>
+        </span>
     </a>
     <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
         <li>
-            <a class="dropdown-item" routerLink="data/tables/fixed-asset-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="dropdown-item" routerLink="data/tables/asset-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                 <span>Fixed Asset Item</span>
             </a>
@@ -18,6 +18,12 @@
             <a class="dropdown-item" routerLink="data/tables/asset-acquisition"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                 <span>Asset Acquisition</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="data/tables/asset-depreciation" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                <span>Fixed Asset Depreciation</span>
             </a>
         </li>
         <li>

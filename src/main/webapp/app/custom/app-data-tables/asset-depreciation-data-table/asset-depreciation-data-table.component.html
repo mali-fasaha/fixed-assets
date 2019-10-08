@@ -1,1 +1,78 @@
-<p>asset-depreciation-data-table works!</p>
+<div>
+    <h2 id="page-heading">
+        <span>Asset Depreciations</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-asset-depreciation" [routerLink]="['/asset-depreciation/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Asset Depreciation
+            </span>
+        </button>
+    </h2>
+    <gha-alert></gha-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm row-border hover"
+               datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Description</span></th>
+                <th><span>Depreciation Amount</span></th>
+                <th><span>Depreciation Date</span></th>
+                <th><span>Category Id</span></th>
+                <th><span>Asset Item Id</span></th>
+                <th><span>Maintenance</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let assetDepreciation of assetDepreciations ;trackBy: trackId">
+                <td><a [routerLink]="['/asset-depreciation', assetDepreciation.id, 'view' ]">{{assetDepreciation.id}}</a></td>
+                <td>{{assetDepreciation.description}}</td>
+                <td>{{assetDepreciation.depreciationAmount}}</td>
+                <td>{{assetDepreciation.depreciationDate | date:'mediumDate'}}</td>
+                <td>{{assetDepreciation.categoryId}}</td>
+                <td>{{assetDepreciation.assetItemId}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/asset-depreciation', assetDepreciation.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/asset-depreciation', assetDepreciation.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'asset-depreciation', { outlets: { popup: assetDepreciation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
