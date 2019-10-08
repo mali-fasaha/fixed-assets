@@ -25,21 +25,21 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="fixedAssetItems">
+    <div class="table-responsive">
         <table class="table table-striped">
             <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="serviceOutletCode"><span>Service Outlet Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="assetCategoryId"><span>Asset Category Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="fixedAssetSerialCode"><span>Fixed Asset Serial Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="fixedAssetDescription"><span>Fixed Asset Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="purchaseDate"><span>Purchase Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="purchaseCost"><span>Purchase Cost</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="purchaseTransactionId"><span>Purchase Transaction Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="ownershipDocumentId"><span>Ownership Document Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="assetPicture"><span>Asset Picture</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th></th>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Service Outlet Code</span></th>
+                <th><span>Asset Category Id</span></th>
+                <th><span>Fixed Asset Serial Code</span></th>
+                <th><span>Fixed Asset Description</span></th>
+                <th><span>Purchase Date</span></th>
+                <th><span>Purchase Cost</span></th>
+                <th><span>Purchase Transaction Id</span></th>
+                <th><span>Ownership Document Id</span></th>
+                <th><span>Asset Picture</span></th>
+                <th><span>Maintenance</span></th>
             </tr>
             </thead>
             <tbody>
@@ -86,13 +86,5 @@
             </tr>
             </tbody>
         </table>
-    </div>
-    <div *ngIf="fixedAssetItems && fixedAssetItems.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
-        </div>
     </div>
 </div>

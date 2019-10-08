@@ -14,7 +14,6 @@ type EntityArrayResponseType = HttpResponse<IFixedAssetItem[]>;
 @Injectable({ providedIn: 'root' })
 export class AssetItemDataTableService {
   public resourceUrl = SERVER_API_URL + 'api/fixed-asset-items';
-  public resourceSearchUrl = SERVER_API_URL + 'api/_search/fixed-asset-items';
 
   constructor(protected http: HttpClient) {}
 
@@ -47,13 +46,6 @@ export class AssetItemDataTableService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
-  }
-
-  search(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http
-      .get<IFixedAssetItem[]>(this.resourceSearchUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
   protected convertDateFromClient(fixedAssetItem: IFixedAssetItem): IFixedAssetItem {

@@ -49,7 +49,7 @@ export const assetItemDataTableRoute: Routes = [
 ];
 
 // TODO Replace with date query popup
-export const AssetItemDataTablePopupRoute: Routes = [
+export const assetItemDataTablePopupRoute: Routes = [
   {
     path: ':id/delete',
     component: FixedAssetItemDeletePopupComponent,
