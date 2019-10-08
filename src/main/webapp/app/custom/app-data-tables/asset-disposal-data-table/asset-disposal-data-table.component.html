@@ -1,1 +1,93 @@
-<p>asset-disposal-data-table works!</p>
+<div>
+    <h2 id="page-heading">
+        <span>Asset Disposals</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-asset-disposal" [routerLink]="['/asset-disposal/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Asset Disposal
+            </span>
+        </button>
+    </h2>
+    <gha-alert></gha-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm row-border hover"
+                    datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Description</span></th>
+                <th><span>Disposal Month</span></th>
+                <th><span>Asset Category Id</span></th>
+                <th><span>Asset Item Id</span></th>
+                <th><span>Disposal Proceeds</span></th>
+                <th><span>Net Book Value</span></th>
+                <th><span>Profit On Disposal</span></th>
+                <th><span>Scanned Document Id</span></th>
+                <th><span>Asset Dealer Id</span></th>
+                <th><span>Asset Picture</span></th>
+                <th><span>Maintenance</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let assetDisposal of assetDisposals ;trackBy: trackId">
+                <td><a [routerLink]="['/asset-disposal', assetDisposal.id, 'view' ]">{{assetDisposal.id}}</a></td>
+                <td>{{assetDisposal.description}}</td>
+                <td>{{assetDisposal.disposalMonth | date:'mediumDate'}}</td>
+                <td>{{assetDisposal.assetCategoryId}}</td>
+                <td>{{assetDisposal.assetItemId}}</td>
+                <td>{{assetDisposal.disposalProceeds}}</td>
+                <td>{{assetDisposal.netBookValue}}</td>
+                <td>{{assetDisposal.profitOnDisposal}}</td>
+                <td>{{assetDisposal.scannedDocumentId}}</td>
+                <td>{{assetDisposal.assetDealerId}}</td>
+                <td>
+                    <a *ngIf="assetDisposal.assetPicture" (click)="openFile(assetDisposal.assetPictureContentType, assetDisposal.assetPicture)">
+                        <img [src]="'data:' + assetDisposal.assetPictureContentType + ';base64,' + assetDisposal.assetPicture" style="max-height: 30px;" alt="assetDisposal image"/>
+                    </a>
+                    <span *ngIf="assetDisposal.assetPicture">{{assetDisposal.assetPictureContentType}}, {{byteSize(assetDisposal.assetPicture)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/asset-disposal', assetDisposal.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/asset-disposal', assetDisposal.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'asset-disposal', { outlets: { popup: assetDisposal.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
