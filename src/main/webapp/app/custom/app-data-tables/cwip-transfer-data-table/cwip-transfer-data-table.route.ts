@@ -6,16 +6,16 @@ import { UserRouteAccessService } from 'app/core';
 import { CwipTransferDetailComponent } from 'app/entities/cwip-transfer/cwip-transfer-detail.component';
 import { HttpResponse } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
-import { CwipTransferService } from 'app/entities/cwip-transfer/cwip-transfer.service';
 import { CwipTransferUpdateComponent } from 'app/entities/cwip-transfer/cwip-transfer-update.component';
 import { JhiResolvePagingParams } from 'ng-jhipster';
 import { Observable, of } from 'rxjs/index';
 import { CwipTransferDeletePopupComponent } from 'app/entities/cwip-transfer';
 import { CwipTransferDataTableComponent } from 'app/custom/app-data-tables/cwip-transfer-data-table/cwip-transfer-data-table.component';
+import { CwipTransferDataTableService } from 'app/custom/app-data-tables/cwip-transfer-data-table/cwip-transfer-data-table.service';
 
 @Injectable({ providedIn: 'root' })
 export class CwipTransferResolve implements Resolve<ICwipTransfer> {
-  constructor(private service: CwipTransferService) {}
+  constructor(private service: CwipTransferDataTableService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ICwipTransfer> {
     const id = route.params['id'] ? route.params['id'] : null;
