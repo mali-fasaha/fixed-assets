@@ -37,6 +37,7 @@ export class AssetAcquisitionDataTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.dtOptions = this.getDataTableOptions();
     this.loadAmortizationEntities();
+    this.registerChangeInAssetAcquisitions();
   }
 
   ngOnDestroy() {
@@ -71,7 +72,39 @@ export class AssetAcquisitionDataTableComponent implements OnInit, OnDestroy {
   }
 
   protected view(id: number) {
-    this.router.navigateByUrl('/asset-acquisition/' + id + 'view/');
+    const viewPath = '/asset-acquisition/' + id + '/view/';
+    this.router
+      .navigateByUrl(viewPath)
+      .then(() => {
+        this.log.debug(`Successfully navigated to the path ${viewPath}`);
+      })
+      .catch(error => {
+        this.onError(`An error has occurred; could not navigate to ${viewPath} due to ${error}`);
+      });
+  }
+
+  protected edit(id: number) {
+    const viewPath = '/asset-acquisition/' + id + '/view/';
+    this.router
+      .navigateByUrl(viewPath)
+      .then(() => {
+        this.log.debug(`Successfully navigated to the path ${viewPath}`);
+      })
+      .catch(error => {
+        this.onError(`An error has occurred; could not navigate to ${viewPath} due to ${error}`);
+      });
+  }
+
+  protected delete(id: number) {
+    const viewPath = '/asset-acquisition/' + id + '/view/';
+    this.router
+      .navigateByUrl(viewPath)
+      .then(() => {
+        this.log.debug(`Successfully navigated to the path ${viewPath}`);
+      })
+      .catch(error => {
+        this.onError(`An error has occurred; could not navigate to ${viewPath} due to ${error}`);
+      });
   }
 
   loadAll() {
