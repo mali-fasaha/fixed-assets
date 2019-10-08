@@ -12,6 +12,7 @@ import {
   FixedAssetItemDetailComponent,
   FixedAssetItemUpdateComponent
 } from 'app/entities/fixed-asset-item';
+import { AssetItemDataTableService } from 'app/custom/app-data-tables/asset-item-data-table/asset-item-data-table.service';
 
 @Injectable({ providedIn: 'root' })
 export class AssetItemDataTableResolve implements Resolve<IFixedAssetItem> {
