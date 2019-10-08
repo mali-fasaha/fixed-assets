@@ -38,7 +38,7 @@ export const assetDisposalDataTableRoute: Routes = [
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'AssetDisposals'
+      pageTitle: 'Asset Disposals'
     },
     canActivate: [UserRouteAccessService]
   },

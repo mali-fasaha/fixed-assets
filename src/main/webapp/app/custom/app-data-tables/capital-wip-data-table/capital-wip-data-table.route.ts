@@ -38,7 +38,7 @@ export const capitalWorkInProgressDataTablesRoute: Routes = [
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'Capital-Work-In-Progress'
+      pageTitle: 'Capital Work In Progress'
     },
     canActivate: [UserRouteAccessService]
   },
