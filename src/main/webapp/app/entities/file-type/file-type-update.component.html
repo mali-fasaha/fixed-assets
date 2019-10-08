@@ -43,6 +43,24 @@
                     <input type="text" class="form-control" name="description" id="field_description"
                            formControlName="description"/>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fileTemplate">File Template</label>
+                    <div>
+                        <div *ngIf="editForm.get('fileTemplate').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('fileTemplateContentType').value, editForm.get('fileTemplate').value)">open</a><br>
+                            <span class="pull-left">{{editForm.get('fileTemplateContentType').value}}, {{byteSize(editForm.get('fileTemplate').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({fileTemplate: null});editForm.patchValue({fileTemplateContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_fileTemplate" (change)="setFileData($event, 'fileTemplate', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="fileTemplate" id="field_fileTemplate"
+                           formControlName="fileTemplate"/>
+                    <input type="hidden" class="form-control" name="fileTemplateContentType" id="field_fileTemplateContentType"
+                           formControlName="fileTemplateContentType" />
+                </div>
 
             </div>
             <div>

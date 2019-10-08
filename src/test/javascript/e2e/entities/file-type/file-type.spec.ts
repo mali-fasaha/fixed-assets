@@ -3,6 +3,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 import { FileTypeComponentsPage, FileTypeDeleteDialog, FileTypeUpdatePage } from './file-type.page-object';
+import * as path from 'path';
 
 const expect = chai.expect;
 
@@ -12,6 +13,9 @@ describe('FileType e2e test', () => {
   let fileTypeUpdatePage: FileTypeUpdatePage;
   let fileTypeComponentsPage: FileTypeComponentsPage;
   let fileTypeDeleteDialog: FileTypeDeleteDialog;
+  const fileNameToUpload = 'logo-jhipster.png';
+  const fileToUpload = '../../../../../../src/main/webapp/content/images/' + fileNameToUpload;
+  const absolutePath = path.resolve(__dirname, fileToUpload);
 
   before(async () => {
     await browser.get('/');
@@ -42,13 +46,18 @@ describe('FileType e2e test', () => {
     await promise.all([
       fileTypeUpdatePage.setFileTypeNameInput('fileTypeName'),
       fileTypeUpdatePage.fileMediumTypeSelectLastOption(),
-      fileTypeUpdatePage.setDescriptionInput('description')
+      fileTypeUpdatePage.setDescriptionInput('description'),
+      fileTypeUpdatePage.setFileTemplateInput(absolutePath)
     ]);
     expect(await fileTypeUpdatePage.getFileTypeNameInput()).to.eq(
       'fileTypeName',
       'Expected FileTypeName value to be equals to fileTypeName'
     );
     expect(await fileTypeUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
+    expect(await fileTypeUpdatePage.getFileTemplateInput()).to.endsWith(
+      fileNameToUpload,
+      'Expected FileTemplate value to be end with ' + fileNameToUpload
+    );
     await fileTypeUpdatePage.save();
     expect(await fileTypeUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 

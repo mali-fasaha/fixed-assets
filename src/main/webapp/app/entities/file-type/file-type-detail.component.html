@@ -17,6 +17,13 @@
                 <dd>
                     <span>{{fileType.description}}</span>
                 </dd>
+                <dt><span>File Template</span></dt>
+                <dd>
+                    <div *ngIf="fileType.fileTemplate">
+                        <a (click)="openFile(fileType.fileTemplateContentType, fileType.fileTemplate)">open</a>
+                        {{fileType.fileTemplateContentType}}, {{byteSize(fileType.fileTemplate)}}
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

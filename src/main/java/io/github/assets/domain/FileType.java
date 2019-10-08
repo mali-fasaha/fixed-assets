@@ -42,6 +42,13 @@ public class FileType implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Lob
+    @Column(name = "file_template")
+    private byte[] fileTemplate;
+
+    @Column(name = "file_template_content_type")
+    private String fileTemplateContentType;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -89,6 +96,32 @@ public class FileType implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public byte[] getFileTemplate() {
+        return fileTemplate;
+    }
+
+    public FileType fileTemplate(byte[] fileTemplate) {
+        this.fileTemplate = fileTemplate;
+        return this;
+    }
+
+    public void setFileTemplate(byte[] fileTemplate) {
+        this.fileTemplate = fileTemplate;
+    }
+
+    public String getFileTemplateContentType() {
+        return fileTemplateContentType;
+    }
+
+    public FileType fileTemplateContentType(String fileTemplateContentType) {
+        this.fileTemplateContentType = fileTemplateContentType;
+        return this;
+    }
+
+    public void setFileTemplateContentType(String fileTemplateContentType) {
+        this.fileTemplateContentType = fileTemplateContentType;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -114,6 +147,8 @@ public class FileType implements Serializable {
             ", fileTypeName='" + getFileTypeName() + "'" +
             ", fileMediumType='" + getFileMediumType() + "'" +
             ", description='" + getDescription() + "'" +
+            ", fileTemplate='" + getFileTemplate() + "'" +
+            ", fileTemplateContentType='" + getFileTemplateContentType() + "'" +
             "}";
     }
 }

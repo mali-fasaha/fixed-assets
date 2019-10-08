@@ -27,6 +27,13 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="file_template" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="file_template_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
@@ -50,6 +57,8 @@
             <column name="file_type_name" type="string"/>
             <column name="file_medium_type" type="string"/>
             <column name="description" type="string"/>
+            <column name="file_template" type="string"/>
+            <column name="file_template_content_type" type="string"/>
         </loadData>
     </changeSet>
 

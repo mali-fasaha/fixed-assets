@@ -13,8 +13,17 @@ export interface IFileType {
   fileTypeName?: string;
   fileMediumType?: FileMediumTypes;
   description?: string;
+  fileTemplateContentType?: string;
+  fileTemplate?: any;
 }
 
 export class FileType implements IFileType {
-  constructor(public id?: number, public fileTypeName?: string, public fileMediumType?: FileMediumTypes, public description?: string) {}
+  constructor(
+    public id?: number,
+    public fileTypeName?: string,
+    public fileMediumType?: FileMediumTypes,
+    public description?: string,
+    public fileTemplateContentType?: string,
+    public fileTemplate?: any
+  ) {}
 }

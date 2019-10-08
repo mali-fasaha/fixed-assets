@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(FileTypeService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new FileType(0, 'AAAAAAA', FileMediumTypes.EXCEL, 'AAAAAAA');
+      elemDefault = new FileType(0, 'AAAAAAA', FileMediumTypes.EXCEL, 'AAAAAAA', 'image/png', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -61,7 +61,8 @@ describe('Service Tests', () => {
           {
             fileTypeName: 'BBBBBB',
             fileMediumType: 'BBBBBB',
-            description: 'BBBBBB'
+            description: 'BBBBBB',
+            fileTemplate: 'BBBBBB'
           },
           elemDefault
         );
@@ -81,7 +82,8 @@ describe('Service Tests', () => {
           {
             fileTypeName: 'BBBBBB',
             fileMediumType: 'BBBBBB',
-            description: 'BBBBBB'
+            description: 'BBBBBB',
+            fileTemplate: 'BBBBBB'
           },
           elemDefault
         );

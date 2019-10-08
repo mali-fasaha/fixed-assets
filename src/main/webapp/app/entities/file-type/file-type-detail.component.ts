@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { JhiDataUtils } from 'ng-jhipster';
 
 import { IFileType } from 'app/shared/model/file-type.model';
 
@@ -10,7 +11,7 @@ import { IFileType } from 'app/shared/model/file-type.model';
 export class FileTypeDetailComponent implements OnInit {
   fileType: IFileType;
 
-  constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ fileType }) => {
@@ -18,6 +19,13 @@ export class FileTypeDetailComponent implements OnInit {
     });
   }
 
+  byteSize(field) {
+    return this.dataUtils.byteSize(field);
+  }
+
+  openFile(contentType, field) {
+    return this.dataUtils.openFile(contentType, field);
+  }
   previousState() {
     window.history.back();
   }

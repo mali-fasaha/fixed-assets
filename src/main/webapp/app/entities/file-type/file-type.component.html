@@ -33,6 +33,7 @@
             <th jhiSortBy="fileTypeName"><span>File Type Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="fileMediumType"><span>File Medium Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fileTemplate"><span>File Template</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -42,6 +43,10 @@
                 <td>{{fileType.fileTypeName}}</td>
                 <td>{{fileType.fileMediumType}}</td>
                 <td>{{fileType.description}}</td>
+                <td>
+                    <a *ngIf="fileType.fileTemplate" (click)="openFile(fileType.fileTemplateContentType, fileType.fileTemplate)">open</a>
+                    <span *ngIf="fileType.fileTemplate">{{fileType.fileTemplateContentType}}, {{byteSize(fileType.fileTemplate)}}</span>
+                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

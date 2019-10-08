@@ -29,6 +29,7 @@ export class FileTypeUpdatePage {
   fileTypeNameInput = element(by.id('field_fileTypeName'));
   fileMediumTypeSelect = element(by.id('field_fileMediumType'));
   descriptionInput = element(by.id('field_description'));
+  fileTemplateInput = element(by.id('file_fileTemplate'));
 
   async getPageTitle() {
     return this.pageTitle.getText();
@@ -63,6 +64,14 @@ export class FileTypeUpdatePage {
 
   async getDescriptionInput() {
     return await this.descriptionInput.getAttribute('value');
+  }
+
+  async setFileTemplateInput(fileTemplate) {
+    await this.fileTemplateInput.sendKeys(fileTemplate);
+  }
+
+  async getFileTemplateInput() {
+    return await this.fileTemplateInput.getAttribute('value');
   }
 
   async save(timeout?: number) {

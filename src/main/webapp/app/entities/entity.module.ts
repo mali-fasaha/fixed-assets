@@ -111,6 +111,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'file-upload',
         loadChildren: './file-upload/file-upload.module#FixedAssetsFileUploadModule'
+      },
+      {
+        path: 'file-type',
+        loadChildren: './file-type/file-type.module#FixedAssetsFileTypeModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
