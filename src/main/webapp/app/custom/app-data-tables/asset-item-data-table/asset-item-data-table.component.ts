@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IFixedAssetItem } from 'app/shared/model/fixed-asset-item.model';
 import { Subscription } from 'rxjs/index';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
@@ -14,7 +14,7 @@ import { IAssetAcquisition } from 'app/shared/model/asset-acquisition.model';
   templateUrl: './asset-item-data-table.component.html',
   styleUrls: ['./asset-item-data-table.component.scss']
 })
-export class AssetItemDataTableComponent implements OnInit {
+export class AssetItemDataTableComponent implements OnInit, OnDestroy {
   fixedAssetItems: IFixedAssetItem[];
   currentAccount: any;
   currentSearch: string;
