@@ -1,1 +1,80 @@
-<p>capital-wip-data-table works!</p>
+<div>
+    <h2 id="page-heading">
+        <span>Capital Work In Progresses</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-capital-work-in-progress" [routerLink]="['/capital-work-in-progress/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down" >
+            Create new Capital Work In Progress
+            </span>
+        </button>
+    </h2>
+    <gha-alert></gha-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm row-border hover"
+               datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Transaction Month</span></th>
+                <th><span>Asset Serial Tag</span></th>
+                <th><span>Service Outlet Code</span></th>
+                <th><span>Transaction Id</span></th>
+                <th><span>Transaction Details</span></th>
+                <th><span>Transaction Amount</span></th>
+                <th><span>Maintenance</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let capitalWorkInProgress of capitalWorkInProgresses ;trackBy: trackId">
+                <td><a [routerLink]="['/capital-work-in-progress', capitalWorkInProgress.id, 'view' ]">{{capitalWorkInProgress.id}}</a></td>
+                <td>{{capitalWorkInProgress.transactionMonth | date:'mediumDate'}}</td>
+                <td>{{capitalWorkInProgress.assetSerialTag}}</td>
+                <td>{{capitalWorkInProgress.serviceOutletCode}}</td>
+                <td>{{capitalWorkInProgress.transactionId}}</td>
+                <td>{{capitalWorkInProgress.transactionDetails}}</td>
+                <td>{{capitalWorkInProgress.transactionAmount}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/capital-work-in-progress', capitalWorkInProgress.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/capital-work-in-progress', capitalWorkInProgress.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'capital-work-in-progress', { outlets: { popup: capitalWorkInProgress.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
