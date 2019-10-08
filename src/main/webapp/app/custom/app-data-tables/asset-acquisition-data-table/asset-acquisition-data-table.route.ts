@@ -70,7 +70,7 @@ export const assetAcquisitionDataTablePopupRoute: Routes = [
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'AssetAcquisitions'
+      pageTitle: 'Asset Acquisitions'
     },
     canActivate: [UserRouteAccessService]
   },

@@ -72,30 +72,31 @@ export class AssetAcquisitionDataTableComponent implements OnInit, OnDestroy {
   }
 
   protected view(id: number) {
-    const viewPath = '/asset-acquisition/' + id + '/view/';
     this.router
-      .navigateByUrl(viewPath)
+      .navigate(['/asset-acquisition', id, 'view'])
       .then(() => {
-        this.log.debug(`Successfully navigated to the path ${viewPath}`);
+        this.log.debug(`Successfully navigated to the path ${this.router.getCurrentNavigation()}`);
       })
       .catch(error => {
-        this.onError(`An error has occurred; could not navigate to ${viewPath} due to ${error}`);
+        this.onError(`An error has occurred; could not navigate to ${this.router.getCurrentNavigation()} due to ${error}`);
       });
   }
 
   protected edit(id: number) {
-    const viewPath = '/asset-acquisition/' + id + '/view/';
     this.router
-      .navigateByUrl(viewPath)
+      .navigate(['/asset-acquisition', id, 'edit'])
       .then(() => {
-        this.log.debug(`Successfully navigated to the path ${viewPath}`);
+        this.log.debug(`Successfully navigated to the path ${this.router.getCurrentNavigation()}`);
       })
       .catch(error => {
-        this.onError(`An error has occurred; could not navigate to ${viewPath} due to ${error}`);
+        this.onError(`An error has occurred; could not navigate to ${this.router.getCurrentNavigation()} due to ${error}`);
       });
   }
 
   protected delete(id: number) {
+    // TODO replaceUrl="true"
+    // TODO queryParamsHandling="merge"
+    // TODO Create popup query
     const viewPath = '/asset-acquisition/' + id + '/view/';
     this.router
       .navigateByUrl(viewPath)

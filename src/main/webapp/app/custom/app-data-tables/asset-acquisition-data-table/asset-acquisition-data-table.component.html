@@ -26,7 +26,6 @@
     </div>
     <br/>
     <!--<div class="table-responsive" *ngIf="assetAcquisitions">-->
-    <!--// TODO Add navigation functions...-->
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-sm row-border hover"
                datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
@@ -73,8 +72,6 @@
                         </button>
                         <button type="submit"
                                 (click)="delete(assetAcquisition.id)"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline">Delete</span>
