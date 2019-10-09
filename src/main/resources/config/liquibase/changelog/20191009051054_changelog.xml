@@ -1,0 +1,86 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-18">
+        <addColumn tableName="file_type">
+            <column name="file_template" type="oid"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-19">
+        <addColumn tableName="file_type">
+            <column name="file_template_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-20">
+        <addColumn tableName="asset_transaction">
+            <column name="transaction_approval_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-1">
+        <dropUniqueConstraint constraintName="UC_FILE_TYPEFILE_TYPE_NAME_COL" tableName="file_type"/>
+        <addUniqueConstraint columnNames="file_type_name" constraintName="UC_FILE_TYPEFILE_TYPE_NAME_COL" tableName="file_type"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-2">
+        <dropUniqueConstraint constraintName="UC_FILE_UPLOADFILE_NAME_COL" tableName="file_upload"/>
+        <addUniqueConstraint columnNames="file_name" constraintName="UC_FILE_UPLOADFILE_NAME_COL" tableName="file_upload"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-3">
+        <dropUniqueConstraint constraintName="UC_FILE_UPLOADUPLOAD_TOKEN_COL" tableName="file_upload"/>
+        <addUniqueConstraint columnNames="upload_token" constraintName="UC_FILE_UPLOADUPLOAD_TOKEN_COL" tableName="file_upload"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-4">
+        <dropUniqueConstraint constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_ASSET_CODE_COL" tableName="fixed_asset_category"/>
+        <addUniqueConstraint columnNames="category_asset_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_ASSET_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-5">
+        <dropUniqueConstraint constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_DEPRECIATION_CODE_COL" tableName="fixed_asset_category"/>
+        <addUniqueConstraint columnNames="category_depreciation_code" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_DEPRECIATION_CODE_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-6">
+        <dropUniqueConstraint constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_NAME_COL" tableName="fixed_asset_category"/>
+        <addUniqueConstraint columnNames="category_name" constraintName="UC_FIXED_ASSET_CATEGORYCATEGORY_NAME_COL" tableName="fixed_asset_category"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-7">
+        <dropUniqueConstraint constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="UC_GHA_USEREMAIL_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-8">
+        <dropUniqueConstraint constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+        <addUniqueConstraint columnNames="login" constraintName="UC_GHA_USERLOGIN_COL" tableName="gha_user"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-9">
+        <dropUniqueConstraint constraintName="UC_MESSAGE_TOKENTOKEN_VALUE_COL" tableName="message_token"/>
+        <addUniqueConstraint columnNames="token_value" constraintName="UC_MESSAGE_TOKENTOKEN_VALUE_COL" tableName="message_token"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-10">
+        <dropUniqueConstraint constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_CODE_COL" tableName="service_outlet"/>
+        <addUniqueConstraint columnNames="service_outlet_code" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_CODE_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-11">
+        <dropUniqueConstraint constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_DESIGNATION_COL" tableName="service_outlet"/>
+        <addUniqueConstraint columnNames="service_outlet_designation" constraintName="UC_SERVICE_OUTLETSERVICE_OUTLET_DESIGNATION_COL" tableName="service_outlet"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-12">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_APPROVALFIRST_APPROVER_COL" tableName="transaction_approval"/>
+        <addUniqueConstraint columnNames="first_approver" constraintName="UC_TRANSACTION_APPROVALFIRST_APPROVER_COL" tableName="transaction_approval"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-13">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_APPROVALFOURTH_APPROVER_COL" tableName="transaction_approval"/>
+        <addUniqueConstraint columnNames="fourth_approver" constraintName="UC_TRANSACTION_APPROVALFOURTH_APPROVER_COL" tableName="transaction_approval"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-14">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_APPROVALRECOMMENDED_BY_COL" tableName="transaction_approval"/>
+        <addUniqueConstraint columnNames="recommended_by" constraintName="UC_TRANSACTION_APPROVALRECOMMENDED_BY_COL" tableName="transaction_approval"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-15">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_APPROVALREVIEWED_BY_COL" tableName="transaction_approval"/>
+        <addUniqueConstraint columnNames="reviewed_by" constraintName="UC_TRANSACTION_APPROVALREVIEWED_BY_COL" tableName="transaction_approval"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-16">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_APPROVALSECOND_APPROVER_COL" tableName="transaction_approval"/>
+        <addUniqueConstraint columnNames="second_approver" constraintName="UC_TRANSACTION_APPROVALSECOND_APPROVER_COL" tableName="transaction_approval"/>
+    </changeSet>
+    <changeSet author="edwin.njeru (generated)" id="1570597913087-17">
+        <dropUniqueConstraint constraintName="UC_TRANSACTION_APPROVALTHIRD_APPROVER_COL" tableName="transaction_approval"/>
+        <addUniqueConstraint columnNames="third_approver" constraintName="UC_TRANSACTION_APPROVALTHIRD_APPROVER_COL" tableName="transaction_approval"/>
+    </changeSet>
+</databaseChangeLog>
