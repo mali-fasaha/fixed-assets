@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { FileTypeService } from 'app/entities/file-type/file-type.service';
-import { IFileType, FileType, FileMediumTypes } from 'app/shared/model/file-type.model';
+import { IFileType, FileType, FileMediumTypes, FileModelType } from 'app/shared/model/file-type.model';
 
 describe('Service Tests', () => {
   describe('FileType Service', () => {
@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(FileTypeService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new FileType(0, 'AAAAAAA', FileMediumTypes.EXCEL, 'AAAAAAA', 'image/png', 'AAAAAAA');
+      elemDefault = new FileType(0, 'AAAAAAA', FileMediumTypes.EXCEL, 'AAAAAAA', 'image/png', 'AAAAAAA', FileModelType.DEPRECIATION_UPLOAD);
     });
 
     describe('Service methods', () => {
@@ -62,7 +62,8 @@ describe('Service Tests', () => {
             fileTypeName: 'BBBBBB',
             fileMediumType: 'BBBBBB',
             description: 'BBBBBB',
-            fileTemplate: 'BBBBBB'
+            fileTemplate: 'BBBBBB',
+            fileType: 'BBBBBB'
           },
           elemDefault
         );
@@ -83,7 +84,8 @@ describe('Service Tests', () => {
             fileTypeName: 'BBBBBB',
             fileMediumType: 'BBBBBB',
             description: 'BBBBBB',
-            fileTemplate: 'BBBBBB'
+            fileTemplate: 'BBBBBB',
+            fileType: 'BBBBBB'
           },
           elemDefault
         );

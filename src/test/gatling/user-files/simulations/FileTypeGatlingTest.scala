@@ -76,6 +76,7 @@ class FileTypeGatlingTest extends Simulation {
                 , "fileMediumType":"EXCEL"
                 , "description":"SAMPLE_TEXT"
                 , "fileTemplate":null
+                , "fileType":"DEPRECIATION_UPLOAD"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_fileType_url"))).exitHereIfFailed

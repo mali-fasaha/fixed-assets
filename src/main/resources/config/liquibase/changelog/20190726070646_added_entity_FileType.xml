@@ -34,6 +34,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="file_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
@@ -59,6 +63,7 @@
             <column name="description" type="string"/>
             <column name="file_template" type="string"/>
             <column name="file_template_content_type" type="string"/>
+            <column name="file_type" type="string"/>
         </loadData>
     </changeSet>
 

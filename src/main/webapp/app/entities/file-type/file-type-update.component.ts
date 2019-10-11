@@ -21,7 +21,8 @@ export class FileTypeUpdateComponent implements OnInit {
     fileMediumType: [null, [Validators.required]],
     description: [],
     fileTemplate: [],
-    fileTemplateContentType: []
+    fileTemplateContentType: [],
+    fileType: []
   });
 
   constructor(
@@ -47,7 +48,8 @@ export class FileTypeUpdateComponent implements OnInit {
       fileMediumType: fileType.fileMediumType,
       description: fileType.description,
       fileTemplate: fileType.fileTemplate,
-      fileTemplateContentType: fileType.fileTemplateContentType
+      fileTemplateContentType: fileType.fileTemplateContentType,
+      fileType: fileType.fileType
     });
   }
 
@@ -105,7 +107,8 @@ export class FileTypeUpdateComponent implements OnInit {
       fileMediumType: this.editForm.get(['fileMediumType']).value,
       description: this.editForm.get(['description']).value,
       fileTemplateContentType: this.editForm.get(['fileTemplateContentType']).value,
-      fileTemplate: this.editForm.get(['fileTemplate']).value
+      fileTemplate: this.editForm.get(['fileTemplate']).value,
+      fileType: this.editForm.get(['fileType']).value
     };
     return entity;
   }

@@ -30,6 +30,7 @@ export class FileTypeUpdatePage {
   fileMediumTypeSelect = element(by.id('field_fileMediumType'));
   descriptionInput = element(by.id('field_description'));
   fileTemplateInput = element(by.id('file_fileTemplate'));
+  fileTypeSelect = element(by.id('field_fileType'));
 
   async getPageTitle() {
     return this.pageTitle.getText();
@@ -72,6 +73,21 @@ export class FileTypeUpdatePage {
 
   async getFileTemplateInput() {
     return await this.fileTemplateInput.getAttribute('value');
+  }
+
+  async setFileTypeSelect(fileType) {
+    await this.fileTypeSelect.sendKeys(fileType);
+  }
+
+  async getFileTypeSelect() {
+    return await this.fileTypeSelect.element(by.css('option:checked')).getText();
+  }
+
+  async fileTypeSelectLastOption(timeout?: number) {
+    await this.fileTypeSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
   }
 
   async save(timeout?: number) {

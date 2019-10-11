@@ -27,6 +27,11 @@
             "fieldName": "fileTemplate",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "fileType",
+            "fieldType": "FileModelType",
+            "fieldValues": "DEPRECIATION_UPLOAD,ACQUISITION_UPLOAD,DISPOSAL_UPLOAD,CWIP_UPLOAD,CWIP_TRANSFER_UPLOAD,ASSET_ITEM_UPLOAD"
         }
     ],
     "changelogDate": "20190726070646",

@@ -47,7 +47,8 @@ describe('FileType e2e test', () => {
       fileTypeUpdatePage.setFileTypeNameInput('fileTypeName'),
       fileTypeUpdatePage.fileMediumTypeSelectLastOption(),
       fileTypeUpdatePage.setDescriptionInput('description'),
-      fileTypeUpdatePage.setFileTemplateInput(absolutePath)
+      fileTypeUpdatePage.setFileTemplateInput(absolutePath),
+      fileTypeUpdatePage.fileTypeSelectLastOption()
     ]);
     expect(await fileTypeUpdatePage.getFileTypeNameInput()).to.eq(
       'fileTypeName',

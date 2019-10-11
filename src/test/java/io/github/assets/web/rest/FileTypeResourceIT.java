@@ -36,6 +36,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import io.github.assets.domain.enumeration.FileMediumTypes;
+import io.github.assets.domain.enumeration.FileModelType;
 /**
  * Integration tests for the {@Link FileTypeResource} REST controller.
  */
@@ -55,6 +56,9 @@ public class FileTypeResourceIT {
     private static final byte[] UPDATED_FILE_TEMPLATE = TestUtil.createByteArray(1, "1");
     private static final String DEFAULT_FILE_TEMPLATE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_FILE_TEMPLATE_CONTENT_TYPE = "image/png";
+
+    private static final FileModelType DEFAULT_FILE_TYPE = FileModelType.DEPRECIATION_UPLOAD;
+    private static final FileModelType UPDATED_FILE_TYPE = FileModelType.ACQUISITION_UPLOAD;
 
     @Autowired
     private FileTypeRepository fileTypeRepository;
@@ -113,7 +117,8 @@ public class FileTypeResourceIT {
             .fileMediumType(DEFAULT_FILE_MEDIUM_TYPE)
             .description(DEFAULT_DESCRIPTION)
             .fileTemplate(DEFAULT_FILE_TEMPLATE)
-            .fileTemplateContentType(DEFAULT_FILE_TEMPLATE_CONTENT_TYPE);
+            .fileTemplateContentType(DEFAULT_FILE_TEMPLATE_CONTENT_TYPE)
+            .fileType(DEFAULT_FILE_TYPE);
         return fileType;
     }
     /**
@@ -128,7 +133,8 @@ public class FileTypeResourceIT {
             .fileMediumType(UPDATED_FILE_MEDIUM_TYPE)
             .description(UPDATED_DESCRIPTION)
             .fileTemplate(UPDATED_FILE_TEMPLATE)
-            .fileTemplateContentType(UPDATED_FILE_TEMPLATE_CONTENT_TYPE);
+            .fileTemplateContentType(UPDATED_FILE_TEMPLATE_CONTENT_TYPE)
+            .fileType(UPDATED_FILE_TYPE);
         return fileType;
     }
 
@@ -157,6 +163,7 @@ public class FileTypeResourceIT {
         assertThat(testFileType.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testFileType.getFileTemplate()).isEqualTo(DEFAULT_FILE_TEMPLATE);
         assertThat(testFileType.getFileTemplateContentType()).isEqualTo(DEFAULT_FILE_TEMPLATE_CONTENT_TYPE);
+        assertThat(testFileType.getFileType()).isEqualTo(DEFAULT_FILE_TYPE);
 
         // Validate the FileType in Elasticsearch
         verify(mockFileTypeSearchRepository, times(1)).save(testFileType);
@@ -236,7 +243,8 @@ public class FileTypeResourceIT {
             .andExpect(jsonPath("$.[*].fileMediumType").value(hasItem(DEFAULT_FILE_MEDIUM_TYPE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].fileTemplateContentType").value(hasItem(DEFAULT_FILE_TEMPLATE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].fileTemplate").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE_TEMPLATE))));
+            .andExpect(jsonPath("$.[*].fileTemplate").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE_TEMPLATE))))
+            .andExpect(jsonPath("$.[*].fileType").value(hasItem(DEFAULT_FILE_TYPE.toString())));
     }
     
     @Test
@@ -254,7 +262,8 @@ public class FileTypeResourceIT {
             .andExpect(jsonPath("$.fileMediumType").value(DEFAULT_FILE_MEDIUM_TYPE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.fileTemplateContentType").value(DEFAULT_FILE_TEMPLATE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.fileTemplate").value(Base64Utils.encodeToString(DEFAULT_FILE_TEMPLATE)));
+            .andExpect(jsonPath("$.fileTemplate").value(Base64Utils.encodeToString(DEFAULT_FILE_TEMPLATE)))
+            .andExpect(jsonPath("$.fileType").value(DEFAULT_FILE_TYPE.toString()));
     }
 
     @Test
@@ -284,7 +293,8 @@ public class FileTypeResourceIT {
             .fileMediumType(UPDATED_FILE_MEDIUM_TYPE)
             .description(UPDATED_DESCRIPTION)
             .fileTemplate(UPDATED_FILE_TEMPLATE)
-            .fileTemplateContentType(UPDATED_FILE_TEMPLATE_CONTENT_TYPE);
+            .fileTemplateContentType(UPDATED_FILE_TEMPLATE_CONTENT_TYPE)
+            .fileType(UPDATED_FILE_TYPE);
 
         restFileTypeMockMvc.perform(put("/api/file-types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -300,6 +310,7 @@ public class FileTypeResourceIT {
         assertThat(testFileType.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testFileType.getFileTemplate()).isEqualTo(UPDATED_FILE_TEMPLATE);
         assertThat(testFileType.getFileTemplateContentType()).isEqualTo(UPDATED_FILE_TEMPLATE_CONTENT_TYPE);
+        assertThat(testFileType.getFileType()).isEqualTo(UPDATED_FILE_TYPE);
 
         // Validate the FileType in Elasticsearch
         verify(mockFileTypeSearchRepository, times(1)).save(testFileType);
@@ -363,7 +374,8 @@ public class FileTypeResourceIT {
             .andExpect(jsonPath("$.[*].fileMediumType").value(hasItem(DEFAULT_FILE_MEDIUM_TYPE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].fileTemplateContentType").value(hasItem(DEFAULT_FILE_TEMPLATE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].fileTemplate").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE_TEMPLATE))));
+            .andExpect(jsonPath("$.[*].fileTemplate").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE_TEMPLATE))))
+            .andExpect(jsonPath("$.[*].fileType").value(hasItem(DEFAULT_FILE_TYPE.toString())));
     }
 
     @Test

@@ -13,6 +13,8 @@ import java.util.Objects;
 
 import io.github.assets.domain.enumeration.FileMediumTypes;
 
+import io.github.assets.domain.enumeration.FileModelType;
+
 /**
  * A FileType.
  */
@@ -48,6 +50,10 @@ public class FileType implements Serializable {
 
     @Column(name = "file_template_content_type")
     private String fileTemplateContentType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "file_type")
+    private FileModelType fileType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -122,6 +128,19 @@ public class FileType implements Serializable {
     public void setFileTemplateContentType(String fileTemplateContentType) {
         this.fileTemplateContentType = fileTemplateContentType;
     }
+
+    public FileModelType getFileType() {
+        return fileType;
+    }
+
+    public FileType fileType(FileModelType fileType) {
+        this.fileType = fileType;
+        return this;
+    }
+
+    public void setFileType(FileModelType fileType) {
+        this.fileType = fileType;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -149,6 +168,7 @@ public class FileType implements Serializable {
             ", description='" + getDescription() + "'" +
             ", fileTemplate='" + getFileTemplate() + "'" +
             ", fileTemplateContentType='" + getFileTemplateContentType() + "'" +
+            ", fileType='" + getFileType() + "'" +
             "}";
     }
 }
