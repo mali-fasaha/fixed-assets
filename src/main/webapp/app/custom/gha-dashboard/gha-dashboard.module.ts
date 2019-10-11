@@ -10,7 +10,7 @@ import { adminState } from 'app/admin';
 import { RouterModule } from '@angular/router';
 import { MetricDashboardComponent } from './metric-dashboard/metric-dashboard.component';
 import { HealthDashboardComponent } from './health-dashboard/health-dashboard.component';
-import { PrepaymentsDashboardComponent } from './prepayments-dashboard/prepayments-dashboard.component';
+import { FixedAssetsDashboardComponent } from './prepayments-dashboard/prepayments-dashboard.component';
 import { DashboardHudContainerModule } from 'app/custom/gha-dashboard/dashboard-hud-container/dashboard-hud-container.module';
 import { GhaMaterialModule } from 'app/custom/gha-material.module';
 import { AppDataTablesModule } from 'app/custom/app-data-tables/app-data-tables.module';
@@ -21,7 +21,7 @@ import { AppDataTablesModule } from 'app/custom/app-data-tables/app-data-tables.
     UsersDashboardComponent,
     MetricDashboardComponent,
     HealthDashboardComponent,
-    PrepaymentsDashboardComponent
+    FixedAssetsDashboardComponent
   ],
   imports: [
     RouterModule.forChild(adminState),
@@ -39,7 +39,7 @@ import { AppDataTablesModule } from 'app/custom/app-data-tables/app-data-tables.
     UsersDashboardComponent,
     MetricDashboardComponent,
     HealthDashboardComponent,
-    PrepaymentsDashboardComponent
+    FixedAssetsDashboardComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
