@@ -22,7 +22,7 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: './custom/app-data-tables/app-data-tables.module#AppDataTablesModule'
         },
         {
-          path: '',
+          path: 'fixed-assets',
           loadChildren: './custom/gha-dashboard/gha-dashboard.module#GhaDashboardModule'
         },
         ...LAYOUT_ROUTES

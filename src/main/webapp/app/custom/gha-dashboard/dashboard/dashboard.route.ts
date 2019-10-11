@@ -3,11 +3,11 @@ import { UserRouteAccessService } from 'app/core';
 import { DashboardContainerComponent } from 'app/custom/gha-dashboard/dashboard/dashboard-container.component';
 
 export const PREPS_DASHBOARD_ROUTE: Route = {
-  path: 'fixed-assets/dashboard',
+  path: 'dashboard',
   component: DashboardContainerComponent,
   data: {
     authorities: ['ROLE_USER'],
-    pageTitle: 'Prepayments'
+    pageTitle: 'Fixed Assets'
   },
   canActivate: [UserRouteAccessService]
 };

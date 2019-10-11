@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Data Management App for fixed assets",
   "private": true,
-  "license": "MIT",
+  "license": "GPLv3",
   "cacheDirectories": [
     "node_modules"
   ],

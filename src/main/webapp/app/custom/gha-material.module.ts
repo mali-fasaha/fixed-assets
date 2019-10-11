@@ -15,13 +15,11 @@ import {
   MatRadioModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
@@ -52,4 +50,4 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatRadioModule
   ]
 })
-export class GhaMaterialModule { }
+export class GhaMaterialModule {}
