@@ -6,7 +6,7 @@ import { DashboardHudComponent } from 'app/custom/gha-dashboard/dashboard-hud-co
 import { FixedAssetsSharedModule } from 'app/shared';
 import { DashboardHudOutstandingPrepsComponent } from './dashboard-hud-outstanding-preps/dashboard-hud-outstanding-preps.component';
 import { DashboardHudAmortizationComponent } from './dashboard-hud-amortization/dashboard-hud-amortization.component';
-import { DashboardHudOrphanedAmortizationsComponent } from './dashboard-hud-orphaned-amortizations/dashboard-hud-orphaned-amortizations.component';
+import { DashboardHudOrphanedDepreciationComponent } from './dashboard-hud-orphaned-amortizations/dashboard-hud-orphaned-amortizations.component';
 import { CountUpModule } from 'countup.js-angular2';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { CountUpModule } from 'countup.js-angular2';
     DashboardHudComponent,
     DashboardHudOutstandingPrepsComponent,
     DashboardHudAmortizationComponent,
-    DashboardHudOrphanedAmortizationsComponent
+    DashboardHudOrphanedDepreciationComponent
   ],
   exports: [DashboardHudComponent],
   imports: [CommonModule, FixedAssetsSharedModule, DashboardHudDeckRoutingModule, CountUpModule],
@@ -22,7 +22,7 @@ import { CountUpModule } from 'countup.js-angular2';
     DashboardHudComponent,
     DashboardHudOutstandingPrepsComponent,
     DashboardHudAmortizationComponent,
-    DashboardHudOrphanedAmortizationsComponent
+    DashboardHudOrphanedDepreciationComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
