@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { GhaHealthService } from './health.service';
-import { GhaHealthModalComponent } from './health-modal.component';
+import { GhaHealthService } from 'app/admin';
+import { GhaHealthModalComponent } from 'app/admin';
 
 @Component({
   selector: 'gha-health',
