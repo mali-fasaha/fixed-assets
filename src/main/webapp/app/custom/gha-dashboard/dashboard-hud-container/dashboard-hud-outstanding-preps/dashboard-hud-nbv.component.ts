@@ -3,15 +3,14 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NavigationExtras, Router } from '@angular/router';
 import * as moment from 'moment';
 import { NGXLogger } from 'ngx-logger';
-import { IBalanceQuery } from 'app/preps/model/balance-query.model';
 import { CountUpOptions, CountUp } from 'countup.js';
 
 @Component({
-  selector: 'gha-dashboard-hud-outstanding-preps',
-  templateUrl: './dashboard-hud-outstanding-preps.component.html',
-  styleUrls: ['./dashboard-hud-outstanding-preps.component.scss']
+  selector: 'gha-dashboard-hud-nbv',
+  templateUrl: './dashboard-hud-nbv.component.html',
+  styleUrls: ['./dashboard-hud-nbv.component.scss']
 })
-export class DashboardHudOutstandingPrepsComponent implements OnInit {
+export class DashboardHudNbvComponent implements OnInit {
   modalRef: NgbModalRef;
   outstandingBalanceAmount: number;
   countUpOptions: CountUpOptions;
@@ -36,18 +35,18 @@ export class DashboardHudOutstandingPrepsComponent implements OnInit {
   }
 
   private loadAll(): void {
-    const balanceQuery: IBalanceQuery = {
-      balanceDate: moment(),
-      serviceOutlet: 'All',
-      accountName: 'All'
-    };
-    this.outstandingBalanceService.queryAmount(balanceQuery).subscribe(balanceAmount => {
-      this.outstandingBalanceAmount = balanceAmount / 1000000;
-    });
+    // const balanceQuery: IBalanceQuery = {
+    //   balanceDate: moment(),
+    //   serviceOutlet: 'All',
+    //   accountName: 'All'
+    // };
+    // this.outstandingBalanceService.queryAmount(balanceQuery).subscribe(balanceAmount => {
+    //   this.outstandingBalanceAmount = balanceAmount / 1000000;
+    // });
   }
 
   protected navigateToDate(): void {
-    this.modalRef = this.balanceQueryModalService.open();
+    // this.modalRef = this.balanceQueryModalService.open();
   }
 
   protected navigateToDay(): void {
