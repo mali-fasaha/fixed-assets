@@ -1,0 +1,56 @@
+<div class="container container-fluid">
+
+    <div *ghaHasAnyAuthority="'ROLE_USER'" class="jumbotron">
+        <h1 class="display-4">PREPAYMENTS</h1>
+        <p class="lead">This is a simple forms-over-data prepayments data management app.</p>
+        <hr class="my-4">
+        <p>It uses data uploaded from excel files to create amortization schedules for individual prepayment entries over
+        an expilicitly specified number of periods. Once created each amortization entry exists as an entry
+        in its own right independent from the prepayment which it was created to amortize</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Go to Prepayments</a>
+        </p>
+    </div>
+
+    <gha-dashboard-hud></gha-dashboard-hud>
+
+    <div *ghaHasAnyAuthority="'ROLE_USER'" class="card-deck row col-12 mt-3">
+        <div class="card col-12">
+            <mat-card>
+                <mat-card-content>
+                    <gha-prepayments-dashboard></gha-prepayments-dashboard>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div *ghaHasAnyAuthority="'ROLE_ADMIN'" class="card-deck row col-12 mt-3">
+        <div class="card col-12">
+            <mat-card>
+                <mat-card-content>
+                    <gha-metric-dashboard></gha-metric-dashboard>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div *ghaHasAnyAuthority="'ROLE_ADMIN'" class="card-deck row col-12 mt-3">
+
+        <div class="card col-12">
+            <mat-card>
+                <mat-card-content>
+                    <gha-health-dashboard></gha-health-dashboard>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="card col-12">
+            <mat-card>
+                <mat-card-content>
+                    <gha-users-dashboard></gha-users-dashboard>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

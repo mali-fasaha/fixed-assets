@@ -1,0 +1,13 @@
+<div  *ghaHasAnyAuthority="'ROLE_USER'">
+    <div class="card-body">
+        <h5 class="card-title">Outstanding</h5>
+        <!--<h6 class="card-subtitle mb-2 text-muted"><span class="display-10">KE</span><span class="display-4">{{outstandingBalanceAmount | number : '1.2-2'}}</span><span class="display-10">m</span></h6>-->
+        <h6
+            class="card-subtitle mb-2 text-muted"><span class="display-10">KE</span><span class="display-4" [countUp]="outstandingBalanceAmount" [options]="countUpOptions">0</span><span class="display-10">m</span></h6>
+        <p class="card-text">Worth of outstanding prepayments</p>
+    </div>
+    <div class="card-footer row">
+        <a (click)="navigateToDay()" class="card-link">Balances Today</a>
+        <a (click)="navigateToDate()" class="card-link">Any Day</a>
+    </div>
+</div>
