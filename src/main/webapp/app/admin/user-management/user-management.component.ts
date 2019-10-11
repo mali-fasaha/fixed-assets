@@ -7,7 +7,7 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { AccountService, UserService, User } from 'app/core';
-import { UserMgmtDeleteDialogComponent } from './user-management-delete-dialog.component';
+import { UserMgmtDeleteDialogComponent } from 'app/admin';
 
 @Component({
   selector: 'gha-user-mgmt',

@@ -21,6 +21,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           path: 'data',
           loadChildren: './custom/app-data-tables/app-data-tables.module#AppDataTablesModule'
         },
+        {
+          path: '',
+          loadChildren: './custom/gha-dashboard/gha-dashboard.module#GhaDashboardModule'
+        },
         ...LAYOUT_ROUTES
       ],
       { enableTracing: DEBUG_INFO_ENABLED }

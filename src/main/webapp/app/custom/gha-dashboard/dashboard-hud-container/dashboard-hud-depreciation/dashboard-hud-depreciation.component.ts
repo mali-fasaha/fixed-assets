@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { DashboardHudAmortizationService } from 'app/preps/gha-dashboard/dashboard-hud-container/dashboard-hud-amortization/dashboard-hud-amortization.service';
-// import { IBalanceQuery } from 'app/preps/model/balance-query.model';
 import moment = require('moment');
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CountUpOptions, CountUp } from 'countup.js';
 import { NGXLogger } from 'ngx-logger';
 import { NavigationExtras, Router } from '@angular/router';
-// import { AmortizationScheduleModalService } from 'app/preps/data-display/data-tables/prepayment-amortization/amortization-schedule-modal.service';
 
 @Component({
   selector: 'gha-dashboard-hud-depreciation',
@@ -18,9 +15,7 @@ export class DashboardHudDepreciationComponent implements OnInit {
   countUpOptions: CountUpOptions;
   modalRef: NgbModalRef;
 
-  constructor(private router: Router, private log: NGXLogger) // private amortizationScheduleModalService: AmortizationScheduleModalService,
-  // private dashboardHudAmortizationService: DashboardHudAmortizationService
-  {
+  constructor(private router: Router, private log: NGXLogger) {
     this.loadAll();
   }
 
